@@ -261,13 +261,13 @@ h1 {
 
 
 h1::before {
-    content: "/ 00";
+    content: "/ Речное племя";
 
     display: block;
 
     margin-bottom: 8px;
 
-    font-size: 11px;
+    font-size: 14px;
 
     line-height: 1;
 
