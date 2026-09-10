@@ -1,51 +1,82 @@
 <!doctype html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Конструктор декора</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
+
 
 <body>
 
 <main class="app">
 
+
+  <!-- =====================================================
+       ВЕРХНЯЯ ПАНЕЛЬ
+       ===================================================== -->
+
   <header class="topbar">
 
-    <h1>Конструктор декора</h1>
+    <h1>
+      Конструктор декора
+    </h1>
 
     <div class="top-actions">
-      <button id="downloadBtn" class="secondary">
-        Скачать PNG
-      </button>
 
-      <button id="resetBtn" class="secondary">
+      <button
+        id="resetBtn"
+        class="secondary"
+      >
         Сбросить
       </button>
+
     </div>
 
   </header>
 
 
+
+  <!-- =====================================================
+       ОСНОВНАЯ ОБЛАСТЬ
+       ===================================================== -->
+
   <section class="workspace">
 
+
     <!-- =====================================================
-         ЛЕВАЯ ПАНЕЛЬ — ОСНОВА
+         ОСНОВА
          ===================================================== -->
 
     <aside class="left-panel panel">
 
-      <h2>Основа</h2>
+      <div class="panel-title base-title">
+        <h2>Основа</h2>
+      </div>
 
-      <div class="base-preview" id="basePreview">
+
+      <div
+        class="base-preview"
+        id="basePreview"
+      >
+
         <img
           src="assets/плашка1.png"
           alt="Плашка 1"
         >
+
       </div>
+
 
       <label class="upload-label">
 
@@ -59,25 +90,42 @@
 
       </label>
 
+
       <p class="hint">
-        Можно загрузить свою версию плашки вместо стандартной.
-        Размер изображения должен быть <b>621×381 px</b>.
+
+        Можно загрузить свою версию
+        плашки вместо стандартной.
+
+        Размер изображения должен быть
+        <b>621×381 px</b>.
+
       </p>
 
     </aside>
 
 
+
     <!-- =====================================================
-         ЦЕНТР — РЕЗУЛЬТАТ
+         ОБЩАЯ ПЛАШКА
          ===================================================== -->
 
     <section class="center-panel">
 
-      <h2>Общая плашка</h2>
+      <div class="panel-title canvas-title">
+
+        <h2>
+          Общая плашка
+        </h2>
+
+      </div>
+
 
       <div class="canvas-wrap">
 
-        <div id="canvas" class="canvas">
+        <div
+          id="canvas"
+          class="canvas"
+        >
 
           <img
             id="baseImage"
@@ -99,6 +147,7 @@
           Названия и стоимость декора:
         </div>
 
+
         <div
           id="selectedNames"
           class="selected-names"
@@ -106,13 +155,21 @@
           Ничего не выбрано
         </div>
 
+
         <div class="price-row">
 
-          <span>Цена:</span>
+          <span>
+            Цена:
+          </span>
 
           <strong>
-            <span id="totalPrice">0</span>
+
+            <span id="totalPrice">
+              0
+            </span>
+
             жемчужин
+
           </strong>
 
         </div>
@@ -122,21 +179,31 @@
     </section>
 
 
+
     <!-- =====================================================
-         ПРАВАЯ ПАНЕЛЬ — ДЕКОР
+         ДЕКОР
          ===================================================== -->
 
     <aside class="right-panel panel">
 
-      <h2>Декор</h2>
+      <div class="panel-title decor-title">
+
+        <h2>
+          Декор
+        </h2>
+
+      </div>
+
 
       <div id="categories"></div>
 
     </aside>
 
+
   </section>
 
 </main>
+
 
 
 <!-- =========================================================
@@ -161,8 +228,10 @@
 </template>
 
 
+
 <script src="decor.js"></script>
 <script src="app.js"></script>
 
 </body>
+
 </html>
