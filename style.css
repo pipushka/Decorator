@@ -408,30 +408,6 @@ h1::before {
     border-right: 0;
 }
 
-
-/* ============================================================
-   ДЕКОРАТИВНЫЕ + НА ГРАНИЦАХ
-   ============================================================ */
-
-.workspace::after {
-    content: "+";
-
-    position: absolute;
-
-    right: 10px;
-    bottom: 10px;
-
-    z-index: 5;
-
-    color:
-        rgba(220, 231, 241, 0.48);
-
-    font-size: 14px;
-
-    pointer-events: none;
-}
-
-
 /* ============================================================
    ЗАГОЛОВКИ ПАНЕЛЕЙ
    ============================================================ */
@@ -960,18 +936,18 @@ h1::before {
 /* ============================================================
    ПРАВАЯ ПАНЕЛЬ
    ============================================================ */
-
 .right-panel {
     position: relative;
 
     max-height: 790px;
 
     overflow-y: auto;
+    overflow-x: hidden;
 
     padding-right: 13px !important;
+
+    min-width: 0;
 }
-
-
 /* ============================================================
    SCROLLBAR
    ============================================================ */
@@ -1149,7 +1125,13 @@ h1::before {
 
     max-height: 420px;
 
-    overflow-y: auto;
+.category-body {
+    display: none;
+
+    max-height: none;
+
+    overflow-y: visible;
+    overflow-x: hidden;
 
     padding:
         4px
@@ -1161,12 +1143,19 @@ h1::before {
         transparent;
 }
 
-
 .category.open .category-body {
     display: block;
 }
 
-
+.right-panel,
+#categories,
+.category,
+.category-body {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+   
 /* ============================================================
    DECOR ITEM
    ============================================================ */
