@@ -34,6 +34,22 @@ const DECOR_DATA = [
         src: "assets/плашка3.png"
     },
 
+     {
+        id: "near-2",
+        name: "Плашка БЛЯТЬ",
+        price: 15,
+        category: "near",
+        src: "assets/плашка4.png"
+    },
+    
+   {
+        id: "near-3",
+        name: "Плашка СУКЬ",
+        price: 15,
+        category: "near",
+        src: "assets/плашка3.png"
+    },
+
 
     // ========================================================
     // НА КОТЕ
