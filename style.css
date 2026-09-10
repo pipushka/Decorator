@@ -510,7 +510,7 @@ h1::before {
 /* Маленький плюс */
 
 .panel-title::after {
-    content: "+";
+    content: "БЛЯТЬ";
 
     position: absolute;
 
