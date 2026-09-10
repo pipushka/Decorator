@@ -19,10 +19,7 @@ const DECOR_DATA = [
   { id: "far-1", name: "Дальняя ветка", price: 10, category: "far", src: "assets/плашка3.png" },
 
   // Пример сета. Замените src на собственный PNG.
-  { id: "set-1", name: "Базовый сет", price: 50, category: "set", src: "assets/плашка3.png" }
-];
-
-const DECOR_DATA = [
+  { id: "set-1", name: "Базовый сет", price: 50, category: "set", src: "assets/плашка3.png" },
 
   {
     id: "decor-2",
