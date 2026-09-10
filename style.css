@@ -214,7 +214,7 @@ body::after {
 /* Маленький крест */
 
 .topbar::after {
-    content: "ЕБЛАН";
+    content: "+";
 
     position: absolute;
 
@@ -413,27 +413,8 @@ h1::before {
    ДЕКОРАТИВНЫЕ + НА ГРАНИЦАХ
    ============================================================ */
 
-.workspace::before {
-    content: "УПАСИ";
-
-    position: absolute;
-
-    top: 10px;
-    left: 50%;
-
-    z-index: 5;
-
-    color:
-        rgba(220, 231, 241, 0.48);
-
-    font-size: 14px;
-
-    pointer-events: none;
-}
-
-
 .workspace::after {
-    content: "БОЖЕ";
+    content: "+";
 
     position: absolute;
 
@@ -510,7 +491,7 @@ h1::before {
 /* Маленький плюс */
 
 .panel-title::after {
-    content: "БЛЯТЬ";
+    content: "+";
 
     position: absolute;
 
