@@ -461,42 +461,112 @@ function renderCanvas() {
 
 function renderInfo() {
 
-  const items =
-    [...state.selected.values()];
+    const items = [
+        ...state.selected.values()
+    ];
 
 
-  if (!items.length) {
+    // ----------------------------------------------------------
+    // НИЧЕГО НЕ ВЫБРАНО
+    // ----------------------------------------------------------
 
-    selectedNames.textContent =
-      "Ничего не выбрано";
+    if (!items.length) {
 
-    totalPrice.textContent = "0";
+        selectedNames.textContent =
+            "Ничего не выбрано";
 
-    return;
+        totalPrice.textContent = "0";
 
-  }
-
-
-  selectedNames.textContent =
-    items
-      .map(
-        item =>
-          `${item.name} — ${item.price}`
-      )
-      .join(", ");
+        return;
+    }
 
 
-  totalPrice.textContent =
-    items.reduce(
-      (sum, item) =>
-        sum +
-        Number(item.price || 0),
-      0
-    );
+    // ----------------------------------------------------------
+    // ПОРЯДОК КАТЕГОРИЙ
+    // ----------------------------------------------------------
+
+    const categoryOrder = {
+        far: 0,
+        near: 1,
+        cat: 2,
+        plan: 3,
+        set: 4
+    };
+
+
+    const categoryNames = {
+        far: "Дальняя ветка",
+        near: "Ближняя ветка",
+        cat: "На коте",
+        plan: "Общий план",
+        set: "Сеты"
+    };
+
+
+    // ----------------------------------------------------------
+    // СОРТИРУЕМ ПО КАТЕГОРИИ
+    // ----------------------------------------------------------
+
+    items.sort((a, b) => {
+
+        const orderA =
+            categoryOrder[a.category] ?? 999;
+
+        const orderB =
+            categoryOrder[b.category] ?? 999;
+
+        return orderA - orderB;
+
+    });
+
+
+    // ----------------------------------------------------------
+    // ОЧИЩАЕМ СТАРЫЙ СПИСОК
+    // ----------------------------------------------------------
+
+    selectedNames.innerHTML = "";
+
+
+    // ----------------------------------------------------------
+    // СОЗДАЁМ КАЖДУЮ СТРОКУ ОТДЕЛЬНО
+    // ----------------------------------------------------------
+
+    for (const item of items) {
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "selected-decor-row";
+
+
+        const category =
+            categoryNames[item.category]
+            || item.category;
+
+
+        row.textContent =
+            `${category} — ${item.name} (${item.price})`;
+
+
+        selectedNames.appendChild(row);
+
+    }
+
+
+    // ----------------------------------------------------------
+    // ОБЩАЯ ЦЕНА
+    // ----------------------------------------------------------
+
+    totalPrice.textContent =
+        items.reduce(
+            (sum, item) =>
+                sum +
+                Number(item.price || 0),
+            0
+        );
 
 }
-
-
 // ============================================================
 // УСТАНОВКА ОСНОВЫ
 // ============================================================
