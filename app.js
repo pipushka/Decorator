@@ -656,6 +656,25 @@ setBase(
   "Плашка 1"
 );
 
+// ============================================================
+// ПЛАВНОЕ ПОЯВЛЕНИЕ ИНТЕРФЕЙСА
+// ============================================================
+
+window.addEventListener("load", () => {
+
+  // Даём браузеру закончить первичную отрисовку
+  requestAnimationFrame(() => {
+
+    requestAnimationFrame(() => {
+
+      document.body.classList.add("page-ready");
+
+    });
+
+  });
+
+});
+
 renderCategories();
 renderCanvas();
 renderInfo();
