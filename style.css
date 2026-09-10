@@ -900,6 +900,26 @@ h1::before {
     line-height: 1.4;
 }
 
+.selected-decor-row {
+    display: block;
+
+    min-height: 24px;
+
+    padding:
+        3px
+        0;
+
+    color:
+        var(--text-soft);
+
+    font-size: 15px;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .price-row {
     display: flex;
@@ -1166,7 +1186,7 @@ h1::before {
     display: grid;
 
     grid-template-columns:
-        1fr
+        minmax(0, 1fr)
         74px;
 
     grid-template-rows:
