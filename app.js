@@ -680,19 +680,19 @@ renderCanvas();
 renderInfo();
 
 // ============================================================
-// ПЛАВНОЕ ПОЯВЛЕНИЕ ИНТЕРФЕЙСА
+// DECORATOR — ПЛАВНОЕ ПОЯВЛЕНИЕ
 // ============================================================
 
 window.addEventListener("load", () => {
 
-  requestAnimationFrame(() => {
-
     requestAnimationFrame(() => {
 
-      document.body.classList.add("page-ready");
+        requestAnimationFrame(() => {
+
+            document.body.classList.add("page-ready");
+
+        });
 
     });
-
-  });
 
 });
