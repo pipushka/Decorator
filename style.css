@@ -523,22 +523,6 @@ h1::before {
         rgba(220, 231, 241, 0.42);
 }
 
-
-.base-title::before {
-    content: "/ 01";
-}
-
-
-.canvas-title::before {
-    content: "/ 02";
-}
-
-
-.decor-title::before {
-    content: "/ 03";
-}
-
-
 .panel-title h2 {
     margin: 0;
 
