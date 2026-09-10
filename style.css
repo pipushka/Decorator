@@ -603,7 +603,7 @@ h1::before {
 
 
 .base-preview::after {
-    content: "+";
+    content: "СУКА";
 
     position: absolute;
 
