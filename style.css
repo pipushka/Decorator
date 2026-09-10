@@ -197,9 +197,6 @@ h2 {
     1px solid
     rgba(190, 208, 225, 0.35);
 
-  border-radius:
-    12px;
-
   cursor: pointer;
 
   box-shadow:
@@ -264,9 +261,6 @@ h2 {
     1px solid
     rgba(164, 185, 205, 0.22);
 
-  border-radius:
-    22px;
-
   background:
     rgba(5, 18, 35, 0.68);
 
@@ -312,8 +306,6 @@ h2 {
     1px solid
     rgba(184, 202, 219, 0.28);
 
-  border-radius:
-    16px;
 
   background:
     rgba(17, 39, 62, 0.76);
@@ -389,9 +381,6 @@ h2 {
     1px solid
     rgba(184, 202, 219, 0.30);
 
-  border-radius:
-    16px;
-
   box-shadow:
     0 8px 22px
     rgba(0, 0, 0, 0.25);
@@ -437,9 +426,6 @@ h2 {
   border:
     1px solid
     rgba(190, 208, 225, 0.35);
-
-  border-radius:
-    12px;
 
   cursor: pointer;
 
@@ -513,8 +499,6 @@ h2 {
   background:
     rgba(5, 17, 33, 0.75);
 
-  border-radius:
-    7px;
 }
 
 
@@ -552,9 +536,6 @@ h2 {
     1px solid
     rgba(184, 202, 219, 0.32);
 
-  border-radius:
-    22px;
-
   box-shadow:
     0 20px 48px
     rgba(0, 0, 0, 0.38);
@@ -584,8 +565,6 @@ h2 {
   background:
     rgba(8, 20, 36, 0.9);
 
-  border-radius:
-    16px;
 }
 
 
@@ -652,9 +631,6 @@ h2 {
   border:
     1px solid
     rgba(180, 200, 218, 0.30);
-
-  border-radius:
-    16px;
 
   box-shadow:
     0 8px 22px
@@ -740,9 +716,6 @@ h2 {
     1px solid
     rgba(160, 181, 201, 0.25);
 
-  border-radius:
-    16px;
-
   box-shadow:
     0 8px 20px
     rgba(0, 0, 0, 0.18);
@@ -782,9 +755,6 @@ h2 {
     rgba(20, 44, 69, 0.80);
 
   border: 0;
-
-  border-radius:
-    16px;
 
   cursor: pointer;
 
@@ -894,9 +864,6 @@ h2 {
     1px solid
     rgba(170, 191, 209, 0.28);
 
-  border-radius:
-    12px;
-
   cursor: pointer;
 
   box-shadow:
@@ -990,8 +957,6 @@ h2 {
   background:
     rgba(7, 20, 36, 0.52);
 
-  border-radius:
-    8px;
 }
 
 
@@ -1030,9 +995,6 @@ h2 {
   height: 84px;
 
   object-fit: contain;
-
-  border-radius:
-    8px;
 }
 
 
@@ -1067,8 +1029,6 @@ h2 {
   background:
     rgba(3, 13, 27, 0.35);
 
-  border-radius:
-    10px;
 }
 
 
@@ -1076,9 +1036,6 @@ h2 {
 .category-body::-webkit-scrollbar-thumb {
   background:
     rgba(150, 170, 190, 0.38);
-
-  border-radius:
-    10px;
 
   border: 0;
 }
@@ -1255,9 +1212,6 @@ body.page-ready .app {
       1fr;
 
     padding: 12px;
-
-    border-radius:
-      16px;
   }
 
 
