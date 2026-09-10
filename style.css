@@ -466,23 +466,6 @@ h1::before {
         var(--text-dim);
 }
 
-
-/* Маленький плюс */
-
-.panel-title::after {
-    content: "+";
-
-    position: absolute;
-
-    right: 2px;
-    bottom: 10px;
-
-    font-size: 14px;
-
-    color:
-        rgba(220, 231, 241, 0.42);
-}
-
 .panel-title h2 {
     margin: 0;
 
@@ -563,7 +546,7 @@ h1::before {
 
 
 .base-preview::after {
-    content: "ПРОБА ПЕРА ×381";
+    content: "621×381";
 
     position: absolute;
 
@@ -843,7 +826,7 @@ h1::before {
     margin-top: 16px;
 
     padding:
-        15px 0 0;
+        15px 0 25px;
 
     background:
         transparent;
