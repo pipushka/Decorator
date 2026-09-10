@@ -414,7 +414,7 @@ h1::before {
    ============================================================ */
 
 .workspace::before {
-    content: "+";
+    content: "УПАСИ";
 
     position: absolute;
 
@@ -433,7 +433,7 @@ h1::before {
 
 
 .workspace::after {
-    content: "+";
+    content: "БОЖЕ";
 
     position: absolute;
 
