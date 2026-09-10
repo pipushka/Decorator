@@ -36,9 +36,9 @@ body {
   min-height: 100%;
 
   font-family:
-    georgia,
+    Georgia,
     Helvetica,
-    sans-serif;
+    serif;
 
   color: var(--text);
 
