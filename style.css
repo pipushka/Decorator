@@ -563,7 +563,7 @@ h1::before {
 
 
 .base-preview::after {
-    content: "621×381";
+    content: "ПРОБА ПЕРА ×381";
 
     position: absolute;
 
@@ -1366,7 +1366,7 @@ h1::before {
 
     grid-row: 2;
    
-   margin-top: 12px;
+    padding-top: 10px;
    
     margin:
         7px
