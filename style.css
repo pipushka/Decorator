@@ -1,4 +1,10 @@
 /* ============================================================
+   КОНСТРУКТОР ДЕКОРА
+   НОВАЯ ТЕМА
+   ============================================================ */
+
+
+/* ============================================================
    ОСНОВА
    ============================================================ */
 
@@ -6,1143 +12,6 @@
   box-sizing: border-box;
 }
 
-
-:root {
-
-  --bg: #505050;
-  --workspace: #8b8b8b;
-
-  --panel: #8e8e8e;
-  --panel-dark: #777;
-
-  --light: #eeeeee;
-  --line: #d8d8d8;
-
-  --text: #111;
-  --accent: #cfcfcf;
-
-}
-
-
-/* ============================================================
-   СТРАНИЦА
-   ============================================================ */
-
-html,
-body {
-
-  margin: 0;
-
-  min-height: 100%;
-
-  font-family:
-    Georgia,
-    Helvetica,
-    serif;
-
-  color: var(--text);
-
-  background:
-    var(--bg);
-
-}
-
-
-body {
-
-  padding: 16px;
-
-}
-
-
-.app {
-
-  width: 100%;
-
-  max-width: 1900px;
-
-  margin: 0 auto;
-
-}
-
-
-/* ============================================================
-   ВЕРХНЯЯ ПАНЕЛЬ
-   ============================================================ */
-
-.topbar {
-
-  min-height: 64px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 20px;
-
-}
-
-
-h1 {
-
-  margin: 0;
-
-  font-size: 38px;
-
-  font-weight: 400;
-
-}
-
-
-h2 {
-
-  margin: 0;
-
-  font-size: 32px;
-
-  font-weight: 400;
-
-}
-
-
-/* ============================================================
-   КНОПКИ ВВЕРХУ
-   ============================================================ */
-
-.top-actions {
-
-  display: flex;
-
-  gap: 10px;
-
-}
-
-
-.secondary {
-
-  padding:
-    12px
-    18px;
-
-  font-size: 18px;
-
-  border:
-    1px solid
-    #aaa;
-
-  background:
-    #d4d4d4;
-
-  color: #111;
-
-  cursor: pointer;
-
-}
-
-
-/* ============================================================
-   ОСНОВНАЯ РАБОЧАЯ ОБЛАСТЬ
-   ============================================================ */
-
-.workspace {
-
-  display: grid;
-
-  grid-template-columns:
-    320px
-    minmax(700px, 1fr)
-    340px;
-
-  gap: 20px;
-
-  background:
-    var(--workspace);
-
-  padding: 20px;
-
-  min-height: 820px;
-
-}
-
-
-.panel {
-
-  min-width: 0;
-
-}
-
-
-/* ============================================================
-   ОБЩИЕ ЗАГОЛОВКИ РАЗДЕЛОВ
-   ============================================================ */
-
-.panel-title {
-
-  width: 100%;
-
-  min-height: 48px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding:
-    7px
-    12px;
-
-  margin-bottom: 10px;
-
-  border:
-    3px solid
-    rgba(255, 255, 255, 0.55);
-
-  box-shadow:
-    0 2px 0 rgba(0, 0, 0, 0.18);
-
-}
-
-
-.panel-title h2 {
-
-  margin: 0;
-
-  font-size: 30px;
-
-  font-weight: 400;
-
-}
-
-
-/* ============================================================
-   ОСНОВА
-   ============================================================ */
-
-.base-title {
-
-  background:
-    #a8c0c8;
-
-}
-
-
-/* ============================================================
-   ОБЩАЯ ПЛАШКА
-   ============================================================ */
-
-.canvas-title {
-
-  background:
-    #c4b5a9;
-
-}
-
-
-/* ============================================================
-   ДЕКОР
-   ============================================================ */
-
-.decor-title {
-
-  background:
-    #b7acc8;
-
-}
-
-
-/* ============================================================
-   ЛЕВАЯ ПАНЕЛЬ
-   ============================================================ */
-
-.left-panel {
-
-  padding-right: 4px;
-
-}
-
-
-.base-preview {
-
-  width: 100%;
-
-  aspect-ratio:
-    621 / 381;
-
-  background:
-    #bdbdbd;
-
-  border:
-    3px solid
-    #ddd;
-
-  display: grid;
-
-  place-items: center;
-
-  margin-bottom: 16px;
-
-  overflow: hidden;
-
-}
-
-
-.base-preview img {
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: contain;
-
-}
-
-
-/* ============================================================
-   ЗАГРУЗКА ОСНОВЫ
-   ============================================================ */
-
-.upload-label {
-
-  display: block;
-
-  font-size: 19px;
-
-  margin-bottom: 14px;
-
-  background:
-    #d7d7d7;
-
-  border:
-    2px solid
-    #bcbcbc;
-
-  padding: 13px;
-
-  cursor: pointer;
-
-  text-align: center;
-
-}
-
-
-.upload-label:hover {
-
-  background:
-    #e5e5e5;
-
-}
-
-
-.upload-label input {
-
-  display: none;
-
-}
-
-
-.hint {
-
-  font-size: 16px;
-
-  line-height: 1.45;
-
-  margin:
-    12px
-    0
-    0;
-
-}
-
-
-.hint code {
-
-  background:
-    #777;
-
-  padding:
-    2px
-    5px;
-
-}
-
-
-/* ============================================================
-   ЦЕНТР
-   ============================================================ */
-
-.center-panel {
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  min-width: 0;
-
-}
-
-
-/* ============================================================
-   ХОЛСТ
-   ============================================================ */
-
-.canvas-wrap {
-
-  width: min(
-    100%,
-    900px
-  );
-
-  background:
-    #d0d0d0;
-
-  border:
-    6px solid
-    #d9d9d9;
-
-  padding: 10px;
-
-}
-
-
-.canvas {
-
-  position: relative;
-
-  width: 100%;
-
-  aspect-ratio:
-    621 / 381;
-
-  overflow: hidden;
-
-  background:
-    #bdbdbd;
-
-}
-
-
-.layer {
-
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: fill;
-
-  pointer-events: none;
-
-}
-
-
-.base-layer {
-
-  z-index: 1;
-
-}
-
-
-.decor-layer {
-
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: fill;
-
-  pointer-events: none;
-
-}
-
-
-/* ============================================================
-   ИНФОРМАЦИЯ ПОД ХОЛСТОМ
-   ============================================================ */
-
-.info-card {
-
-  width: min(
-    100%,
-    900px
-  );
-
-  margin-top: 14px;
-
-  background:
-    #7d7d7d;
-
-  border:
-    5px solid
-    #dedede;
-
-  padding:
-    14px
-    18px;
-
-  min-height: 130px;
-
-}
-
-
-.info-title {
-
-  font-size: 21px;
-
-  margin-bottom: 9px;
-
-}
-
-
-.selected-names {
-
-  font-size: 18px;
-
-  min-height: 42px;
-
-}
-
-
-.price-row {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: end;
-
-  font-size: 25px;
-
-  margin-top: 10px;
-
-}
-
-
-/* ============================================================
-   ПРАВАЯ ПАНЕЛЬ
-   ============================================================ */
-
-.right-panel {
-
-  max-height: 790px;
-
-  overflow-y: auto;
-
-  padding-right: 4px;
-
-}
-
-
-/* ============================================================
-   КАТЕГОРИИ
-   ============================================================ */
-
-.category {
-
-  margin-bottom: 12px;
-
-  border:
-    3px solid
-    rgba(255, 255, 255, 0.35);
-
-  box-shadow:
-    0 2px 0 rgba(0, 0, 0, 0.18);
-
-  overflow: hidden;
-
-}
-
-
-/* ============================================================
-   ЗАГОЛОВОК КАТЕГОРИИ
-   ============================================================ */
-
-.category-head {
-
-  width: 100%;
-
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    40px;
-
-  align-items: center;
-
-  text-align: left;
-
-  border: 0;
-
-  padding:
-    8px
-    10px;
-
-  color: #111;
-
-  cursor: pointer;
-
-  font-size: 27px;
-
-}
-
-
-.category-head:hover {
-
-  filter:
-    brightness(1.06);
-
-}
-
-
-.arrow {
-
-  font-size: 28px;
-
-  text-align: center;
-
-  transition:
-    transform
-    .18s
-    ease;
-
-}
-
-
-.category.open
-.arrow {
-
-  transform:
-    rotate(180deg);
-
-}
-
-
-/* ============================================================
-   ЦВЕТА КАТЕГОРИЙ
-   ============================================================ */
-
-
-/* ------------------------------------------------------------
-   ДАЛЬНЯЯ ВЕТКА
-   ------------------------------------------------------------ */
-
-.category:nth-child(1) {
-
-  background:
-    #718791;
-
-}
-
-
-.category:nth-child(1)
-.category-head {
-
-  background:
-    #91a9b2;
-
-}
-
-
-/* ------------------------------------------------------------
-   БЛИЖНЯЯ ВЕТКА
-   ------------------------------------------------------------ */
-
-.category:nth-child(2) {
-
-  background:
-    #8c796d;
-
-}
-
-
-.category:nth-child(2)
-.category-head {
-
-  background:
-    #ab9381;
-
-}
-
-
-/* ------------------------------------------------------------
-   НА КОТЕ
-   ------------------------------------------------------------ */
-
-.category:nth-child(3) {
-
-  background:
-    #78866c;
-
-}
-
-
-.category:nth-child(3)
-.category-head {
-
-  background:
-    #96a587;
-
-}
-
-
-/* ------------------------------------------------------------
-   ОБЩИЙ ПЛАН
-   ------------------------------------------------------------ */
-
-.category:nth-child(4) {
-
-  background:
-    #807899;
-
-}
-
-
-.category:nth-child(4)
-.category-head {
-
-  background:
-    #9d94b7;
-
-}
-
-
-/* ------------------------------------------------------------
-   СЕТЫ
-   ------------------------------------------------------------ */
-
-.category:nth-child(5) {
-
-  background:
-    #94746e;
-
-}
-
-
-.category:nth-child(5)
-.category-head {
-
-  background:
-    #b08b83;
-
-}
-
-
-/* ============================================================
-   ТЕЛО КАТЕГОРИИ
-   ============================================================ */
-
-.category-body {
-
-  display: none;
-
-  padding:
-    8px;
-
-  max-height: 420px;
-
-  overflow-y: auto;
-
-  background:
-    rgba(0, 0, 0, 0.12);
-
-}
-
-
-.category.open
-.category-body {
-
-  display: block;
-
-}
-
-
-/* ============================================================
-   ЭЛЕМЕНТ ДЕКОРА
-   ============================================================ */
-
-.decor-item {
-
-  position: relative;
-
-  display: block;
-
-  width: 100%;
-
-  min-height: 100px;
-
-  margin-bottom: 9px;
-
-  padding:
-    9px
-    85px
-    9px
-    11px;
-
-  text-align: left;
-
-  background:
-    #c8c8c8;
-
-  border:
-    2px solid
-    rgba(0, 0, 0, 0.18);
-
-  color: #111;
-
-  cursor: pointer;
-
-  font-size: 17px;
-
-}
-
-
-.decor-item:last-child {
-
-  margin-bottom: 0;
-
-}
-
-
-.decor-item:hover {
-
-  filter:
-    brightness(1.06);
-
-}
-
-
-.decor-item:active {
-
-  transform:
-    translateY(1px);
-
-}
-
-
-/* ============================================================
-   ВЫБРАННЫЙ ДЕКОР
-   ============================================================ */
-
-.decor-item.selected {
-
-  outline:
-    4px solid
-    #ffffff;
-
-  outline-offset:
-    -4px;
-
-  background:
-    #eeeeee;
-
-  box-shadow:
-    inset 0 0 0 2px
-    rgba(0, 0, 0, 0.12);
-
-}
-
-
-/* ============================================================
-   НАЗВАНИЕ ДЕКОРА
-   ============================================================ */
-
-.item-name {
-
-  display: block;
-
-  white-space: nowrap;
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
-
-  background:
-    #ededed;
-
-  padding:
-    4px
-    6px;
-
-  font-size: 18px;
-
-}
-
-
-/* ============================================================
-   ЦЕНА ДЕКОРА
-   ============================================================ */
-
-.item-price {
-
-  display: block;
-
-  font-size: 15px;
-
-  margin:
-    7px
-    5px
-    0;
-
-}
-
-
-/* ============================================================
-   КАРТИНКА ДЕКОРА
-   ============================================================ */
-
-.item-thumb {
-
-  position: absolute;
-
-  right: 7px;
-
-  top: 7px;
-
-  width: 70px;
-
-  height: 84px;
-
-  object-fit: contain;
-
-}
-
-
-/* ============================================================
-   ПУСТЫЕ КАТЕГОРИИ
-   ============================================================ */
-
-.empty {
-
-  font-size: 16px;
-
-  padding: 10px;
-
-  opacity: .8;
-
-}
-
-
-/* ============================================================
-   СКРОЛЛБАР
-   ============================================================ */
-
-.right-panel::-webkit-scrollbar,
-.category-body::-webkit-scrollbar {
-
-  width: 10px;
-
-}
-
-
-.right-panel::-webkit-scrollbar-track,
-.category-body::-webkit-scrollbar-track {
-
-  background:
-    #707070;
-
-}
-
-
-.right-panel::-webkit-scrollbar-thumb,
-.category-body::-webkit-scrollbar-thumb {
-
-  background:
-    #c5c5c5;
-
-  border:
-    2px solid
-    #707070;
-
-}
-
-
-/* ============================================================
-   АДАПТИВНОСТЬ
-   ============================================================ */
-
-@media (max-width: 1400px) {
-
-  .workspace {
-
-    grid-template-columns:
-      280px
-      minmax(600px, 1fr)
-      300px;
-
-    gap: 16px;
-
-  }
-
-
-  h1 {
-
-    font-size: 34px;
-
-  }
-
-
-  .panel-title h2 {
-
-    font-size: 29px;
-
-  }
-
-
-  .category-head {
-
-    font-size: 26px;
-
-  }
-
-}
-
-
-@media (max-width: 1100px) {
-
-  .workspace {
-
-    grid-template-columns:
-      280px
-      1fr;
-
-  }
-
-
-  .right-panel {
-
-    grid-column:
-      1 / -1;
-
-    max-height: none;
-
-  }
-
-}
-
-
-@media (max-width: 700px) {
-
-  body {
-
-    padding: 6px;
-
-  }
-
-
-  .workspace {
-
-    grid-template-columns:
-      1fr;
-
-    padding: 12px;
-
-  }
-
-
-  .right-panel {
-
-    grid-column: auto;
-
-  }
-
-
-  .topbar {
-
-    flex-direction: column;
-
-    align-items: stretch;
-
-    padding-bottom: 12px;
-
-  }
-
-
-  h1 {
-
-    font-size: 28px;
-
-  }
-
-
-  .panel-title h2 {
-
-    font-size: 25px;
-
-  }
-
-
-  .top-actions {
-
-    flex-wrap: wrap;
-
-  }
-
-
-  .secondary {
-
-    flex: 1;
-
-  }
-
-
-  .category-head {
-
-    font-size: 24px;
-
-  }
-
-/* ============================================================
-   НОВАЯ ТЕМА — ТЁМНО-СИНИЙ / БОТАНИЧЕСКИЙ СТИЛЬ
-   ============================================================ */
-
-:root {
-  --bg: #071326;
-
-  --navy-1: #08172c;
-  --navy-2: #0d2039;
-  --navy-3: #122b49;
-  --navy-4: #183655;
-
-  --glass: rgba(8, 23, 43, 0.78);
-  --glass-light: rgba(20, 42, 67, 0.78);
-  --glass-soft: rgba(35, 58, 84, 0.62);
-
-  --line: rgba(157, 177, 198, 0.25);
-  --line-light: rgba(190, 208, 225, 0.35);
-
-  --text: #e8eef5;
-  --text-soft: #b9c8d8;
-  --text-dark: #071326;
-
-  --accent: #9eafc1;
-  --accent-light: #d7e1eb;
-
-  --shadow:
-    0 18px 45px rgba(0, 0, 0, 0.32);
-
-  --shadow-small:
-    0 8px 22px rgba(0, 0, 0, 0.25);
-
-  --radius-large: 22px;
-  --radius-medium: 16px;
-  --radius-small: 12px;
-}
-
-
-/* ============================================================
-   ОБЩАЯ СТРАНИЦА
-   ============================================================ */
 
 html,
 body {
@@ -1154,7 +23,20 @@ body {
     "Times New Roman",
     serif;
 
-  color: var(--text);
+  color: #e8eef5;
+}
+
+
+/* ============================================================
+   СТРАНИЦА И ФОН
+   ============================================================ */
+
+body {
+  position: relative;
+
+  min-height: 100vh;
+
+  padding: 16px;
 
   background:
     #071326
@@ -1163,48 +45,37 @@ body {
     / cover
     fixed
     no-repeat;
+
+  overflow-x: hidden;
 }
 
 
-/* Затемнение изображения для читаемости интерфейса */
-
-body {
-  position: relative;
-  padding: 16px;
-
-  background-color: #071326;
-}
-
-
-/* Дополнительная лёгкая дымка поверх изображения */
+/* Затемнение и лёгкое синее стекло поверх фотографии */
 
 body::before {
   content: "";
 
   position: fixed;
+
   inset: 0;
 
-  z-index: -1;
+  z-index: 0;
 
   pointer-events: none;
 
   background:
     linear-gradient(
       135deg,
-      rgba(2, 12, 29, 0.72),
+      rgba(2, 12, 29, 0.74),
       rgba(8, 24, 45, 0.48),
-      rgba(3, 13, 29, 0.72)
+      rgba(3, 13, 29, 0.76)
     );
 }
 
 
 /* ============================================================
-   ШРИФТ — ВООБЩЕ ВЕЗДЕ
+   ШРИФТ — ПРИНУДИТЕЛЬНО GEORGIA ВЕЗДЕ
    ============================================================ */
-
-* {
-  box-sizing: border-box;
-}
 
 *,
 *::before,
@@ -1214,6 +85,7 @@ body::before {
     "Times New Roman",
     serif;
 }
+
 
 button,
 input,
@@ -1231,8 +103,14 @@ textarea {
    ============================================================ */
 
 .app {
+  position: relative;
+
+  z-index: 1;
+
   width: 100%;
+
   max-width: 1900px;
+
   margin: 0 auto;
 }
 
@@ -1245,12 +123,17 @@ textarea {
   min-height: 72px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   gap: 20px;
 
-  padding: 6px 4px 16px;
+  padding:
+    6px
+    4px
+    16px;
 }
 
 
@@ -1258,25 +141,31 @@ h1 {
   margin: 0;
 
   font-size: 38px;
+
   font-weight: 400;
 
-  color: #edf3f8;
+  color:
+    #edf3f8;
 
   text-shadow:
-    0 3px 16px rgba(0, 0, 0, 0.45);
+    0 3px 16px
+    rgba(0, 0, 0, 0.45);
 }
 
 
 h2 {
-  margin: 0 0 16px;
+  margin: 0;
 
   font-size: 32px;
+
   font-weight: 400;
 
-  color: #e6eef6;
+  color:
+    #e6eef6;
 
   text-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.35);
+    0 2px 12px
+    rgba(0, 0, 0, 0.35);
 }
 
 
@@ -1286,31 +175,42 @@ h2 {
 
 .top-actions {
   display: flex;
+
   gap: 10px;
 }
 
 
 .secondary {
-  padding: 12px 20px;
+  padding:
+    12px
+    20px;
 
   font-size: 18px;
 
-  border: 1px solid var(--line-light);
-
-  border-radius: var(--radius-small);
+  color:
+    #e8eef5;
 
   background:
     rgba(20, 43, 68, 0.82);
 
-  color: var(--text);
+  border:
+    1px solid
+    rgba(190, 208, 225, 0.35);
+
+  border-radius:
+    12px;
 
   cursor: pointer;
 
   box-shadow:
-    var(--shadow-small);
+    0 8px 22px
+    rgba(0, 0, 0, 0.25);
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
 
   transition:
     background 0.2s ease,
@@ -1322,16 +222,17 @@ h2 {
 
 .secondary:hover {
   background:
-    rgba(35, 63, 91, 0.9);
+    rgba(35, 63, 91, 0.92);
 
   border-color:
-    rgba(207, 221, 234, 0.5);
+    rgba(215, 225, 235, 0.55);
 
   transform:
     translateY(-2px);
 
   box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.32);
+    0 12px 28px
+    rgba(0, 0, 0, 0.32);
 }
 
 
@@ -1364,13 +265,14 @@ h2 {
     rgba(164, 185, 205, 0.22);
 
   border-radius:
-    var(--radius-large);
+    22px;
 
   background:
     rgba(5, 18, 35, 0.68);
 
   box-shadow:
-    var(--shadow);
+    0 18px 45px
+    rgba(0, 0, 0, 0.32);
 
   backdrop-filter:
     blur(18px);
@@ -1380,12 +282,76 @@ h2 {
 }
 
 
-/* ============================================================
-   ПАНЕЛИ
-   ============================================================ */
-
 .panel {
   min-width: 0;
+}
+
+
+/* ============================================================
+   ЗАГОЛОВКИ ПАНЕЛЕЙ
+   ============================================================ */
+
+.panel-title {
+  width: 100%;
+
+  min-height: 58px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding:
+    9px
+    14px;
+
+  margin-bottom: 12px;
+
+  border:
+    1px solid
+    rgba(184, 202, 219, 0.28);
+
+  border-radius:
+    16px;
+
+  background:
+    rgba(17, 39, 62, 0.76);
+
+  box-shadow:
+    0 8px 20px
+    rgba(0, 0, 0, 0.2);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+}
+
+
+.panel-title h2 {
+  margin: 0;
+
+  font-size: 30px;
+
+  font-weight: 400;
+
+  color:
+    #e8eef5;
+}
+
+
+/*
+   Все три заголовка теперь одинаковые.
+   Старые цветные base/canvas/decor больше не используются.
+*/
+
+.base-title,
+.canvas-title,
+.decor-title {
+  background:
+    rgba(17, 39, 62, 0.76);
 }
 
 
@@ -1409,24 +375,26 @@ h2 {
     621 / 381;
 
   display: grid;
+
   place-items: center;
 
   margin-bottom: 16px;
 
   overflow: hidden;
 
+  background:
+    rgba(8, 24, 43, 0.78);
+
   border:
     1px solid
-    var(--line-light);
+    rgba(184, 202, 219, 0.30);
 
   border-radius:
-    var(--radius-medium);
-
-  background:
-    rgba(15, 35, 56, 0.78);
+    16px;
 
   box-shadow:
-    var(--shadow-small);
+    0 8px 22px
+    rgba(0, 0, 0, 0.25);
 
   backdrop-filter:
     blur(10px);
@@ -1438,6 +406,7 @@ h2 {
 
 .base-preview img {
   width: 100%;
+
   height: 100%;
 
   object-fit: contain;
@@ -1445,7 +414,7 @@ h2 {
 
 
 /* ============================================================
-   ЗАГРУЗКА ФАЙЛА
+   ЗАГРУЗКА ОСНОВЫ
    ============================================================ */
 
 .upload-label {
@@ -1459,22 +428,24 @@ h2 {
 
   text-align: center;
 
-  cursor: pointer;
-
-  color: var(--text);
+  color:
+    #e8eef5;
 
   background:
-    rgba(20, 45, 71, 0.8);
+    rgba(20, 45, 71, 0.82);
 
   border:
     1px solid
-    var(--line-light);
+    rgba(190, 208, 225, 0.35);
 
   border-radius:
-    var(--radius-small);
+    12px;
+
+  cursor: pointer;
 
   box-shadow:
-    var(--shadow-small);
+    0 8px 22px
+    rgba(0, 0, 0, 0.24);
 
   backdrop-filter:
     blur(10px);
@@ -1484,17 +455,17 @@ h2 {
 
   transition:
     background 0.2s ease,
-    transform 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 
 .upload-label:hover {
   background:
-    rgba(34, 63, 91, 0.88);
+    rgba(34, 63, 91, 0.92);
 
   border-color:
-    rgba(207, 221, 234, 0.48);
+    rgba(215, 225, 235, 0.52);
 
   transform:
     translateY(-1px);
@@ -1511,20 +482,33 @@ h2 {
    ============================================================ */
 
 .hint {
+  margin:
+    12px
+    0
+    0;
+
   font-size: 16px;
 
   line-height: 1.5;
 
-  margin: 12px 0 0;
+  color:
+    #b9c8d8;
+}
 
-  color: var(--text-soft);
+
+.hint b {
+  color:
+    #e1e9f0;
 }
 
 
 .hint code {
-  padding: 3px 7px;
+  padding:
+    3px
+    7px;
 
-  color: var(--text);
+  color:
+    #e5edf4;
 
   background:
     rgba(5, 17, 33, 0.75);
@@ -1535,7 +519,7 @@ h2 {
 
 
 /* ============================================================
-   ЦЕНТР
+   ЦЕНТРАЛЬНАЯ ПАНЕЛЬ
    ============================================================ */
 
 .center-panel {
@@ -1550,26 +534,30 @@ h2 {
 
 
 /* ============================================================
-   ХОЛСТ
+   ОБЁРТКА ХОЛСТА
    ============================================================ */
 
 .canvas-wrap {
-  width: min(100%, 900px);
+  width: min(
+    100%,
+    900px
+  );
 
   padding: 10px;
+
+  background:
+    rgba(8, 24, 43, 0.82);
 
   border:
     1px solid
     rgba(184, 202, 219, 0.32);
 
   border-radius:
-    var(--radius-large);
-
-  background:
-    rgba(8, 24, 43, 0.82);
+    22px;
 
   box-shadow:
-    0 20px 48px rgba(0, 0, 0, 0.38);
+    0 20px 48px
+    rgba(0, 0, 0, 0.38);
 
   backdrop-filter:
     blur(12px);
@@ -1578,6 +566,10 @@ h2 {
     blur(12px);
 }
 
+
+/* ============================================================
+   ХОЛСТ
+   ============================================================ */
 
 .canvas {
   position: relative;
@@ -1589,11 +581,50 @@ h2 {
 
   overflow: hidden;
 
-  border-radius:
-    calc(var(--radius-large) - 6px);
-
   background:
     rgba(8, 20, 36, 0.9);
+
+  border-radius:
+    16px;
+}
+
+
+/* ============================================================
+   СЛОИ ХОЛСТА
+   ============================================================ */
+
+.layer {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: fill;
+
+  pointer-events: none;
+}
+
+
+.base-layer {
+  z-index: 1;
+}
+
+
+.decor-layer {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: fill;
+
+  pointer-events: none;
 }
 
 
@@ -1602,26 +633,32 @@ h2 {
    ============================================================ */
 
 .info-card {
-  width: min(100%, 900px);
-
-  margin-top: 14px;
+  width: min(
+    100%,
+    900px
+  );
 
   min-height: 130px;
 
-  padding: 16px 20px;
+  margin-top: 14px;
 
-  border:
-    1px solid
-    rgba(180, 200, 218, 0.3);
-
-  border-radius:
-    var(--radius-medium);
+  padding:
+    16px
+    20px;
 
   background:
     rgba(13, 33, 54, 0.82);
 
+  border:
+    1px solid
+    rgba(180, 200, 218, 0.30);
+
+  border-radius:
+    16px;
+
   box-shadow:
-    var(--shadow-small);
+    0 8px 22px
+    rgba(0, 0, 0, 0.25);
 
   backdrop-filter:
     blur(14px);
@@ -1632,9 +669,9 @@ h2 {
 
 
 .info-title {
-  font-size: 21px;
-
   margin-bottom: 9px;
+
+  font-size: 21px;
 
   color:
     #dbe5ee;
@@ -1642,28 +679,35 @@ h2 {
 
 
 .selected-names {
-  font-size: 18px;
-
   min-height: 42px;
 
+  font-size: 18px;
+
+  line-height: 1.45;
+
   color:
-    var(--text-soft);
+    #b9c8d8;
 }
 
 
 .price-row {
   display: flex;
 
-  justify-content: space-between;
-
   align-items: end;
 
-  font-size: 25px;
+  justify-content: space-between;
 
   margin-top: 10px;
 
+  font-size: 25px;
+
   color:
     #e9f0f6;
+}
+
+
+.price-row strong {
+  font-weight: 400;
 }
 
 
@@ -1681,43 +725,6 @@ h2 {
 
 
 /* ============================================================
-   СКРОЛЛБАР
-   ============================================================ */
-
-.right-panel::-webkit-scrollbar,
-.category-body::-webkit-scrollbar {
-  width: 8px;
-}
-
-
-.right-panel::-webkit-scrollbar-track,
-.category-body::-webkit-scrollbar-track {
-  background:
-    rgba(3, 13, 27, 0.35);
-
-  border-radius:
-    10px;
-}
-
-
-.right-panel::-webkit-scrollbar-thumb,
-.category-body::-webkit-scrollbar-thumb {
-  background:
-    rgba(150, 170, 190, 0.35);
-
-  border-radius:
-    10px;
-}
-
-
-.right-panel::-webkit-scrollbar-thumb:hover,
-.category-body::-webkit-scrollbar-thumb:hover {
-  background:
-    rgba(180, 200, 220, 0.5);
-}
-
-
-/* ============================================================
    КАТЕГОРИИ
    ============================================================ */
 
@@ -1726,20 +733,31 @@ h2 {
 
   overflow: hidden;
 
+  background:
+    rgba(8, 24, 43, 0.58);
+
   border:
     1px solid
-    rgba(160, 181, 201, 0.22);
+    rgba(160, 181, 201, 0.25);
 
   border-radius:
-    var(--radius-medium);
-
-  background:
-    rgba(8, 24, 43, 0.55);
+    16px;
 
   box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.18);
+    0 8px 20px
+    rgba(0, 0, 0, 0.18);
+
+  backdrop-filter:
+    blur(10px);
+
+  -webkit-backdrop-filter:
+    blur(10px);
 }
 
+
+/* ============================================================
+   ЗАГОЛОВОК КАТЕГОРИИ
+   ============================================================ */
 
 .category-head {
   width: 100%;
@@ -1754,43 +772,48 @@ h2 {
 
   text-align: left;
 
-  border: 0;
-
   padding:
-    12px 12px;
-
-  background:
-    rgba(20, 44, 69, 0.78);
+    12px;
 
   color:
     #e3ebf2;
+
+  background:
+    rgba(20, 44, 69, 0.80);
+
+  border: 0;
+
+  border-radius:
+    16px;
 
   cursor: pointer;
 
   font-size: 27px;
 
-  border-radius:
-    var(--radius-medium);
-
   transition:
-    background 0.2s ease;
+    background 0.2s ease,
+    border-radius 0.2s ease;
 }
 
 
 .category-head:hover {
   background:
-    rgba(31, 60, 89, 0.9);
+    rgba(31, 60, 89, 0.92);
 }
 
 
 .category.open .category-head {
   border-radius:
-    var(--radius-medium)
-    var(--radius-medium)
+    16px
+    16px
     0
     0;
 }
 
+
+/* ============================================================
+   СТРЕЛКА КАТЕГОРИИ
+   ============================================================ */
 
 .arrow {
   font-size: 24px;
@@ -1809,18 +832,17 @@ h2 {
 
 
 /* ============================================================
-   СОДЕРЖИМОЕ КАТЕГОРИИ
+   ТЕЛО КАТЕГОРИИ
    ============================================================ */
 
 .category-body {
   display: none;
 
-  padding:
-    8px;
-
   max-height: 420px;
 
   overflow-y: auto;
+
+  padding: 8px;
 
   background:
     rgba(6, 20, 36, 0.72);
@@ -1848,29 +870,38 @@ h2 {
   margin-bottom: 9px;
 
   padding:
-    9px 85px 9px 11px;
+    9px
+    85px
+    9px
+    11px;
 
   text-align: left;
 
-  background:
-    rgba(30, 54, 79, 0.82);
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-  border:
-    1px solid
-    rgba(170, 191, 209, 0.25);
-
-  border-radius:
-    var(--radius-small);
+  font-size: 17px;
 
   color:
     #e5edf4;
 
+  background:
+    rgba(30, 54, 79, 0.84);
+
+  border:
+    1px solid
+    rgba(170, 191, 209, 0.28);
+
+  border-radius:
+    12px;
+
   cursor: pointer;
 
-  font-size: 17px;
-
   box-shadow:
-    0 5px 14px rgba(0, 0, 0, 0.16);
+    0 5px 14px
+    rgba(0, 0, 0, 0.16);
 
   transition:
     background 0.2s ease,
@@ -1880,20 +911,24 @@ h2 {
 }
 
 
+.decor-item:last-child {
+  margin-bottom: 0;
+}
+
+
 .decor-item:hover {
   background:
-    rgba(47, 77, 106, 0.9);
+    rgba(47, 77, 106, 0.92);
 
   border-color:
-    rgba(197, 215, 230, 0.4);
+    rgba(197, 215, 230, 0.44);
 
   transform:
     translateY(-1px);
 
   box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.25);
-
-  filter: none;
+    0 8px 20px
+    rgba(0, 0, 0, 0.25);
 }
 
 
@@ -1903,15 +938,19 @@ h2 {
 }
 
 
+/* ============================================================
+   ВЫБРАННЫЙ ДЕКОР
+   ============================================================ */
+
 .decor-item.selected {
   outline: none;
+
+  background:
+    rgba(65, 91, 118, 0.92);
 
   border:
     1px solid
     rgba(220, 232, 242, 0.75);
-
-  background:
-    rgba(65, 91, 118, 0.9);
 
   box-shadow:
     0 0 0 2px
@@ -1928,14 +967,20 @@ h2 {
 .item-name {
   display: block;
 
-  white-space: nowrap;
-
   overflow: hidden;
+
+  white-space: nowrap;
 
   text-overflow: ellipsis;
 
   padding:
-    5px 7px;
+    5px
+    7px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size: 18px;
 
@@ -1943,7 +988,7 @@ h2 {
     #edf3f7;
 
   background:
-    rgba(7, 20, 36, 0.5);
+    rgba(7, 20, 36, 0.52);
 
   border-radius:
     8px;
@@ -1951,16 +996,18 @@ h2 {
 
 
 /* ============================================================
-   ЦЕНА
+   ЦЕНА ДЕКОРА
    ============================================================ */
 
 .item-price {
   display: block;
 
-  font-size: 15px;
-
   margin:
-    7px 5px 0;
+    7px
+    5px
+    0;
+
+  font-size: 15px;
 
   color:
     #b9c9d8;
@@ -1968,45 +1015,104 @@ h2 {
 
 
 /* ============================================================
-   ПРЕВЬЮ ДЕКОРА
+   КАРТИНКА ДЕКОРА
    ============================================================ */
 
 .item-thumb {
   position: absolute;
 
-  right: 7px;
   top: 7px;
 
+  right: 7px;
+
   width: 70px;
+
   height: 84px;
 
   object-fit: contain;
+
+  border-radius:
+    8px;
 }
 
 
 /* ============================================================
-   ПУСТЫЕ КАТЕГОРИИ
+   ПУСТАЯ КАТЕГОРИЯ
    ============================================================ */
 
 .empty {
-  font-size: 16px;
-
   padding: 12px;
 
+  font-size: 16px;
+
   color:
-    var(--text-soft);
+    #b9c8d8;
 
   opacity: 0.8;
 }
 
 
 /* ============================================================
-   ПЛАВНОЕ ПОЯВЛЕНИЕ САЙТА
+   СКРОЛЛБАРЫ
    ============================================================ */
 
+.right-panel::-webkit-scrollbar,
+.category-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+.right-panel::-webkit-scrollbar-track,
+.category-body::-webkit-scrollbar-track {
+  background:
+    rgba(3, 13, 27, 0.35);
+
+  border-radius:
+    10px;
+}
+
+
+.right-panel::-webkit-scrollbar-thumb,
+.category-body::-webkit-scrollbar-thumb {
+  background:
+    rgba(150, 170, 190, 0.38);
+
+  border-radius:
+    10px;
+
+  border: 0;
+}
+
+
+.right-panel::-webkit-scrollbar-thumb:hover,
+.category-body::-webkit-scrollbar-thumb:hover {
+  background:
+    rgba(180, 200, 220, 0.52);
+}
+
+
+/* Firefox */
+
+.right-panel,
+.category-body {
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(150, 170, 190, 0.38)
+    rgba(3, 13, 27, 0.35);
+}
+
+
+/* ============================================================
+   ПЛАВНОЕ ПОЯВЛЕНИЕ
+   ============================================================ */
+
+
 /*
-   Пока страница не получила класс page-ready,
-   весь интерфейс невидим и некликабелен.
+   Пока JS не добавил page-ready:
+   - интерфейс прозрачный;
+   - находится чуть ниже;
+   - по нему нельзя нажимать.
 */
 
 body:not(.page-ready) .app {
@@ -2020,8 +1126,8 @@ body:not(.page-ready) .app {
 
 
 /*
-   После загрузки интерфейс плавно появляется
-   и немного поднимается вверх.
+   После загрузки:
+   интерфейс плавно поднимается и проявляется.
 */
 
 body.page-ready .app {
@@ -2053,24 +1159,31 @@ body.page-ready .app {
 
 
 /* ============================================================
-   НЕБОЛЬШИЕ HOVER-ЭФФЕКТЫ ДЛЯ ПЛАШЕК
+   ДОСТУПНОСТЬ:
+   ЕСЛИ ПОЛЬЗОВАТЕЛЬ ОТКЛЮЧИЛ АНИМАЦИИ
    ============================================================ */
 
-.base-preview,
-.canvas-wrap,
-.info-card,
-.category,
-.upload-label,
-.secondary {
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+@media (prefers-reduced-motion: reduce) {
+
+  body:not(.page-ready) .app {
+    opacity: 1;
+
+    transform:
+      none;
+
+    pointer-events: auto;
+  }
+
+
+  body.page-ready .app {
+    animation: none;
+  }
+
 }
 
 
 /* ============================================================
-   МОБИЛЬНАЯ ВЕРСИЯ
+   АДАПТИВНОСТЬ
    ============================================================ */
 
 @media (max-width: 1400px) {
@@ -2080,10 +1193,31 @@ body.page-ready .app {
       280px
       minmax(600px, 1fr)
       300px;
+
+    gap: 16px;
+  }
+
+
+  h1 {
+    font-size: 34px;
+  }
+
+
+  .panel-title h2 {
+    font-size: 29px;
+  }
+
+
+  .category-head {
+    font-size: 26px;
   }
 
 }
 
+
+/* ============================================================
+   1100 PX
+   ============================================================ */
 
 @media (max-width: 1100px) {
 
@@ -2092,6 +1226,7 @@ body.page-ready .app {
       280px
       1fr;
   }
+
 
   .right-panel {
     grid-column:
@@ -2104,11 +1239,16 @@ body.page-ready .app {
 }
 
 
+/* ============================================================
+   700 PX
+   ============================================================ */
+
 @media (max-width: 700px) {
 
   body {
     padding: 6px;
   }
+
 
   .workspace {
     grid-template-columns:
@@ -2117,13 +1257,15 @@ body.page-ready .app {
     padding: 12px;
 
     border-radius:
-      var(--radius-medium);
+      16px;
   }
+
 
   .right-panel {
     grid-column:
       auto;
   }
+
 
   .topbar {
     flex-direction:
@@ -2136,31 +1278,40 @@ body.page-ready .app {
       12px;
   }
 
+
   h1 {
     font-size:
       28px;
   }
 
-  h2 {
+
+  .panel-title h2 {
     font-size:
       25px;
   }
+
 
   .top-actions {
     flex-wrap:
       wrap;
   }
 
+
   .secondary {
     flex:
       1;
   }
+
 
   .category-head {
     font-size:
       24px;
   }
 
-}
-   
+
+  .workspace {
+    min-height:
+      auto;
+  }
+
 }
