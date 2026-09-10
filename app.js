@@ -461,110 +461,72 @@ function renderCanvas() {
 
 function renderInfo() {
 
-    const items = [
-        ...state.selected.values()
-    ];
+  const items = [...state.selected.values()];
 
 
-    // ----------------------------------------------------------
-    // НИЧЕГО НЕ ВЫБРАНО
-    // ----------------------------------------------------------
+  // ----------------------------------------------------------
+  // НИЧЕГО НЕ ВЫБРАНО
+  // ----------------------------------------------------------
 
-    if (!items.length) {
+  if (!items.length) {
 
-        selectedNames.textContent =
-            "Ничего не выбрано";
+    selectedNames.innerHTML =
+      "Ничего не выбрано";
 
-        totalPrice.textContent = "0";
+    totalPrice.textContent = "0";
 
-        return;
-    }
+    return;
 
-
-    // ----------------------------------------------------------
-    // ПОРЯДОК КАТЕГОРИЙ
-    // ----------------------------------------------------------
-
-    const categoryOrder = {
-        far: 0,
-        near: 1,
-        cat: 2,
-        plan: 3,
-        set: 4
-    };
+  }
 
 
-    const categoryNames = {
-        far: "Дальняя ветка",
-        near: "Ближняя ветка",
-        cat: "На коте",
-        plan: "Общий план",
-        set: "Сеты"
-    };
+  // ----------------------------------------------------------
+  // СТРОИМ ВЕРТИКАЛЬНЫЙ СПИСОК
+  // ----------------------------------------------------------
+
+  selectedNames.innerHTML = "";
 
 
-    // ----------------------------------------------------------
-    // СОРТИРУЕМ ПО КАТЕГОРИИ
-    // ----------------------------------------------------------
+  // Идём именно в порядке категорий,
+  // а не в порядке кликов пользователя.
+  for (const [category, title] of CATEGORY_ORDER) {
 
-    items.sort((a, b) => {
-
-        const orderA =
-            categoryOrder[a.category] ?? 999;
-
-        const orderB =
-            categoryOrder[b.category] ?? 999;
-
-        return orderA - orderB;
-
-    });
+    const categoryItems =
+      items.filter(
+        item => item.category === category
+      );
 
 
-    // ----------------------------------------------------------
-    // ОЧИЩАЕМ СТАРЫЙ СПИСОК
-    // ----------------------------------------------------------
+    for (const item of categoryItems) {
 
-    selectedNames.innerHTML = "";
+      const row =
+        document.createElement("div");
 
-
-    // ----------------------------------------------------------
-    // СОЗДАЁМ КАЖДУЮ СТРОКУ ОТДЕЛЬНО
-    // ----------------------------------------------------------
-
-    for (const item of items) {
-
-        const row =
-            document.createElement("div");
-
-        row.className =
-            "selected-decor-row";
+      row.className =
+        "selected-decor-row";
 
 
-        const category =
-            categoryNames[item.category]
-            || item.category;
+      row.textContent =
+        `${title} — ${item.name} (${item.price})`;
 
 
-        row.textContent =
-            `${category} — ${item.name} (${item.price})`;
-
-
-        selectedNames.appendChild(row);
+      selectedNames.appendChild(row);
 
     }
 
+  }
 
-    // ----------------------------------------------------------
-    // ОБЩАЯ ЦЕНА
-    // ----------------------------------------------------------
 
-    totalPrice.textContent =
-        items.reduce(
-            (sum, item) =>
-                sum +
-                Number(item.price || 0),
-            0
-        );
+  // ----------------------------------------------------------
+  // ОБЩАЯ СТОИМОСТЬ
+  // ----------------------------------------------------------
+
+  totalPrice.textContent =
+    items.reduce(
+      (sum, item) =>
+        sum + Number(item.price || 0),
+      0
+    );
 
 }
 // ============================================================
@@ -594,7 +556,6 @@ function setBase(src, label = "Плашка 1") {
   basePreview.appendChild(img);
 
 }
-
 
 // ============================================================
 // ЗАГРУЗКА СОБСТВЕННОЙ ОСНОВЫ
