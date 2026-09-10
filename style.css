@@ -1,117 +1,164 @@
 /* ============================================================
-   КОНСТРУКТОР ДЕКОРА
-   НОВАЯ ТЕМА
+   DECORATOR
+   BOTANICAL BRUTALISM / DARK EDITORIAL
    ============================================================ */
 
 
 /* ============================================================
-   ОСНОВА
+   ОСНОВНЫЕ ПЕРЕМЕННЫЕ
    ============================================================ */
 
-* {
-  box-sizing: border-box;
-}
+:root {
+    --bg: #071326;
 
+    --blue-0: #071326;
+    --blue-1: #0b1b31;
+    --blue-2: #10253d;
+    --blue-3: #17324f;
+    --blue-4: #203d5b;
 
-html,
-body {
-  margin: 0;
-  min-height: 100%;
+    --text: #e8eef5;
+    --text-soft: #b8c7d6;
+    --text-dim: #8192a5;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+    --line: rgba(190, 208, 225, 0.30);
+    --line-soft: rgba(190, 208, 225, 0.14);
+    --line-strong: rgba(215, 226, 237, 0.52);
 
-  color: #e8eef5;
+    --accent: #aebed0;
+    --accent-bright: #dce7f1;
+
+    --purple: #9a82c9;
+
+    --panel: rgba(6, 19, 36, 0.72);
+    --panel-light: rgba(15, 36, 57, 0.76);
+
+    --shadow:
+        0 20px 55px rgba(0, 0, 0, 0.34);
 }
 
 
 /* ============================================================
-   СТРАНИЦА И ФОН
-   ============================================================ */
-
-body {
-  position: relative;
-
-  min-height: 100vh;
-
-  padding: 16px;
-
-  background:
-    #071326
-    url("assets/fon.jpg")
-    center center
-    / cover
-    fixed
-    no-repeat;
-
-  overflow-x: hidden;
-}
-
-
-/* Затемнение и лёгкое синее стекло поверх фотографии */
-
-body::before {
-  content: "";
-
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 0;
-
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(2, 12, 29, 0.74),
-      rgba(8, 24, 45, 0.48),
-      rgba(3, 13, 29, 0.76)
-    );
-}
-
-
-/* ============================================================
-   ШРИФТ — ПРИНУДИТЕЛЬНО GEORGIA ВЕЗДЕ
+   RESET
    ============================================================ */
 
 *,
 *::before,
 *::after {
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+    box-sizing: border-box;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    border-radius: 0 !important;
 }
 
 
-button,
-input,
-select,
-textarea {
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+html {
+    min-height: 100%;
+
+    background:
+        var(--bg);
+}
+
+
+body {
+    position: relative;
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    padding: 16px;
+
+    overflow-x: hidden;
+
+    color: var(--text);
+
+    background:
+        var(--bg)
+        url("assets/fon.jpg")
+        center center
+        / cover
+        fixed
+        no-repeat;
 }
 
 
 /* ============================================================
-   ОСНОВНОЕ ПРИЛОЖЕНИЕ
+   ТЁМНОЕ ЗАТЕМНЕНИЕ ФОНА
+   ============================================================ */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(2, 11, 25, 0.78),
+            rgba(7, 21, 39, 0.52),
+            rgba(2, 11, 25, 0.82)
+        );
+}
+
+
+/* ============================================================
+   ТЕХНИЧЕСКАЯ СЕТКА
+   ============================================================ */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    opacity: 0.55;
+
+    background-image:
+        linear-gradient(
+            rgba(190, 208, 225, 0.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(190, 208, 225, 0.045) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        48px 48px;
+}
+
+
+/* ============================================================
+   ОСНОВНОЙ APP
    ============================================================ */
 
 .app {
-  position: relative;
+    position: relative;
 
-  z-index: 1;
+    z-index: 2;
 
-  width: 100%;
+    width: 100%;
 
-  max-width: 1900px;
+    max-width: 1900px;
 
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 
@@ -120,52 +167,116 @@ textarea {
    ============================================================ */
 
 .topbar {
-  min-height: 72px;
+    position: relative;
 
-  display: flex;
+    display: grid;
 
-  align-items: center;
+    grid-template-columns:
+        1fr
+        auto;
 
-  justify-content: space-between;
+    align-items: end;
 
-  gap: 20px;
+    gap: 30px;
 
-  padding:
-    6px
-    4px
-    16px;
+    min-height: 86px;
+
+    padding:
+        10px
+        8px
+        18px;
+
+    border-bottom:
+        1px solid
+        var(--line);
+}
+
+
+/* Маленькая техническая линия сверху */
+
+.topbar::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 78px;
+
+    height: 2px;
+
+    background:
+        var(--accent);
+}
+
+
+/* Маленький крест */
+
+.topbar::after {
+    content: "+";
+
+    position: absolute;
+
+    right: 2px;
+    bottom: 10px;
+
+    color:
+        rgba(220, 231, 241, 0.5);
+
+    font-size: 16px;
+
+    font-family:
+        Georgia,
+        serif;
 }
 
 
 h1 {
-  margin: 0;
+    position: relative;
 
-  font-size: 38px;
+    margin: 0;
 
-  font-weight: 400;
+    font-size: clamp(
+        32px,
+        4vw,
+        54px
+    );
 
-  color:
-    #edf3f8;
+    line-height: 0.9;
 
-  text-shadow:
-    0 3px 16px
-    rgba(0, 0, 0, 0.45);
+    font-weight: 400;
+
+    letter-spacing: -2px;
+
+    text-transform: uppercase;
+
+    color:
+        var(--text);
+
+    text-shadow:
+        0 4px 25px
+        rgba(0, 0, 0, 0.45);
 }
 
 
-h2 {
-  margin: 0;
+h1::before {
+    content: "/ 00";
 
-  font-size: 32px;
+    display: block;
 
-  font-weight: 400;
+    margin-bottom: 8px;
 
-  color:
-    #e6eef6;
+    font-size: 11px;
 
-  text-shadow:
-    0 2px 12px
-    rgba(0, 0, 0, 0.35);
+    line-height: 1;
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+
+    color:
+        var(--text-dim);
 }
 
 
@@ -174,68 +285,68 @@ h2 {
    ============================================================ */
 
 .top-actions {
-  display: flex;
+    display: flex;
 
-  gap: 10px;
+    align-items: center;
+
+    gap: 0;
+
+    border:
+        1px solid
+        var(--line);
 }
 
 
 .secondary {
-  padding:
-    12px
-    20px;
+    min-height: 42px;
 
-  font-size: 18px;
+    padding:
+        9px
+        18px;
 
-  color:
-    #e8eef5;
+    color:
+        var(--text);
 
-  background:
-    rgba(20, 43, 68, 0.82);
+    background:
+        rgba(7, 19, 36, 0.76);
 
-  border:
-    1px solid
-    rgba(190, 208, 225, 0.35);
+    border: 0 !important;
 
-  cursor: pointer;
+    border-right:
+        1px solid
+        var(--line) !important;
 
-  box-shadow:
-    0 8px 22px
-    rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 
-  backdrop-filter:
-    blur(12px);
+    font-size: 15px;
 
-  -webkit-backdrop-filter:
-    blur(12px);
+    letter-spacing: 0.5px;
 
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    text-transform: uppercase;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.secondary:last-child {
+    border-right: 0 !important;
 }
 
 
 .secondary:hover {
-  background:
-    rgba(35, 63, 91, 0.92);
+    color:
+        #071326;
 
-  border-color:
-    rgba(215, 225, 235, 0.55);
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 12px 28px
-    rgba(0, 0, 0, 0.32);
+    background:
+        var(--accent-bright);
 }
 
 
 .secondary:active {
-  transform:
-    translateY(0);
+    background:
+        var(--accent);
 }
 
 
@@ -244,40 +355,99 @@ h2 {
    ============================================================ */
 
 .workspace {
-  display: grid;
+    position: relative;
 
-  grid-template-columns:
-    320px
-    minmax(700px, 1fr)
-    340px;
+    display: grid;
 
-  gap: 20px;
+    grid-template-columns:
+        290px
+        minmax(600px, 1fr)
+        330px;
 
-  min-height: 820px;
+    gap: 0;
 
-  padding: 20px;
+    min-height: 820px;
 
-  border:
-    1px solid
-    rgba(164, 185, 205, 0.22);
+    margin-top: 0;
 
-  background:
-    rgba(5, 18, 35, 0.68);
+    background:
+        rgba(5, 16, 31, 0.62);
 
-  box-shadow:
-    0 18px 45px
-    rgba(0, 0, 0, 0.32);
+    border:
+        1px solid
+        var(--line);
 
-  backdrop-filter:
-    blur(18px);
+    box-shadow:
+        var(--shadow);
 
-  -webkit-backdrop-filter:
-    blur(18px);
+    backdrop-filter:
+        blur(7px);
+
+    -webkit-backdrop-filter:
+        blur(7px);
 }
 
 
-.panel {
-  min-width: 0;
+/* ============================================================
+   ВЕРТИКАЛЬНЫЕ РАЗДЕЛИТЕЛИ
+   ============================================================ */
+
+.workspace > .panel {
+    min-width: 0;
+
+    padding:
+        22px 20px;
+
+    border-right:
+        1px solid
+        var(--line);
+}
+
+
+.workspace > .panel:last-child {
+    border-right: 0;
+}
+
+
+/* ============================================================
+   ДЕКОРАТИВНЫЕ + НА ГРАНИЦАХ
+   ============================================================ */
+
+.workspace::before {
+    content: "+";
+
+    position: absolute;
+
+    top: 10px;
+    left: 50%;
+
+    z-index: 5;
+
+    color:
+        rgba(220, 231, 241, 0.48);
+
+    font-size: 14px;
+
+    pointer-events: none;
+}
+
+
+.workspace::after {
+    content: "+";
+
+    position: absolute;
+
+    right: 10px;
+    bottom: 10px;
+
+    z-index: 5;
+
+    color:
+        rgba(220, 231, 241, 0.48);
+
+    font-size: 14px;
+
+    pointer-events: none;
 }
 
 
@@ -286,64 +456,104 @@ h2 {
    ============================================================ */
 
 .panel-title {
-  width: 100%;
+    position: relative;
 
-  min-height: 58px;
+    display: flex;
 
-  display: flex;
+    align-items: flex-end;
 
-  align-items: center;
+    min-height: 68px;
 
-  justify-content: center;
+    margin-bottom: 20px;
 
-  padding:
-    9px
-    14px;
+    padding:
+        22px 0 12px;
 
-  margin-bottom: 12px;
+    background:
+        transparent;
 
-  border:
-    1px solid
-    rgba(184, 202, 219, 0.28);
+    border: 0;
+
+    border-bottom:
+        1px solid
+        var(--line);
+
+    box-shadow: none;
+
+    backdrop-filter: none;
+
+    -webkit-backdrop-filter: none;
+}
 
 
-  background:
-    rgba(17, 39, 62, 0.76);
+/* Номер секции */
 
-  box-shadow:
-    0 8px 20px
-    rgba(0, 0, 0, 0.2);
+.panel-title::before {
+    position: absolute;
 
-  backdrop-filter:
-    blur(12px);
+    top: 0;
+    left: 0;
 
-  -webkit-backdrop-filter:
-    blur(12px);
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color:
+        var(--text-dim);
+}
+
+
+/* Маленький плюс */
+
+.panel-title::after {
+    content: "+";
+
+    position: absolute;
+
+    right: 2px;
+    bottom: 10px;
+
+    font-size: 14px;
+
+    color:
+        rgba(220, 231, 241, 0.42);
+}
+
+
+.base-title::before {
+    content: "/ 01";
+}
+
+
+.canvas-title::before {
+    content: "/ 02";
+}
+
+
+.decor-title::before {
+    content: "/ 03";
 }
 
 
 .panel-title h2 {
-  margin: 0;
+    margin: 0;
 
-  font-size: 30px;
+    font-size: 28px;
 
-  font-weight: 400;
+    line-height: 1;
 
-  color:
-    #e8eef5;
-}
+    font-weight: 400;
 
+    letter-spacing: -0.5px;
 
-/*
-   Все три заголовка теперь одинаковые.
-   Старые цветные base/canvas/decor больше не используются.
-*/
+    text-transform: uppercase;
 
-.base-title,
-.canvas-title,
-.decor-title {
-  background:
-    rgba(17, 39, 62, 0.76);
+    color:
+        var(--text);
 }
 
 
@@ -352,7 +562,7 @@ h2 {
    ============================================================ */
 
 .left-panel {
-  padding-right: 4px;
+    position: relative;
 }
 
 
@@ -361,105 +571,147 @@ h2 {
    ============================================================ */
 
 .base-preview {
-  width: 100%;
+    position: relative;
 
-  aspect-ratio:
-    621 / 381;
+    width: 100%;
 
-  display: grid;
+    aspect-ratio:
+        621 / 381;
 
-  place-items: center;
+    display: grid;
 
-  margin-bottom: 16px;
+    place-items: center;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  background:
-    rgba(8, 24, 43, 0.78);
+    margin-bottom: 14px;
 
-  border:
-    1px solid
-    rgba(184, 202, 219, 0.30);
+    background:
+        rgba(4, 15, 29, 0.72);
 
-  box-shadow:
-    0 8px 22px
-    rgba(0, 0, 0, 0.25);
+    border:
+        1px solid
+        var(--line);
 
-  backdrop-filter:
-    blur(10px);
+    box-shadow:
+        0 12px 32px
+        rgba(0, 0, 0, 0.25);
+}
 
-  -webkit-backdrop-filter:
-    blur(10px);
+
+.base-preview::before {
+    content: "BASE / PREVIEW";
+
+    position: absolute;
+
+    top: 8px;
+    left: 9px;
+
+    z-index: 3;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        rgba(220, 231, 241, 0.55);
+}
+
+
+.base-preview::after {
+    content: "+";
+
+    position: absolute;
+
+    right: 8px;
+    bottom: 7px;
+
+    z-index: 3;
+
+    font-size: 14px;
+
+    color:
+        rgba(220, 231, 241, 0.5);
 }
 
 
 .base-preview img {
-  width: 100%;
+    width: 100%;
 
-  height: 100%;
+    height: 100%;
 
-  object-fit: contain;
+    object-fit: contain;
 }
 
 
 /* ============================================================
-   ЗАГРУЗКА ОСНОВЫ
+   UPLOAD
    ============================================================ */
 
 .upload-label {
-  display: block;
+    position: relative;
 
-  margin-bottom: 14px;
+    display: flex;
 
-  padding: 13px;
+    align-items: center;
 
-  font-size: 19px;
+    justify-content: space-between;
 
-  text-align: center;
+    width: 100%;
 
-  color:
-    #e8eef5;
+    min-height: 46px;
 
-  background:
-    rgba(20, 45, 71, 0.82);
+    padding:
+        10px
+        12px;
 
-  border:
-    1px solid
-    rgba(190, 208, 225, 0.35);
+    margin-bottom: 15px;
 
-  cursor: pointer;
+    color:
+        var(--text);
 
-  box-shadow:
-    0 8px 22px
-    rgba(0, 0, 0, 0.24);
+    background:
+        rgba(11, 29, 48, 0.76);
 
-  backdrop-filter:
-    blur(10px);
+    border:
+        1px solid
+        var(--line);
 
-  -webkit-backdrop-filter:
-    blur(10px);
+    cursor: pointer;
 
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+    font-size: 14px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.upload-label::after {
+    content: "↗";
+
+    font-size: 18px;
+
+    color:
+        var(--accent);
 }
 
 
 .upload-label:hover {
-  background:
-    rgba(34, 63, 91, 0.92);
+    background:
+        rgba(29, 52, 76, 0.88);
 
-  border-color:
-    rgba(215, 225, 235, 0.52);
-
-  transform:
-    translateY(-1px);
+    border-color:
+        var(--line-strong);
 }
 
 
 .upload-label input {
-  display: none;
+    display: none;
 }
 
 
@@ -468,37 +720,43 @@ h2 {
    ============================================================ */
 
 .hint {
-  margin:
-    12px
-    0
-    0;
+    margin: 0;
 
-  font-size: 16px;
+    padding:
+        12px 0;
 
-  line-height: 1.5;
+    color:
+        var(--text-soft);
 
-  color:
-    #b9c8d8;
+    border-top:
+        1px solid
+        var(--line-soft);
+
+    font-size: 14px;
+
+    line-height: 1.55;
 }
 
 
 .hint b {
-  color:
-    #e1e9f0;
+    color:
+        var(--text);
 }
 
 
 .hint code {
-  padding:
-    3px
-    7px;
+    padding:
+        2px 5px;
 
-  color:
-    #e5edf4;
+    color:
+        var(--text);
 
-  background:
-    rgba(5, 17, 33, 0.75);
+    background:
+        rgba(150, 170, 190, 0.10);
 
+    border:
+        1px solid
+        var(--line-soft);
 }
 
 
@@ -507,183 +765,250 @@ h2 {
    ============================================================ */
 
 .center-panel {
-  display: flex;
+    display: flex;
 
-  flex-direction: column;
+    flex-direction: column;
 
-  align-items: center;
+    align-items: center;
 
-  min-width: 0;
+    min-width: 0;
 }
 
 
 /* ============================================================
-   ОБЁРТКА ХОЛСТА
+   CANVAS
    ============================================================ */
 
 .canvas-wrap {
-  width: min(
-    100%,
-    900px
-  );
+    position: relative;
 
-  padding: 10px;
+    width: min(
+        100%,
+        900px
+    );
 
-  background:
-    rgba(8, 24, 43, 0.82);
+    padding: 0;
 
-  border:
-    1px solid
-    rgba(184, 202, 219, 0.32);
+    background:
+        rgba(4, 14, 28, 0.74);
 
-  box-shadow:
-    0 20px 48px
-    rgba(0, 0, 0, 0.38);
+    border:
+        1px solid
+        var(--line);
 
-  backdrop-filter:
-    blur(12px);
-
-  -webkit-backdrop-filter:
-    blur(12px);
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, 0.30);
 }
 
 
-/* ============================================================
-   ХОЛСТ
-   ============================================================ */
+.canvas-wrap::before {
+    content: "COMPOSITION / 01";
+
+    position: absolute;
+
+    top: 8px;
+    left: 10px;
+
+    z-index: 10;
+
+    padding:
+        2px 5px;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        rgba(225, 234, 242, 0.55);
+
+    background:
+        rgba(4, 14, 28, 0.55);
+}
+
+
+.canvas-wrap::after {
+    content: "621 × 381";
+
+    position: absolute;
+
+    right: 10px;
+    bottom: 8px;
+
+    z-index: 10;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(225, 234, 242, 0.45);
+}
+
 
 .canvas {
-  position: relative;
+    position: relative;
 
-  width: 100%;
+    width: 100%;
 
-  aspect-ratio:
-    621 / 381;
+    aspect-ratio:
+        621 / 381;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  background:
-    rgba(8, 20, 36, 0.9);
+    background:
+        rgba(7, 18, 32, 0.90);
 
+    border: 0;
 }
 
 
 /* ============================================================
-   СЛОИ ХОЛСТА
+   CANVAS LAYERS
    ============================================================ */
 
 .layer {
-  position: absolute;
+    position: absolute;
 
-  inset: 0;
+    inset: 0;
 
-  width: 100%;
+    width: 100%;
 
-  height: 100%;
+    height: 100%;
 
-  object-fit: fill;
+    object-fit: fill;
 
-  pointer-events: none;
+    pointer-events: none;
 }
 
 
 .base-layer {
-  z-index: 1;
+    z-index: 1;
 }
 
 
 .decor-layer {
-  position: absolute;
+    position: absolute;
 
-  inset: 0;
+    inset: 0;
 
-  width: 100%;
+    width: 100%;
 
-  height: 100%;
+    height: 100%;
 
-  object-fit: fill;
+    object-fit: fill;
 
-  pointer-events: none;
+    pointer-events: none;
 }
 
 
 /* ============================================================
-   ИНФОРМАЦИЯ ПОД ХОЛСТОМ
+   INFO CARD
    ============================================================ */
 
 .info-card {
-  width: min(
-    100%,
-    900px
-  );
+    position: relative;
 
-  min-height: 130px;
+    width: min(
+        100%,
+        900px
+    );
 
-  margin-top: 14px;
+    min-height: 115px;
 
-  padding:
-    16px
-    20px;
+    margin-top: 16px;
 
-  background:
-    rgba(13, 33, 54, 0.82);
+    padding:
+        15px 0 0;
 
-  border:
-    1px solid
-    rgba(180, 200, 218, 0.30);
+    background:
+        transparent;
 
-  box-shadow:
-    0 8px 22px
-    rgba(0, 0, 0, 0.25);
+    border: 0;
 
-  backdrop-filter:
-    blur(14px);
+    border-top:
+        1px solid
+        var(--line);
 
-  -webkit-backdrop-filter:
-    blur(14px);
+    box-shadow: none;
+
+    backdrop-filter: none;
+
+    -webkit-backdrop-filter: none;
+}
+
+
+.info-card::before {
+    content: "/ STATUS";
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color:
+        var(--text-dim);
 }
 
 
 .info-title {
-  margin-bottom: 9px;
+    margin-bottom: 7px;
 
-  font-size: 21px;
+    font-size: 15px;
 
-  color:
-    #dbe5ee;
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    color:
+        var(--text);
 }
 
 
 .selected-names {
-  min-height: 42px;
+    min-height: 34px;
 
-  font-size: 18px;
+    color:
+        var(--text-soft);
 
-  line-height: 1.45;
+    font-size: 15px;
 
-  color:
-    #b9c8d8;
+    line-height: 1.4;
 }
 
 
 .price-row {
-  display: flex;
+    display: flex;
 
-  align-items: end;
+    align-items: center;
 
-  justify-content: space-between;
+    justify-content: space-between;
 
-  margin-top: 10px;
+    margin-top: 9px;
 
-  font-size: 25px;
+    padding-top: 8px;
 
-  color:
-    #e9f0f6;
+    border-top:
+        1px solid
+        var(--line-soft);
+
+    font-size: 16px;
+
+    color:
+        var(--text-soft);
 }
 
 
 .price-row strong {
-  font-weight: 400;
+    font-size: 19px;
+
+    font-weight: 400;
+
+    color:
+        var(--text);
 }
 
 
@@ -692,11 +1017,54 @@ h2 {
    ============================================================ */
 
 .right-panel {
-  max-height: 790px;
+    position: relative;
 
-  overflow-y: auto;
+    max-height: 790px;
 
-  padding-right: 4px;
+    overflow-y: auto;
+
+    padding-right: 13px !important;
+}
+
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+.right-panel::-webkit-scrollbar,
+.category-body::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.right-panel::-webkit-scrollbar-track,
+.category-body::-webkit-scrollbar-track {
+    background:
+        rgba(3, 12, 24, 0.45);
+}
+
+
+.right-panel::-webkit-scrollbar-thumb,
+.category-body::-webkit-scrollbar-thumb {
+    background:
+        rgba(180, 200, 220, 0.32);
+}
+
+
+.right-panel::-webkit-scrollbar-thumb:hover,
+.category-body::-webkit-scrollbar-thumb:hover {
+    background:
+        rgba(210, 225, 238, 0.55);
+}
+
+
+.right-panel,
+.category-body {
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(180, 200, 220, 0.32)
+        rgba(3, 12, 24, 0.45);
 }
 
 
@@ -705,225 +1073,290 @@ h2 {
    ============================================================ */
 
 .category {
-  margin-bottom: 12px;
+    position: relative;
 
-  overflow: hidden;
+    margin-bottom: 0;
 
-  background:
-    rgba(8, 24, 43, 0.58);
+    overflow: hidden;
 
-  border:
-    1px solid
-    rgba(160, 181, 201, 0.25);
+    background:
+        transparent;
 
-  box-shadow:
-    0 8px 20px
-    rgba(0, 0, 0, 0.18);
+    border: 0;
 
-  backdrop-filter:
-    blur(10px);
-
-  -webkit-backdrop-filter:
-    blur(10px);
+    border-bottom:
+        1px solid
+        var(--line);
 }
 
 
 /* ============================================================
-   ЗАГОЛОВОК КАТЕГОРИИ
+   CATEGORY HEADER
    ============================================================ */
 
 .category-head {
-  width: 100%;
+    position: relative;
 
-  display: grid;
+    width: 100%;
 
-  grid-template-columns:
-    1fr
-    40px;
+    min-height: 52px;
 
-  align-items: center;
+    display: grid;
 
-  text-align: left;
+    grid-template-columns:
+        42px
+        1fr
+        28px;
 
-  padding:
-    12px;
+    align-items: center;
 
-  color:
-    #e3ebf2;
+    padding:
+        8px 0;
 
-  background:
-    rgba(20, 44, 69, 0.80);
+    text-align: left;
 
-  border: 0;
+    color:
+        var(--text);
 
-  cursor: pointer;
+    background:
+        transparent;
 
-  font-size: 27px;
+    border: 0;
 
-  transition:
-    background 0.2s ease,
-    border-radius 0.2s ease;
+    cursor: pointer;
+
+    font-size: 18px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Номер категории */
+
+.category-head::before {
+    counter-increment: category;
+
+    content:
+        counter(category, decimal-leading-zero);
+
+    color:
+        var(--text-dim);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+.right-panel {
+    counter-reset: category;
 }
 
 
 .category-head:hover {
-  background:
-    rgba(31, 60, 89, 0.92);
-}
+    color:
+        var(--accent-bright);
 
-
-.category.open .category-head {
-  border-radius:
-    16px
-    16px
-    0
-    0;
+    background:
+        rgba(160, 180, 200, 0.055);
 }
 
 
 /* ============================================================
-   СТРЕЛКА КАТЕГОРИИ
+   СТРЕЛКА
    ============================================================ */
 
 .arrow {
-  font-size: 24px;
+    font-size: 16px;
 
-  text-align: center;
+    text-align: right;
 
-  transition:
-    transform 0.2s ease;
+    color:
+        var(--text-dim);
+
+    transition:
+        transform 0.25s ease,
+        color 0.2s ease;
 }
 
 
 .category.open .arrow {
-  transform:
-    rotate(180deg);
+    color:
+        var(--text);
+
+    transform:
+        rotate(180deg);
 }
 
 
 /* ============================================================
-   ТЕЛО КАТЕГОРИИ
+   CATEGORY BODY
    ============================================================ */
 
 .category-body {
-  display: none;
+    display: none;
 
-  max-height: 420px;
+    max-height: 420px;
 
-  overflow-y: auto;
+    overflow-y: auto;
 
-  padding: 8px;
+    padding:
+        4px
+        0
+        12px
+        42px;
 
-  background:
-    rgba(6, 20, 36, 0.72);
+    background:
+        transparent;
 }
 
 
 .category.open .category-body {
-  display: block;
+    display: block;
 }
 
 
 /* ============================================================
-   ЭЛЕМЕНТ ДЕКОРА
+   DECOR ITEM
    ============================================================ */
 
 .decor-item {
-  position: relative;
+    position: relative;
 
-  display: block;
+    display: grid;
 
-  width: 100%;
+    grid-template-columns:
+        1fr
+        74px;
 
-  min-height: 100px;
+    grid-template-rows:
+        auto
+        auto;
 
-  margin-bottom: 9px;
+    width: 100%;
 
-  padding:
-    9px
-    85px
-    9px
-    11px;
+    min-height: 82px;
 
-  text-align: left;
+    margin: 0;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+    padding:
+        10px
+        0;
 
-  font-size: 17px;
+    text-align: left;
 
-  color:
-    #e5edf4;
+    color:
+        var(--text-soft);
 
-  background:
-    rgba(30, 54, 79, 0.84);
+    background:
+        transparent;
 
-  border:
-    1px solid
-    rgba(170, 191, 209, 0.28);
+    border: 0 !important;
 
-  cursor: pointer;
+    border-bottom:
+        1px solid
+        var(--line-soft) !important;
 
-  box-shadow:
-    0 5px 14px
-    rgba(0, 0, 0, 0.16);
+    cursor: pointer;
 
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        padding 0.2s ease;
 }
 
 
-.decor-item:last-child {
-  margin-bottom: 0;
+.decor-item::before {
+    content: "→";
+
+    position: absolute;
+
+    left: -20px;
+
+    top: 12px;
+
+    color:
+        transparent;
+
+    font-size: 14px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 
 .decor-item:hover {
-  background:
-    rgba(47, 77, 106, 0.92);
+    padding-left: 5px;
 
-  border-color:
-    rgba(197, 215, 230, 0.44);
+    color:
+        var(--text);
 
-  transform:
-    translateY(-1px);
+    background:
+        rgba(160, 180, 200, 0.045);
+}
 
-  box-shadow:
-    0 8px 20px
-    rgba(0, 0, 0, 0.25);
+
+.decor-item:hover::before {
+    color:
+        var(--accent);
+
+    transform:
+        translateX(3px);
 }
 
 
 .decor-item:active {
-  transform:
-    translateY(1px);
+    padding-left: 7px;
 }
 
 
 /* ============================================================
-   ВЫБРАННЫЙ ДЕКОР
+   SELECTED DECOR
    ============================================================ */
 
 .decor-item.selected {
-  outline: none;
+    color:
+        var(--accent-bright);
 
-  background:
-    rgba(65, 91, 118, 0.92);
+    background:
+        rgba(160, 180, 200, 0.075);
 
-  border:
-    1px solid
-    rgba(220, 232, 242, 0.75);
+    box-shadow: none;
+}
 
-  box-shadow:
-    0 0 0 2px
-    rgba(170, 195, 216, 0.16),
-    0 8px 22px
-    rgba(0, 0, 0, 0.28);
+
+.decor-item.selected::before {
+    color:
+        var(--accent-bright);
+}
+
+
+/* Маленькая отметка выбранного */
+
+.decor-item.selected::after {
+    content: "SELECTED";
+
+    position: absolute;
+
+    right: 80px;
+
+    top: 11px;
+
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        var(--accent);
 }
 
 
@@ -932,131 +1365,176 @@ h2 {
    ============================================================ */
 
 .item-name {
-  display: block;
+    display: block;
 
-  overflow: hidden;
+    grid-column: 1;
 
-  white-space: nowrap;
+    grid-row: 1;
 
-  text-overflow: ellipsis;
+    align-self: center;
 
-  padding:
-    5px
-    7px;
+    overflow: hidden;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+    white-space: nowrap;
 
-  font-size: 18px;
+    text-overflow: ellipsis;
 
-  color:
-    #edf3f7;
+    padding: 0;
 
-  background:
-    rgba(7, 20, 36, 0.52);
+    color:
+        inherit;
 
+    background:
+        transparent;
+
+    border: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+
+    line-height: 1.2;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.35px;
 }
 
 
 /* ============================================================
-   ЦЕНА ДЕКОРА
+   ЦЕНА
    ============================================================ */
 
 .item-price {
-  display: block;
+    display: block;
 
-  margin:
-    7px
-    5px
-    0;
+    grid-column: 1;
 
-  font-size: 15px;
+    grid-row: 2;
 
-  color:
-    #b9c9d8;
+    margin:
+        7px
+        0
+        0;
+
+    color:
+        var(--text-dim);
+
+    font-size: 11px;
+
+    letter-spacing: 0.7px;
 }
 
 
 /* ============================================================
-   КАРТИНКА ДЕКОРА
+   THUMBNAIL
    ============================================================ */
 
 .item-thumb {
-  position: absolute;
+    position: absolute;
 
-  top: 7px;
+    top: 7px;
 
-  right: 7px;
+    right: 0;
 
-  width: 70px;
+    width: 66px;
 
-  height: 84px;
+    height: 66px;
 
-  object-fit: contain;
+    object-fit: contain;
+
+    opacity: 0.82;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.decor-item:hover .item-thumb {
+    opacity: 1;
+
+    transform:
+        scale(1.04);
+}
+
+
+.decor-item.selected .item-thumb {
+    opacity: 1;
 }
 
 
 /* ============================================================
-   ПУСТАЯ КАТЕГОРИЯ
+   EMPTY
    ============================================================ */
 
 .empty {
-  padding: 12px;
+    padding:
+        12px
+        0;
 
-  font-size: 16px;
+    color:
+        var(--text-dim);
 
-  color:
-    #b9c8d8;
+    font-size: 12px;
 
-  opacity: 0.8;
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
 }
 
 
 /* ============================================================
-   СКРОЛЛБАРЫ
+   ДОПОЛНИТЕЛЬНЫЕ ТЕХНИЧЕСКИЕ МАРКЕРЫ
    ============================================================ */
 
-.right-panel::-webkit-scrollbar,
-.category-body::-webkit-scrollbar {
-  width: 8px;
+.left-panel::after {
+    content: "DECORATOR / BASE";
+
+    position: absolute;
+
+    left: -9px;
+
+    bottom: 4px;
+
+    transform:
+        rotate(-90deg)
+        translateX(-100%);
+
+    transform-origin:
+        left bottom;
+
+    color:
+        rgba(190, 208, 225, 0.22);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    pointer-events: none;
 }
 
 
-.right-panel::-webkit-scrollbar-track,
-.category-body::-webkit-scrollbar-track {
-  background:
-    rgba(3, 13, 27, 0.35);
+.center-panel::after {
+    content: "COMPOSITION";
 
-}
+    position: absolute;
 
+    right: 8px;
 
-.right-panel::-webkit-scrollbar-thumb,
-.category-body::-webkit-scrollbar-thumb {
-  background:
-    rgba(150, 170, 190, 0.38);
+    bottom: 7px;
 
-  border: 0;
-}
+    color:
+        rgba(190, 208, 225, 0.20);
 
+    font-size: 8px;
 
-.right-panel::-webkit-scrollbar-thumb:hover,
-.category-body::-webkit-scrollbar-thumb:hover {
-  background:
-    rgba(180, 200, 220, 0.52);
-}
+    letter-spacing: 2px;
 
-
-/* Firefox */
-
-.right-panel,
-.category-body {
-  scrollbar-width: thin;
-
-  scrollbar-color:
-    rgba(150, 170, 190, 0.38)
-    rgba(3, 13, 27, 0.35);
+    pointer-events: none;
 }
 
 
@@ -1064,77 +1542,129 @@ h2 {
    ПЛАВНОЕ ПОЯВЛЕНИЕ
    ============================================================ */
 
-
-/*
-   Пока JS не добавил page-ready:
-   - интерфейс прозрачный;
-   - находится чуть ниже;
-   - по нему нельзя нажимать.
-*/
-
 body:not(.page-ready) .app {
-  opacity: 0;
-
-  transform:
-    translateY(35px);
-
-  pointer-events: none;
-}
-
-
-/*
-   После загрузки:
-   интерфейс плавно поднимается и проявляется.
-*/
-
-body.page-ready .app {
-  animation:
-    decoratorPageEnter
-    1.05s
-    cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
-}
-
-
-@keyframes decoratorPageEnter {
-
-  from {
     opacity: 0;
 
     transform:
-      translateY(35px);
-  }
+        translateY(34px);
 
-  to {
-    opacity: 1;
+    pointer-events: none;
+}
 
-    transform:
-      translateY(0);
-  }
+
+body.page-ready .app {
+    animation:
+        decoratorEnter
+        1.1s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+
+@keyframes decoratorEnter {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(34px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
 
 }
 
 
 /* ============================================================
-   ДОСТУПНОСТЬ:
-   ЕСЛИ ПОЛЬЗОВАТЕЛЬ ОТКЛЮЧИЛ АНИМАЦИИ
+   ПОСЛЕДОВАТЕЛЬНОЕ ПОЯВЛЕНИЕ ВНУТРИ ИНТЕРФЕЙСА
+   ============================================================ */
+
+body.page-ready .topbar {
+    animation:
+        elementReveal
+        0.55s
+        ease
+        both;
+}
+
+
+body.page-ready .left-panel {
+    animation:
+        elementReveal
+        0.6s
+        0.12s
+        ease
+        both;
+}
+
+
+body.page-ready .center-panel {
+    animation:
+        elementReveal
+        0.6s
+        0.20s
+        ease
+        both;
+}
+
+
+body.page-ready .right-panel {
+    animation:
+        elementReveal
+        0.6s
+        0.30s
+        ease
+        both;
+}
+
+
+@keyframes elementReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
 
-  body:not(.page-ready) .app {
-    opacity: 1;
+    body:not(.page-ready) .app {
+        opacity: 1;
 
-    transform:
-      none;
+        transform:
+            none;
 
-    pointer-events: auto;
-  }
+        pointer-events: auto;
+    }
 
 
-  body.page-ready .app {
-    animation: none;
-  }
+    body.page-ready .app,
+    body.page-ready .topbar,
+    body.page-ready .left-panel,
+    body.page-ready .center-panel,
+    body.page-ready .right-panel {
+        animation: none;
+    }
 
 }
 
@@ -1145,29 +1675,23 @@ body.page-ready .app {
 
 @media (max-width: 1400px) {
 
-  .workspace {
-    grid-template-columns:
-      280px
-      minmax(600px, 1fr)
-      300px;
-
-    gap: 16px;
-  }
+    .workspace {
+        grid-template-columns:
+            270px
+            minmax(500px, 1fr)
+            300px;
+    }
 
 
-  h1 {
-    font-size: 34px;
-  }
+    .workspace > .panel {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 
 
-  .panel-title h2 {
-    font-size: 29px;
-  }
-
-
-  .category-head {
-    font-size: 26px;
-  }
+    h1 {
+        font-size: 44px;
+    }
 
 }
 
@@ -1178,20 +1702,29 @@ body.page-ready .app {
 
 @media (max-width: 1100px) {
 
-  .workspace {
-    grid-template-columns:
-      280px
-      1fr;
-  }
+    .workspace {
+        grid-template-columns:
+            280px
+            1fr;
+    }
 
 
-  .right-panel {
-    grid-column:
-      1 / -1;
+    .right-panel {
+        grid-column:
+            1 / -1;
 
-    max-height:
-      none;
-  }
+        max-height:
+            none;
+
+        border-top:
+            1px solid
+            var(--line);
+    }
+
+
+    .workspace > .panel:nth-child(2) {
+        border-right: 0;
+    }
 
 }
 
@@ -1202,70 +1735,78 @@ body.page-ready .app {
 
 @media (max-width: 700px) {
 
-  body {
-    padding: 6px;
-  }
+    body {
+        padding: 7px;
+    }
 
 
-  .workspace {
-    grid-template-columns:
-      1fr;
+    .topbar {
+        grid-template-columns:
+            1fr;
 
-    padding: 12px;
-  }
+        gap: 15px;
 
-
-  .right-panel {
-    grid-column:
-      auto;
-  }
+        min-height: auto;
+    }
 
 
-  .topbar {
-    flex-direction:
-      column;
-
-    align-items:
-      stretch;
-
-    padding-bottom:
-      12px;
-  }
+    .top-actions {
+        width: 100%;
+    }
 
 
-  h1 {
-    font-size:
-      28px;
-  }
+    .secondary {
+        flex: 1;
+    }
 
 
-  .panel-title h2 {
-    font-size:
-      25px;
-  }
+    .workspace {
+        grid-template-columns:
+            1fr;
+
+        min-height:
+            auto;
+    }
 
 
-  .top-actions {
-    flex-wrap:
-      wrap;
-  }
+    .workspace > .panel {
+        border-right: 0;
+
+        border-bottom:
+            1px solid
+            var(--line);
+    }
 
 
-  .secondary {
-    flex:
-      1;
-  }
+    .workspace > .panel:last-child {
+        border-bottom: 0;
+    }
 
 
-  .category-head {
-    font-size:
-      24px;
-  }
+    .right-panel {
+        grid-column:
+            auto;
+    }
 
 
-  .workspace {
-    min-height:
-      auto;
-  }
+    h1 {
+        font-size:
+            34px;
+
+        letter-spacing:
+            -1px;
+    }
+
+
+    .panel-title h2 {
+        font-size:
+            25px;
+    }
+
+
+    .category-head {
+        font-size:
+            17px;
+    }
 
 }
