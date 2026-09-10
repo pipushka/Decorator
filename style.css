@@ -214,7 +214,7 @@ body::after {
 /* Маленький крест */
 
 .topbar::after {
-    content: "+";
+    content: "ЕБЛАН";
 
     position: absolute;
 
