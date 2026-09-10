@@ -563,7 +563,7 @@ h1::before {
 
 
 .base-preview::after {
-    content: "СУКА";
+    content: "621×381";
 
     position: absolute;
 
@@ -1365,7 +1365,9 @@ h1::before {
     grid-column: 1;
 
     grid-row: 2;
-
+   
+   margin-top: 12px;
+   
     margin:
         7px
         0
