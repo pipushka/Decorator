@@ -389,48 +389,6 @@ h1::before {
 
 
 /* ============================================================
-   ДЕКОРАТИВНЫЕ + НА ГРАНИЦАХ
-   ============================================================ */
-
-.workspace::before {
-    content: "+";
-
-    position: absolute;
-
-    top: 10px;
-    left: 50%;
-
-    z-index: 5;
-
-    color:
-        rgba(220, 231, 241, 0.48);
-
-    font-size: 14px;
-
-    pointer-events: none;
-}
-
-
-.workspace::after {
-    content: "+";
-
-    position: absolute;
-
-    right: 10px;
-    bottom: 10px;
-
-    z-index: 5;
-
-    color:
-        rgba(220, 231, 241, 0.48);
-
-    font-size: 14px;
-
-    pointer-events: none;
-}
-
-
-/* ============================================================
    ЗАГОЛОВКИ ПАНЕЛЕЙ
    ============================================================ */
 
@@ -1430,37 +1388,6 @@ h1::before {
     text-transform: uppercase;
 
     letter-spacing: 0.8px;
-}
-
-
-/* ============================================================
-   ДОПОЛНИТЕЛЬНЫЕ ТЕХНИЧЕСКИЕ МАРКЕРЫ
-   ============================================================ */
-
-.left-panel::after {
-    content: "DECORATOR / BASE";
-
-    position: absolute;
-
-    left: -9px;
-
-    bottom: 4px;
-
-    transform:
-        rotate(-90deg)
-        translateX(-100%);
-
-    transform-origin:
-        left bottom;
-
-    color:
-        rgba(190, 208, 225, 0.22);
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    pointer-events: none;
 }
 
 /* ============================================================
