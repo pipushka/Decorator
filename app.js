@@ -678,3 +678,21 @@ window.addEventListener("load", () => {
 renderCategories();
 renderCanvas();
 renderInfo();
+
+// ============================================================
+// ПЛАВНОЕ ПОЯВЛЕНИЕ ИНТЕРФЕЙСА
+// ============================================================
+
+window.addEventListener("load", () => {
+
+  requestAnimationFrame(() => {
+
+    requestAnimationFrame(() => {
+
+      document.body.classList.add("page-ready");
+
+    });
+
+  });
+
+});
