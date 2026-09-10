@@ -565,7 +565,7 @@ h1::before {
 
 
 .base-preview::before {
-    content: "BASE / PREVIEW";
+    content: "БАЗОВАЯ ПЛАШКА";
 
     position: absolute;
 
@@ -884,7 +884,7 @@ h1::before {
 
 
 .info-card::before {
-    content: "/ STATUS";
+    content: "/ ИТОГ";
 
     display: block;
 
