@@ -3,101 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Конструктор декора</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <main class="app">
-    <header class="topbar">
-      <h1>Конструктор декора</h1>
-      <div class="top-actions">
-        <button id="downloadBtn" class="secondary">Скачать PNG</button>
-        <button id="resetBtn" class="secondary">Сбросить</button>
+
+<main class="app">
+
+  <header class="topbar">
+
+    <h1>Конструктор декора</h1>
+
+    <div class="top-actions">
+      <button id="downloadBtn" class="secondary">
+        Скачать PNG
+      </button>
+
+      <button id="resetBtn" class="secondary">
+        Сбросить
+      </button>
+    </div>
+
+  </header>
+
+
+  <section class="workspace">
+
+    <!-- =====================================================
+         ЛЕВАЯ ПАНЕЛЬ — ОСНОВА
+         ===================================================== -->
+
+    <aside class="left-panel panel">
+
+      <h2>Основа</h2>
+
+      <div class="base-preview" id="basePreview">
+        <img
+          src="assets/плашка1.png"
+          alt="Плашка 1"
+        >
       </div>
-    </header>
 
-    <section class="workspace">
-      <aside class="left-panel panel">
-        <h2>Основа</h2>
-        <div class="base-preview" id="basePreview">
-          <span>Плашка</span>
+      <label class="upload-label">
+
+        Загрузить свою плашку
+
+        <input
+          id="baseInput"
+          type="file"
+          accept="image/png"
+        >
+
+      </label>
+
+      <p class="hint">
+        Можно загрузить свою версию плашки вместо стандартной.
+        Размер изображения должен быть <b>621×381 px</b>.
+      </p>
+
+    </aside>
+
+
+    <!-- =====================================================
+         ЦЕНТР — РЕЗУЛЬТАТ
+         ===================================================== -->
+
+    <section class="center-panel">
+
+      <h2>Общая плашка</h2>
+
+      <div class="canvas-wrap">
+
+        <div id="canvas" class="canvas">
+
+          <img
+            id="baseImage"
+            class="layer base-layer"
+            src="assets/плашка1.png"
+            alt="Основа"
+          >
+
+          <div id="layers"></div>
+
         </div>
 
-        <label class="upload-label">
-          Загрузить свою плашку
-          <input id="baseInput" type="file" accept="image/png">
-        </label>
+      </div>
 
-        <div class="sample-buttons">
-          <div class="small-title">Заглушки</div>
-          <button data-base="assets/плашка1.png">Плашка 1</button>
-          <button data-base="assets/плашка3.png">Плашка 3</button>
-          <button data-base="assets/плашка4.png">Плашка 4</button>
+
+      <div class="info-card">
+
+        <div class="info-title">
+          Названия и стоимость декора:
         </div>
 
-        <div class="manage-section">
-          <h2>Добавить декор</h2>
-          <label class="field">
-            Название
-            <input id="decorName" type="text" placeholder="Например: Богомол">
-          </label>
-          <label class="field">
-            Цена
-            <input id="decorPrice" type="number" min="0" step="1" placeholder="20">
-          </label>
-          <label class="field">
-            Категория
-            <select id="decorCategory">
-              <option value="far">Дальняя ветка</option>
-              <option value="near">Ближняя ветка</option>
-              <option value="cat">На коте</option>
-              <option value="plan">Общий план</option>
-              <option value="set">Сеты</option>
-            </select>
-          </label>
-          <label class="upload-label compact">
-            PNG декора
-            <input id="decorInput" type="file" accept="image/png">
-          </label>
-          <button id="addDecorBtn" class="primary">Добавить декор</button>
-          <p class="hint">Декор хранится в браузере. Для постоянного набора файлов удобно положить PNG в папку <b>assets</b> и добавить их в <code>decor.js</code>.</p>
-        </div>
-      </aside>
-
-      <section class="center-panel">
-        <h2>Общая плашка</h2>
-        <div class="canvas-wrap">
-          <div id="canvas" class="canvas">
-            <img id="baseImage" class="layer base-layer" alt="">
-            <div id="layers"></div>
-          </div>
+        <div
+          id="selectedNames"
+          class="selected-names"
+        >
+          Ничего не выбрано
         </div>
 
-        <div class="info-card">
-          <div class="info-title">Названия и стоимость декора:</div>
-          <div id="selectedNames" class="selected-names">Ничего не выбрано</div>
-          <div class="price-row">
-            <span>Цена:</span>
-            <strong><span id="totalPrice">0</span> жемчужин</strong>
-          </div>
-        </div>
-      </section>
+        <div class="price-row">
 
-      <aside class="right-panel panel">
-        <div id="categories"></div>
-      </aside>
+          <span>Цена:</span>
+
+          <strong>
+            <span id="totalPrice">0</span>
+            жемчужин
+          </strong>
+
+        </div>
+
+      </div>
+
     </section>
-  </main>
 
-  <template id="itemTemplate">
-    <button class="decor-item">
-      <span class="item-name"></span>
-      <span class="item-price"></span>
-      <img class="item-thumb" alt="">
-    </button>
-  </template>
 
-  <script src="decor.js"></script>
-  <script src="app.js"></script>
+    <!-- =====================================================
+         ПРАВАЯ ПАНЕЛЬ — ДЕКОР
+         ===================================================== -->
+
+    <aside class="right-panel panel">
+
+      <h2>Декор</h2>
+
+      <div id="categories"></div>
+
+    </aside>
+
+  </section>
+
+</main>
+
+
+<!-- =========================================================
+     ШАБЛОН ЭЛЕМЕНТА ДЕКОРА
+     ========================================================= -->
+
+<template id="itemTemplate">
+
+  <button class="decor-item">
+
+    <span class="item-name"></span>
+
+    <span class="item-price"></span>
+
+    <img
+      class="item-thumb"
+      alt=""
+    >
+
+  </button>
+
+</template>
+
+
+<script src="decor.js"></script>
+<script src="app.js"></script>
+
 </body>
 </html>
