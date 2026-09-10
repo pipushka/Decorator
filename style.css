@@ -240,7 +240,7 @@ h1 {
 
 
 h1::before {
-    content: "/ Речное племя";
+    content: "/Речное племя";
 
     display: block;
 
@@ -1462,27 +1462,6 @@ h1::before {
 
     pointer-events: none;
 }
-
-
-.center-panel::after {
-    content: "COMPOSITION";
-
-    position: absolute;
-
-    right: 8px;
-
-    bottom: 7px;
-
-    color:
-        rgba(190, 208, 225, 0.20);
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    pointer-events: none;
-}
-
 
 /* ============================================================
    ПЛАВНОЕ ПОЯВЛЕНИЕ
