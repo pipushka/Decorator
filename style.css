@@ -803,7 +803,7 @@ h1::before {
 
 
 .canvas-wrap::before {
-    content: "COMPOSITION / 01";
+    content: "ИТОГОВАЯ ПЛАШКА";
 
     position: absolute;
 
@@ -1519,7 +1519,7 @@ h1::before {
 
 
 .center-panel::after {
-    content: "COMPOSITION";
+    content: "";
 
     position: absolute;
 
