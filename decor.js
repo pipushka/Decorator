@@ -57,7 +57,7 @@ const DECOR_DATA = [
         name: "Плашка 2",
         price: 20,
         category: "plan",
-        src: "assets/плашка2.png"
+        src: "assets/плашка4.png"
     },
 
 
