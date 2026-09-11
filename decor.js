@@ -15,41 +15,47 @@ const DECOR_DATA = [
 
     {
         id: "far-1",
-        name: "Плашка 3",
-        price: 10,
+        name: "Кукушонок",
+        price: 20,
         category: "far",
-        src: "assets/плашка3.png"
+        src: "assets/кукушонок.png"
     },
 
+  {
+        id: "far-2",
+        name: "Ящерица",
+        price: 20,
+        category: "far",
+        src: "assets/ящерица.png"
+    },
 
+      {
+        id: "far-3",
+        name: "Бабочки-1",
+        price: 30,
+        category: "far",
+        src: "assets/бабочки1.png"
+    },
+    
+  {
+        id: "far-4",
+        name: "Бабочки-2",
+        price: 30,
+        category: "far",
+        src: "assets/бабочки2.png"
+    },
+    
     // ========================================================
     // БЛИЖНЯЯ ВЕТКА
     // ========================================================
 
     {
         id: "near-1",
-        name: "Плашка 3",
-        price: 15,
-        category: "near",
-        src: "assets/плашка3.png"
-    },
-
-     {
-        id: "near-2",
-        name: "Плашка БЛЯТЬ",
-        price: 15,
+        name: "Царапины",
+        price: 20,
         category: "near",
         src: "assets/плашка4.png"
     },
-    
-   {
-        id: "near-3",
-        name: "Плашка СУКЬ",
-        price: 15,
-        category: "near",
-        src: "assets/плашка3.png"
-    },
-
 
     // ========================================================
     // НА КОТЕ
@@ -57,23 +63,30 @@ const DECOR_DATA = [
 
     {
         id: "cat-1",
-        name: "Плашка 4",
-        price: 10,
+        name: "Венок-2",
+        price: 20,
         category: "cat",
-        src: "assets/плашка4.png"
+        src: "assets/венок2.png"
     },
 
-
+    {
+        id: "cat-1",
+        name: "Заколка-6",
+        price: 20,
+        category: "cat",
+        src: "assets/заколка6.png"
+    },
+    
     // ========================================================
     // ОБЩИЙ ПЛАН
     // ========================================================
 
     {
         id: "plan-1",
-        name: "Плашка 2",
+        name: "Заглушка",
         price: 20,
         category: "plan",
-        src: "assets/плашка4.png"
+        src: "assets/плашка3.png"
     },
 
 
@@ -83,7 +96,7 @@ const DECOR_DATA = [
 
     {
         id: "set-1",
-        name: "Базовый сет",
+        name: "Заглушка",
         price: 50,
         category: "set",
         src: "assets/плашка3.png"
