@@ -798,8 +798,8 @@ h1::before {
 
     margin-top: 16px;
 
-    padding:
-        15px 0 25px;
+        padding:
+        15px 4px 0;
 
     background:
         transparent;
