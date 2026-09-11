@@ -70,7 +70,7 @@ const DECOR_DATA = [
     },
 
     {
-        id: "cat-1",
+        id: "cat-2",
         name: "Заколка-6",
         price: 20,
         category: "cat",
