@@ -242,7 +242,7 @@ h1::before {
 
     font-weight: 400;
 
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 
     color:
         var(--text-dim);
