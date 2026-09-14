@@ -1683,3 +1683,768 @@ body.page-ready .right-panel {
     }
 
 }
+
+/* ============================================================
+   НАВИГАЦИЯ САЙТА
+   ============================================================ */
+
+.brand-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+
+.site-tabs {
+    display: flex;
+    align-items: stretch;
+
+    border:
+        1px solid
+        var(--line);
+
+    background:
+        rgba(7, 19, 36, 0.72);
+}
+
+
+.site-tab {
+    display: flex;
+    align-items: center;
+
+    min-height: 34px;
+
+    padding:
+        7px 15px;
+
+    color:
+        var(--text-soft);
+
+    background:
+        transparent;
+
+    border: 0;
+    border-right:
+        1px solid
+        var(--line);
+
+    text-decoration: none;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 13px;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.site-tab:last-child {
+    border-right: 0;
+}
+
+
+.site-tab:hover {
+    color:
+        var(--text);
+
+    background:
+        rgba(160, 180, 200, 0.10);
+}
+
+
+.site-tab.active {
+    color:
+        var(--accent-bright);
+
+    background:
+        rgba(160, 180, 200, 0.14);
+}
+
+
+/* ============================================================
+   ТИПОЛОГИЯ — ОБЩИЕ СТИЛИ
+   ============================================================ */
+
+.typology-page {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.typology-page-inner {
+    width: 100%;
+
+    padding:
+        0 20px 45px;
+}
+
+
+/* Заголовок страницы */
+
+.typology-heading {
+    position: relative;
+
+    margin: 0 auto;
+
+    padding:
+        26px 0 17px;
+
+    text-align: center;
+
+    border-bottom:
+        1px solid
+        var(--line);
+}
+
+
+.typology-heading h2 {
+    margin: 0;
+
+    color:
+        var(--text);
+
+    font-size:
+        clamp(26px, 3vw, 38px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.typology-heading p {
+    max-width: 700px;
+
+    margin:
+        14px auto 0;
+
+    color:
+        var(--text-soft);
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   СЕТКА ФЛАЖКОВ
+   ============================================================ */
+
+.flags-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(8, minmax(70px, 1fr));
+
+    gap:
+        24px 25px;
+
+    max-width: 1180px;
+
+    margin:
+        34px auto 0;
+}
+
+
+.flag-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    min-width: 0;
+}
+
+
+.flag-name {
+    min-height: 22px;
+
+    margin-bottom: 8px;
+
+    color:
+        var(--text);
+
+    font-size: 15px;
+
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+
+.flag-button {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio:
+        1 / 1;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    background:
+        rgba(4, 15, 29, 0.78);
+
+    border:
+        1px solid
+        var(--line);
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.flag-button:hover,
+.flag-card.open .flag-button {
+    background:
+        rgba(22, 43, 65, 0.9);
+
+    border-color:
+        var(--line-strong);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.flag-button img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.flag-button:hover img,
+.flag-card.open .flag-button img {
+    transform:
+        scale(1.06);
+}
+
+
+.flag-description {
+    width: 100%;
+
+    min-height: 40px;
+
+    margin-top: 8px;
+
+    color:
+        var(--text-soft);
+
+    font-size: 12px;
+
+    line-height: 1.35;
+
+    text-align: center;
+}
+
+
+/* ============================================================
+   РАСКРЫВАЕМАЯ ИНФОРМАЦИЯ
+   ============================================================ */
+
+.flag-details {
+    display: grid;
+
+    grid-template-rows:
+        0fr;
+
+    width: 100%;
+
+    margin-top: 0;
+
+    transition:
+        grid-template-rows 0.3s ease,
+        margin-top 0.3s ease;
+}
+
+
+.flag-card:hover .flag-details,
+.flag-card.open .flag-details {
+    grid-template-rows:
+        1fr;
+
+    margin-top: 12px;
+}
+
+
+.flag-details-inner {
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+.flag-preview {
+    width: 100%;
+
+    aspect-ratio:
+        621 / 381;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px;
+
+    background:
+        rgba(4, 15, 29, 0.72);
+
+    border:
+        1px solid
+        var(--line);
+}
+
+
+.flag-preview img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+.flag-how {
+    margin-top: 10px;
+
+    padding:
+        11px;
+
+    color:
+        var(--text-soft);
+
+    background:
+        rgba(4, 15, 29, 0.52);
+
+    border:
+        1px solid
+        var(--line-soft);
+
+    font-size: 12px;
+
+    line-height: 1.45;
+}
+
+
+.flag-how-title {
+    margin-bottom: 5px;
+
+    color:
+        var(--text);
+
+    font-size: 10px;
+
+    letter-spacing: 1.2px;
+
+    text-transform: uppercase;
+}
+
+
+/* ============================================================
+   РАЗДЕЛ ПОЛУЧЕНИЯ ФЛАЖКА
+   ============================================================ */
+
+.typology-section {
+    max-width: 1180px;
+
+    margin:
+        45px auto 0;
+
+    padding-top:
+        20px;
+
+    border-top:
+        1px solid
+        var(--line);
+}
+
+
+.typology-section-title {
+    margin:
+        0 0 20px;
+
+    color:
+        var(--text);
+
+    font-size: 20px;
+
+    font-weight: 400;
+
+    text-align: center;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+
+.flag-info-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(240px, 360px)
+        1fr;
+
+    gap:
+        28px;
+
+    align-items: start;
+}
+
+
+.large-flag-preview {
+    width: 100%;
+
+    aspect-ratio:
+        621 / 381;
+
+    padding: 15px;
+
+    background:
+        rgba(4, 15, 29, 0.72);
+
+    border:
+        1px solid
+        var(--line);
+
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+.large-flag-preview img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+.flag-obtain-table {
+    border:
+        1px solid
+        var(--line);
+
+    background:
+        rgba(5, 16, 31, 0.48);
+}
+
+
+.flag-obtain-row {
+    display: grid;
+
+    grid-template-columns:
+        170px
+        1fr;
+
+    min-height: 48px;
+
+    border-bottom:
+        1px solid
+        var(--line-soft);
+}
+
+
+.flag-obtain-row:last-child {
+    border-bottom: 0;
+}
+
+
+.flag-obtain-label,
+.flag-obtain-value {
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        10px 13px;
+}
+
+
+.flag-obtain-label {
+    color:
+        var(--text-dim);
+
+    font-size: 11px;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+
+    border-right:
+        1px solid
+        var(--line-soft);
+}
+
+
+.flag-obtain-value {
+    color:
+        var(--text-soft);
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+/* ============================================================
+   ПОДБОР ФЛАЖКА ПО ЧЕТЫРЁМ ПАРАМЕТРАМ
+   ============================================================ */
+
+.flag-combination {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        10px;
+
+    margin-bottom:
+        28px;
+}
+
+
+.flag-select-wrap {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.flag-select-wrap label {
+    color:
+        var(--text-dim);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+.flag-select {
+    width: 100%;
+
+    min-height: 42px;
+
+    padding:
+        8px 10px;
+
+    color:
+        var(--text);
+
+    background:
+        rgba(7, 19, 36, 0.82);
+
+    border:
+        1px solid
+        var(--line);
+
+    outline: none;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.flag-select:hover,
+.flag-select:focus {
+    border-color:
+        var(--line-strong);
+}
+
+
+/* ============================================================
+   РЕЗУЛЬТАТ СОЧЕТАНИЯ
+   ============================================================ */
+
+.combination-result {
+    display: grid;
+
+    grid-template-columns:
+        minmax(220px, 320px)
+        1fr;
+
+    gap:
+        28px;
+
+    align-items: start;
+
+    padding-top:
+        25px;
+
+    border-top:
+        1px solid
+        var(--line-soft);
+}
+
+
+.combination-image {
+    width: 100%;
+
+    aspect-ratio:
+        621 / 381;
+
+    padding: 15px;
+
+    background:
+        rgba(4, 15, 29, 0.72);
+
+    border:
+        1px solid
+        var(--line);
+}
+
+
+.combination-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+.combination-text h3 {
+    margin:
+        0 0 10px;
+
+    color:
+        var(--text);
+
+    font-size: 23px;
+
+    font-weight: 400;
+}
+
+
+.combination-text p {
+    margin: 0;
+
+    color:
+        var(--text-soft);
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+
+@media (max-width: 1100px) {
+
+    .flags-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .brand-area {
+        width: 100%;
+    }
+
+
+    .site-tabs {
+        width: 100%;
+    }
+
+
+    .site-tab {
+        flex: 1;
+
+        justify-content: center;
+    }
+
+
+    .typology-page-inner {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    .flags-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap:
+            18px;
+    }
+
+
+    .flag-info-layout,
+    .combination-result {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .flag-combination {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .flag-obtain-row {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .flag-obtain-label {
+        border-right: 0;
+
+        border-bottom:
+            1px solid
+            var(--line-soft);
+    }
+
+}
