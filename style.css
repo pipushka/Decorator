@@ -161,11 +161,11 @@ body::after {
 
     display: grid;
 
-    grid-template-columns:
-        1fr
-        auto;
+   grid-template-columns:
+    1fr
+    auto;
 
-    align-items: end;
+align-items: start;
 
     gap: 30px;
 
