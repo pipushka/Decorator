@@ -1,103 +1,186 @@
-// ============================================================
 // ДАННЫЕ ФЛАЖКОВ
 // ============================================================
-
 const TYPOLOGY_FLAGS = [
+
     {
         id: "flag-1",
+
         name: "Флажок 1",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание первого флажка.",
-        obtain: "Условия получения первого флажка."
+
+        description:
+            "Небольшое описание первого флажка.",
+
+        obtain:
+            "Условия получения первого флажка."
     },
+
 
     {
         id: "flag-2",
+
         name: "Флажок 2",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание второго флажка.",
-        obtain: "Условия получения второго флажка."
+
+        description:
+            "Небольшое описание второго флажка.",
+
+        obtain:
+            "Условия получения второго флажка."
     },
+
 
     {
         id: "flag-3",
+
         name: "Флажок 3",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание третьего флажка.",
-        obtain: "Условия получения третьего флажка."
+
+        description:
+            "Небольшое описание третьего флажка.",
+
+        obtain:
+            "Условия получения третьего флажка."
     },
+
 
     {
         id: "flag-4",
+
         name: "Флажок 4",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание четвёртого флажка.",
-        obtain: "Условия получения четвёртого флажка."
+
+        description:
+            "Небольшое описание четвёртого флажка.",
+
+        obtain:
+            "Условия получения четвёртого флажка."
     },
+
 
     {
         id: "flag-5",
+
         name: "Флажок 5",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание пятого флажка.",
-        obtain: "Условия получения пятого флажка."
+
+        description:
+            "Небольшое описание пятого флажка.",
+
+        obtain:
+            "Условия получения пятого флажка."
     },
+
 
     {
         id: "flag-6",
+
         name: "Флажок 6",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание шестого флажка.",
-        obtain: "Условия получения шестого флажка."
+
+        description:
+            "Небольшое описание шестого флажка.",
+
+        obtain:
+            "Условия получения шестого флажка."
     },
+
 
     {
         id: "flag-7",
+
         name: "Флажок 7",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание седьмого флажка.",
-        obtain: "Условия получения седьмого флажка."
+
+        description:
+            "Небольшое описание седьмого флажка.",
+
+        obtain:
+            "Условия получения седьмого флажка."
     },
+
 
     {
         id: "flag-8",
+
         name: "Флажок 8",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание восьмого флажка.",
-        obtain: "Условия получения восьмого флажка."
+
+        description:
+            "Небольшое описание восьмого флажка.",
+
+        obtain:
+            "Условия получения восьмого флажка."
     },
+
 
     {
         id: "flag-9",
+
         name: "Флажок 9",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание девятого флажка.",
-        obtain: "Условия получения девятого флажка."
+
+        description:
+            "Небольшое описание девятого флажка.",
+
+        obtain:
+            "Условия получения девятого флажка."
     },
+
 
     {
         id: "flag-10",
+
         name: "Флажок 10",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание десятого флажка.",
-        obtain: "Условия получения десятого флажка."
+
+        description:
+            "Небольшое описание десятого флажка.",
+
+        obtain:
+            "Условия получения десятого флажка."
     },
+
 
     {
         id: "flag-11",
+
         name: "Флажок 11",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание одиннадцатого флажка.",
-        obtain: "Условия получения одиннадцатого флажка."
+
+        description:
+            "Небольшое описание одиннадцатого флажка.",
+
+        obtain:
+            "Условия получения одиннадцатого флажка."
     },
+
 
     {
         id: "flag-12",
+
         name: "Флажок 12",
+
         src: "assets/флажок1.png",
-        description: "Небольшое описание двенадцатого флажка.",
-        obtain: "Условия получения двенадцатого флажка."
+
+        description:
+            "Небольшое описание двенадцатого флажка.",
+
+        obtain:
+            "Условия получения двенадцатого флажка."
     }
+
 ];
 
 
@@ -105,107 +188,135 @@ const TYPOLOGY_FLAGS = [
 // DOM
 // ============================================================
 
-const selectedFlagSection = document.getElementById(
-    "selectedFlagSection"
-);
+const flagsGrid =
+    document.getElementById("flagsGrid");
 
-const flagsGrid = document.getElementById(
-    "flagsGrid"
-);
 
-const selectedFlagImage = document.getElementById(
-    "selectedFlagImage"
-);
+const selectedFlagImage =
+    document.getElementById("selectedFlagImage");
 
-const selectedFlagName = document.getElementById(
-    "selectedFlagName"
-);
 
-const selectedFlagHow = document.getElementById(
-    "selectedFlagHow"
-);
+const selectedFlagName =
+    document.getElementById("selectedFlagName");
 
-const selectedFlagDescription = document.getElementById(
-    "selectedFlagDescription"
-);
 
-const faithSelect = document.getElementById(
-    "faithSelect"
-);
+const selectedFlagHow =
+    document.getElementById("selectedFlagHow");
 
-const animalSelect = document.getElementById(
-    "animalSelect"
-);
 
-const resourceSelect = document.getElementById(
-    "resourceSelect"
-);
+const selectedFlagDescription =
+    document.getElementById(
+        "selectedFlagDescription"
+    );
 
-const loyaltySelect = document.getElementById(
-    "loyaltySelect"
-);
 
-const combinationImage = document.getElementById(
-    "combinationImage"
-);
+const faithSelect =
+    document.getElementById("faithSelect");
 
-const combinationName = document.getElementById(
-    "combinationName"
-);
 
-const combinationDescription = document.getElementById(
-    "combinationDescription"
-);
+const animalSelect =
+    document.getElementById("animalSelect");
+
+
+const resourceSelect =
+    document.getElementById("resourceSelect");
+
+
+const loyaltySelect =
+    document.getElementById("loyaltySelect");
+
+
+const combinationImage =
+    document.getElementById("combinationImage");
+
+
+const combinationName =
+    document.getElementById("combinationName");
+
+
+const combinationDescription =
+    document.getElementById(
+        "combinationDescription"
+    );
 
 
 // ============================================================
-// ПОКАЗ ИНФОРМАЦИИ О ФЛАЖКЕ
+// ТЕКУЩИЙ ФЛАЖОК
+// ============================================================
+
+let currentFlag =
+    TYPOLOGY_FLAGS[0];
+
+
+// ============================================================
+// ОТКРЫТИЕ ФЛАЖКА
 // ============================================================
 
 function selectFlag(flag) {
 
-    if (!flag) {
-        return;
-    }
+    currentFlag = flag;
 
-    selectedFlagImage.src = flag.src;
-    selectedFlagImage.alt = flag.name;
 
-    selectedFlagName.textContent = flag.name;
-    selectedFlagHow.textContent = flag.obtain;
-    selectedFlagDescription.textContent = flag.description;
+    selectedFlagImage.src =
+        flag.src;
+
+    selectedFlagImage.alt =
+        flag.name;
+
+
+    selectedFlagName.textContent =
+        flag.name;
+
+
+    selectedFlagHow.textContent =
+        flag.obtain;
+
+
+    selectedFlagDescription.textContent =
+        flag.description;
+
 }
 
 
 // ============================================================
-// СОЗДАНИЕ КАРТОЧКИ ФЛАЖКА
+// СОЗДАНИЕ КАРТОЧКИ
 // ============================================================
 
 function createFlagCard(flag) {
 
-    const card = document.createElement("article");
+    const card =
+        document.createElement("article");
 
-    card.className = "flag-card";
+    card.className =
+        "flag-card";
 
 
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
     // НАЗВАНИЕ
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
 
-    const name = document.createElement("div");
+    const name =
+        document.createElement("div");
 
-    name.className = "flag-name";
-    name.textContent = flag.name;
+    name.className =
+        "flag-name";
+
+    name.textContent =
+        flag.name;
 
 
-    // --------------------------------------------------------
-    // КНОПКА С ФЛАЖКОМ
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
+    // КНОПКА
+    // ----------------------------------------------------------
 
-    const button = document.createElement("button");
+    const button =
+        document.createElement("button");
 
-    button.type = "button";
-    button.className = "flag-button";
+    button.type =
+        "button";
+
+    button.className =
+        "flag-button";
 
     button.setAttribute(
         "aria-label",
@@ -213,71 +324,200 @@ function createFlagCard(flag) {
     );
 
 
-    // --------------------------------------------------------
-    // ИЗОБРАЖЕНИЕ
-    // --------------------------------------------------------
+    const image =
+        document.createElement("img");
 
-    const image = document.createElement("img");
+    image.src =
+        flag.src;
 
-    image.src = flag.src;
-    image.alt = flag.name;
+    image.alt =
+        flag.name;
 
 
     button.appendChild(image);
 
 
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
+    // ОПИСАНИЕ
+    // ----------------------------------------------------------
+
+    const description =
+        document.createElement("div");
+
+    description.className =
+        "flag-description";
+
+    description.textContent =
+        flag.description;
+
+
+    // ----------------------------------------------------------
+    // РАСКРЫТАЯ ИНФОРМАЦИЯ
+    // ----------------------------------------------------------
+
+    const details =
+        document.createElement("div");
+
+    details.className =
+        "flag-details";
+
+
+    const detailsInner =
+        document.createElement("div");
+
+    detailsInner.className =
+        "flag-details-inner";
+
+
+    const preview =
+        document.createElement("div");
+
+    preview.className =
+        "flag-preview";
+
+
+    const previewImage =
+        document.createElement("img");
+
+    previewImage.src =
+        flag.src;
+
+    previewImage.alt =
+        flag.name;
+
+
+    preview.appendChild(
+        previewImage
+    );
+
+
+    const how =
+        document.createElement("div");
+
+    how.className =
+        "flag-how";
+
+
+    const howTitle =
+        document.createElement("div");
+
+    howTitle.className =
+        "flag-how-title";
+
+    howTitle.textContent =
+        "Как получить";
+
+
+    const howText =
+        document.createElement("div");
+
+    howText.textContent =
+        flag.obtain;
+
+
+    how.appendChild(
+        howTitle
+    );
+
+    how.appendChild(
+        howText
+    );
+
+
+    detailsInner.appendChild(
+        preview
+    );
+
+    detailsInner.appendChild(
+        how
+    );
+
+    details.appendChild(
+        detailsInner
+    );
+
+
+    // ----------------------------------------------------------
+    // СОБИРАЕМ КАРТОЧКУ
+    // ----------------------------------------------------------
+
+    card.appendChild(
+        name
+    );
+
+    card.appendChild(
+        button
+    );
+
+    card.appendChild(
+        description
+    );
+
+    card.appendChild(
+        details
+    );
+
+
+    // ----------------------------------------------------------
+    // НАВЕДЕНИЕ
+    // ----------------------------------------------------------
+
+    button.addEventListener(
+        "mouseenter",
+        () => {
+
+            selectFlag(flag);
+
+        }
+    );
+
+
+    // ----------------------------------------------------------
     // КЛИК
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
 
     button.addEventListener(
         "click",
         () => {
 
-            // Убираем выделение со всех остальных
+            const wasOpen =
+                card.classList.contains(
+                    "open"
+                );
+
+
             document
-                .querySelectorAll(".flag-card.open")
-                .forEach((otherCard) => {
+                .querySelectorAll(
+                    ".flag-card.open"
+                )
+                .forEach(
+                    other => {
 
-                    otherCard.classList.remove("open");
+                        other.classList.remove(
+                            "open"
+                        );
 
-                });
+                    }
+                );
 
 
-            // Выделяем выбранный
-            card.classList.add("open");
+            if (!wasOpen) {
+
+                card.classList.add(
+                    "open"
+                );
+
+            }
 
 
-            // Обновляем информацию
             selectFlag(flag);
 
-
-            // Открываем общий блок
-            selectedFlagSection.classList.add("open");
-
-
-            // Плавно прокручиваем к информации
-            setTimeout(() => {
-
-                selectedFlagSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "nearest"
-                });
-
-            }, 50);
         }
     );
 
 
-    // --------------------------------------------------------
-    // СОБИРАЕМ КАРТОЧКУ
-    // --------------------------------------------------------
-
-    card.appendChild(name);
-    card.appendChild(button);
-
-
     return card;
+
 }
 
 
@@ -287,34 +527,41 @@ function createFlagCard(flag) {
 
 function renderFlags() {
 
-    if (!flagsGrid) {
-        return;
-    }
-
-    flagsGrid.innerHTML = "";
+    flagsGrid.innerHTML =
+        "";
 
 
-    TYPOLOGY_FLAGS.forEach((flag) => {
+    TYPOLOGY_FLAGS.forEach(
+        flag => {
 
-        const card = createFlagCard(flag);
+            flagsGrid.appendChild(
+                createFlagCard(flag)
+            );
 
-        flagsGrid.appendChild(card);
+        }
+    );
 
-    });
 }
 
 
 // ============================================================
 // ДАННЫЕ СОЧЕТАНИЙ
 // ============================================================
+//
+// Пока здесь несколько тестовых результатов.
+// Позже сюда можно занести настоящую таблицу
+// всех комбинаций.
+// ============================================================
 
 const COMBINATIONS = {
 
     "свет|одиночка|сила|себе": {
 
-        name: "Флажок силы",
+        name:
+            "Флажок силы",
 
-        src: "assets/флажок1.png",
+        src:
+            "assets/флажок1.png",
 
         description:
             "Тестовый результат сочетания. Здесь будет настоящее описание флажка."
@@ -324,9 +571,11 @@ const COMBINATIONS = {
 
     "тьма|семья|люди|семье": {
 
-        name: "Флажок семьи",
+        name:
+            "Флажок семьи",
 
-        src: "assets/флажок1.png",
+        src:
+            "assets/флажок1.png",
 
         description:
             "Тестовый результат сочетания. Здесь будет описание соответствующего типа."
@@ -336,9 +585,11 @@ const COMBINATIONS = {
 
     "свет|стая|знания|племени": {
 
-        name: "Флажок племени",
+        name:
+            "Флажок племени",
 
-        src: "assets/флажок1.png",
+        src:
+            "assets/флажок1.png",
 
         description:
             "Тестовый результат сочетания. Здесь можно будет написать небольшую характеристику."
@@ -349,7 +600,7 @@ const COMBINATIONS = {
 
 
 // ============================================================
-// ОБНОВЛЕНИЕ РЕЗУЛЬТАТА СОЧЕТАНИЯ
+// ПРОВЕРКА КОМБИНАЦИИ
 // ============================================================
 
 function updateCombination() {
@@ -357,19 +608,23 @@ function updateCombination() {
     const key = [
 
         faithSelect.value,
+
         animalSelect.value,
+
         resourceSelect.value,
+
         loyaltySelect.value
 
     ].join("|");
 
 
-    const result = COMBINATIONS[key];
+    const result =
+        COMBINATIONS[key];
 
 
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
     // НЕ ВСЕ ПАРАМЕТРЫ ВЫБРАНЫ
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
 
     if (
         !faithSelect.value ||
@@ -388,12 +643,13 @@ function updateCombination() {
             "После выбора четырёх параметров здесь появится соответствующий флажок, его название и описание.";
 
         return;
+
     }
 
 
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
     // ГОТОВАЯ КОМБИНАЦИЯ
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
 
     if (result) {
 
@@ -407,12 +663,13 @@ function updateCombination() {
             result.description;
 
         return;
+
     }
 
 
-    // --------------------------------------------------------
-    // КОМБИНАЦИЯ НЕ ЗАДАНА
-    // --------------------------------------------------------
+    // ----------------------------------------------------------
+    // КОМБИНАЦИЯ ЕЩЁ НЕ ЗАПОЛНЕНА
+    // ----------------------------------------------------------
 
     combinationImage.src =
         "assets/флажок1.png";
@@ -421,13 +678,13 @@ function updateCombination() {
         "Флажок пока не задан";
 
     combinationDescription.textContent =
-        "Для этой комбинации пока не задан результат.";
+        "Для этой комбинации пока не задан результат. Когда появятся настоящие значения, их можно будет добавить в COMBINATIONS выше.";
 
 }
 
 
 // ============================================================
-// SELECT
+// СЛУШАТЕЛИ SELECT
 // ============================================================
 
 faithSelect.addEventListener(
@@ -435,15 +692,18 @@ faithSelect.addEventListener(
     updateCombination
 );
 
+
 animalSelect.addEventListener(
     "change",
     updateCombination
 );
 
+
 resourceSelect.addEventListener(
     "change",
     updateCombination
 );
+
 
 loyaltySelect.addEventListener(
     "change",
@@ -457,6 +717,10 @@ loyaltySelect.addEventListener(
 
 renderFlags();
 
+selectFlag(
+    TYPOLOGY_FLAGS[0]
+);
+
 
 // ============================================================
 // ПЛАВНОЕ ПОЯВЛЕНИЕ
@@ -466,17 +730,21 @@ window.addEventListener(
     "load",
     () => {
 
-        requestAnimationFrame(() => {
+        requestAnimationFrame(
+            () => {
 
-            requestAnimationFrame(() => {
+                requestAnimationFrame(
+                    () => {
 
-                document.body.classList.add(
-                    "page-ready"
+                        document.body.classList.add(
+                            "page-ready"
+                        );
+
+                    }
                 );
 
-            });
-
-        });
+            }
+        );
 
     }
 );
