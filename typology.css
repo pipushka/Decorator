@@ -167,7 +167,7 @@
         repeat(8, minmax(85px, 1fr));
 
     gap:
-        32px 30px;
+        30px 28px;
 
     max-width: 1180px;
 
@@ -191,12 +191,14 @@
 }
 
 
-/* Название над флажком */
+/* ============================================================
+   НАЗВАНИЕ ФЛАЖКА
+   ============================================================ */
 
 .flag-name {
     min-height: 0;
 
-    margin-bottom: 10px;
+    margin-bottom: 9px;
 
     color:
         var(--text);
@@ -209,7 +211,9 @@
 }
 
 
-/* Сам флажок */
+/* ============================================================
+   САМ ФЛАЖОК
+   ============================================================ */
 
 .flag-button {
     position: relative;
@@ -238,8 +242,6 @@
 }
 
 
-/* Картинка флажка */
-
 .flag-button img {
     width: 100%;
     height: 100%;
@@ -252,8 +254,6 @@
         transform 0.2s ease;
 }
 
-
-/* Увеличение при наведении */
 
 .flag-button:hover {
     background: transparent;
@@ -271,8 +271,6 @@
 }
 
 
-/* Если флажок выбран */
-
 .flag-card.open .flag-button {
     background: transparent;
 
@@ -289,6 +287,80 @@
 }
 
 
+/* ============================================================
+   ОПИСАНИЯ ПОД ФЛАЖКАМИ НЕ ПОКАЗЫВАЕМ
+   ============================================================ */
+
+.flag-description {
+    display: none;
+}
+
+
+/* ============================================================
+   МИНИ-ОКНА У ФЛАЖКОВ НЕ ИСПОЛЬЗУЕМ
+   ============================================================ */
+
+.flag-details {
+    display: none !important;
+}
+
+
+/* ============================================================
+   "ПОДРОБНЕЕ О ВЫБРАННОМ ФЛАЖКЕ"
+   
+   Изначально блок полностью скрыт.
+   Появляется только после клика по флажку.
+   ============================================================ */
+
+.selected-flag-section {
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    margin-top: 0;
+
+    padding-top: 0;
+
+    border-top-color: transparent;
+
+    pointer-events: none;
+
+    transform:
+        translateY(-12px);
+
+    transition:
+        max-height 0.55s ease,
+        opacity 0.35s ease,
+        margin-top 0.55s ease,
+        padding-top 0.55s ease,
+        transform 0.55s ease,
+        border-color 0.35s ease;
+}
+
+
+/* Открыто после клика */
+
+.selected-flag-section.open {
+    max-height: 1000px;
+
+    overflow: hidden;
+
+    opacity: 1;
+
+    margin-top: 45px;
+
+    padding-top: 20px;
+
+    border-top-color:
+        var(--line);
+
+    pointer-events: auto;
+
+    transform:
+        translateY(0);
+}
 /* ============================================================
    ОПИСАНИЕ ПОД ФЛАЖКОМ
    ============================================================ */
@@ -317,11 +389,6 @@
     background: transparent;
 
     border: 0;
-}
-
-
-.flag-details {
-    display: none !important;
 }
 
 /* ============================================================
