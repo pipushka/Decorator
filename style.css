@@ -161,11 +161,11 @@ body::after {
 
     display: grid;
 
-   grid-template-columns:
-    1fr
-    auto;
+    grid-template-columns:
+        1fr
+        auto;
 
-align-items: start;
+    align-items: end;
 
     gap: 30px;
 
@@ -1683,4 +1683,3 @@ body.page-ready .right-panel {
     }
 
 }
-
