@@ -164,15 +164,15 @@
     display: grid;
 
     grid-template-columns:
-        repeat(8, minmax(70px, 1fr));
+        repeat(8, minmax(85px, 1fr));
 
     gap:
-        24px 25px;
+        32px 30px;
 
     max-width: 1180px;
 
     margin:
-        34px auto 0;
+        38px auto 0;
 }
 
 
@@ -186,13 +186,17 @@
     align-items: center;
 
     min-width: 0;
+
+    background: transparent;
 }
 
 
-.flag-name {
-    min-height: 22px;
+/* Название над флажком */
 
-    margin-bottom: 8px;
+.flag-name {
+    min-height: 0;
+
+    margin-bottom: 10px;
 
     color:
         var(--text);
@@ -205,6 +209,8 @@
 }
 
 
+/* Сам флажок */
+
 .flag-button {
     position: relative;
 
@@ -215,63 +221,89 @@
 
     padding: 0;
 
-    overflow: hidden;
+    overflow: visible;
 
     cursor: pointer;
 
-    background:
-        rgba(4, 15, 29, 0.78);
+    background: transparent;
 
-    border:
-        1px solid
-        var(--line);
+    border: 0;
+
+    outline: none;
+
+    box-shadow: none;
 
     transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
         transform 0.2s ease;
 }
 
 
-.flag-button:hover,
-.flag-card.open .flag-button {
-    background:
-        rgba(22, 43, 65, 0.9);
-
-    border-color:
-        var(--line-strong);
-
-    transform:
-        translateY(-2px);
-}
-
+/* Картинка флажка */
 
 .flag-button img {
     width: 100%;
     height: 100%;
 
-    object-fit: contain;
-
     display: block;
 
+    object-fit: contain;
+
     transition:
-        transform 0.25s ease;
+        transform 0.2s ease;
 }
 
 
-.flag-button:hover img,
+/* Увеличение при наведении */
+
+.flag-button:hover {
+    background: transparent;
+
+    border: 0;
+
+    transform:
+        translateY(-3px);
+}
+
+
+.flag-button:hover img {
+    transform:
+        scale(1.08);
+}
+
+
+/* Если флажок выбран */
+
+.flag-card.open .flag-button {
+    background: transparent;
+
+    border: 0;
+
+    transform:
+        translateY(-3px);
+}
+
+
 .flag-card.open .flag-button img {
     transform:
-        scale(1.06);
+        scale(1.08);
 }
 
+
+/* ============================================================
+   ОПИСАНИЕ ПОД ФЛАЖКОМ
+   ============================================================ */
+
+/*
+   Оставляем место под небольшое описание,
+   но никаких рамок и фонов.
+*/
 
 .flag-description {
     width: 100%;
 
-    min-height: 40px;
+    min-height: 36px;
 
-    margin-top: 8px;
+    margin-top: 9px;
 
     color:
         var(--text-soft);
@@ -281,110 +313,16 @@
     line-height: 1.35;
 
     text-align: center;
+
+    background: transparent;
+
+    border: 0;
 }
 
-
-/* ============================================================
-   РАСКРЫВАЕМАЯ ИНФОРМАЦИЯ
-   ============================================================ */
 
 .flag-details {
-    display: grid;
-
-    grid-template-rows:
-        0fr;
-
-    width: 100%;
-
-    margin-top: 0;
-
-    transition:
-        grid-template-rows 0.3s ease,
-        margin-top 0.3s ease;
+    display: none !important;
 }
-
-
-.flag-card:hover .flag-details,
-.flag-card.open .flag-details {
-    grid-template-rows:
-        1fr;
-
-    margin-top: 12px;
-}
-
-
-.flag-details-inner {
-    min-height: 0;
-
-    overflow: hidden;
-}
-
-
-.flag-preview {
-    width: 100%;
-
-    aspect-ratio:
-        621 / 381;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 12px;
-
-    background:
-        rgba(4, 15, 29, 0.72);
-
-    border:
-        1px solid
-        var(--line);
-}
-
-
-.flag-preview img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-}
-
-
-.flag-how {
-    margin-top: 10px;
-
-    padding:
-        11px;
-
-    color:
-        var(--text-soft);
-
-    background:
-        rgba(4, 15, 29, 0.52);
-
-    border:
-        1px solid
-        var(--line-soft);
-
-    font-size: 12px;
-
-    line-height: 1.45;
-}
-
-
-.flag-how-title {
-    margin-bottom: 5px;
-
-    color:
-        var(--text);
-
-    font-size: 10px;
-
-    letter-spacing: 1.2px;
-
-    text-transform: uppercase;
-}
-
 
 /* ============================================================
    РАЗДЕЛ ПОЛУЧЕНИЯ ФЛАЖКА
