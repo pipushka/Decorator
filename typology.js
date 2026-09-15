@@ -1,10 +1,4 @@
 // ДАННЫЕ ФЛАЖКОВ
-// ============================================================
-//
-// Пока все используют одну заглушку.
-// Когда появятся настоящие изображения,
-// достаточно поменять src.
-// ============================================================
 
 const TYPOLOGY_FLAGS = [
 
@@ -193,6 +187,10 @@ const TYPOLOGY_FLAGS = [
 // ============================================================
 // DOM
 // ============================================================
+
+const selectedFlagSection =
+    document.getElementById(
+        "selectedFlagSection" );
 
 const flagsGrid =
     document.getElementById("flagsGrid");
@@ -465,68 +463,46 @@ function createFlagCard(flag) {
 
 
     // ----------------------------------------------------------
-    // НАВЕДЕНИЕ
-    // ----------------------------------------------------------
-
-    button.addEventListener(
-        "mouseenter",
-        () => {
-
-            selectFlag(flag);
-
-        }
-    );
-
-
-    // ----------------------------------------------------------
     // КЛИК
     // ----------------------------------------------------------
 
-    button.addEventListener(
-        "click",
-        () => {
+  button.addEventListener(
+    "click",
+    () => {
 
-            const wasOpen =
-                card.classList.contains(
-                    "open"
-                );
+        // Снимаем выделение с остальных
+        document
+            .querySelectorAll(
+                ".flag-card.open"
+            )
+            .forEach(
+                other => {
 
+                    other.classList.remove(
+                        "open"
+                    );
 
-            document
-                .querySelectorAll(
-                    ".flag-card.open"
-                )
-                .forEach(
-                    other => {
-
-                        other.classList.remove(
-                            "open"
-                        );
-
-                    }
-                );
+                }
+            );
 
 
-            if (!wasOpen) {
-
-                card.classList.add(
-                    "open"
-                );
-
-            }
+        // Выделяем выбранный
+        card.classList.add(
+            "open"
+        );
 
 
-            selectFlag(flag);
-
-        }
-    );
+        // Обновляем информацию
+        selectFlag(flag);
 
 
-    return card;
+        // Раскрываем подробности
+        selectedFlagSection.classList.add(
+            "open"
+        );
 
-}
-
-
+    }
+);
 // ============================================================
 // ОТРИСОВКА ФЛАЖКОВ
 // ============================================================
@@ -724,9 +700,6 @@ loyaltySelect.addEventListener(
 renderFlags();
 
 selectFlag(
-    TYPOLOGY_FLAGS[0]
-);
-
 
 // ============================================================
 // ПЛАВНОЕ ПОЯВЛЕНИЕ
