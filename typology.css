@@ -1,0 +1,474 @@
+/* ============================================================
+   НАВИГАЦИЯ В ШАПКЕ
+   Добавляется в общий style.css.
+   ============================================================ */
+
+.brand-area {
+  min-width: 0;
+}
+
+.site-tabs {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+}
+
+.site-tab {
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 13px;
+  color: var(--text-soft);
+  background: rgba(7, 19, 36, 0.76);
+  border-right: 1px solid var(--line);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.7px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.site-tab:last-child {
+  border-right: 0;
+}
+
+.site-tab:hover,
+.site-tab.active {
+  color: #071326;
+  background: var(--accent-bright);
+}
+
+.site-tab:active {
+  background: var(--accent);
+}
+
+/* ============================================================
+   СТРАНИЦА ТИПОЛОГИИ
+   ============================================================ */
+
+.typology-workspace {
+  position: relative;
+  min-height: 820px;
+  margin-top: 0;
+  padding: 0 30px 60px;
+  background: rgba(5, 16, 31, 0.62);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.typology-title {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.typology-content {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.typology-intro {
+  padding: 34px 0 26px;
+  text-align: center;
+}
+
+.typology-intro p {
+  margin: 0 0 13px;
+  color: var(--text);
+  font-size: clamp(18px, 2vw, 25px);
+  line-height: 1.35;
+}
+
+.typology-intro span {
+  color: var(--text-soft);
+  font-size: 16px;
+}
+
+/* ============================================================
+   СЕТКА ФЛАЖКОВ
+   ============================================================ */
+
+.flag-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 28px 24px;
+  padding: 8px 20px 34px;
+  border-bottom: 1px solid var(--line);
+}
+
+.flag-card {
+  min-width: 0;
+  text-align: center;
+}
+
+.flag-card h4 {
+  margin: 0 0 9px;
+  min-height: 18px;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.flag-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.flag-button img {
+  display: block;
+  width: 100%;
+  height: 112px;
+  object-fit: contain;
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease;
+}
+
+.flag-card:hover .flag-button img,
+.flag-card.is-selected .flag-button img {
+  transform: scale(1.055);
+  filter: brightness(1.08);
+}
+
+.flag-card.is-selected h4 {
+  color: var(--text);
+}
+
+/* ============================================================
+   ПОДРОБНОСТИ
+   ============================================================ */
+
+.flag-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    grid-template-rows 0.45s ease,
+    opacity 0.3s ease;
+}
+
+.flag-details.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.details-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.details-heading {
+  padding: 28px 0 18px;
+  text-align: center;
+}
+
+.details-kicker {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.details-heading h3,
+.word-result h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 27px;
+  font-weight: 400;
+}
+
+.details-main {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(250px, 1fr);
+  gap: 24px 34px;
+  padding-bottom: 34px;
+}
+
+.details-preview {
+  grid-row: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 18px;
+  background: rgba(4, 14, 28, 0.52);
+  border: 1px solid var(--line);
+}
+
+.details-preview img {
+  display: block;
+  width: 100%;
+  max-width: 430px;
+  max-height: 360px;
+  object-fit: contain;
+}
+
+.details-description,
+.details-table-wrap {
+  padding-top: 5px;
+}
+
+.details-description h4,
+.details-table-wrap h4 {
+  margin: 0 0 9px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.details-description p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+.details-table th,
+.details-table td {
+  padding: 9px 10px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--line-soft);
+}
+
+.details-table th {
+  width: 34%;
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* ============================================================
+   НИЖНИЙ БЛОК ПО СЛОВАМ
+   ============================================================ */
+
+.word-section {
+  padding-top: 6px;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  margin: 0 0 32px;
+  background: var(--line);
+}
+
+.word-heading {
+  text-align: center;
+}
+
+.word-heading h3 {
+  margin: 0 0 9px;
+  color: var(--text);
+  font-size: clamp(19px, 2vw, 26px);
+  font-weight: 400;
+}
+
+.word-heading p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+.word-selectors {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 25px auto 18px;
+  max-width: 900px;
+}
+
+.word-select {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.word-select > span {
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.word-select select {
+  width: 100%;
+  min-height: 39px;
+  padding: 7px 9px;
+  color: var(--text);
+  background: rgba(7, 19, 36, 0.84);
+  border: 1px solid var(--line);
+  outline: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.word-select select:focus {
+  border-color: var(--line-strong);
+}
+
+.word-result-button {
+  display: block;
+  min-width: 190px;
+  margin: 0 auto;
+  padding: 10px 18px;
+  color: var(--text);
+  background: rgba(7, 19, 36, 0.76);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.word-result-button:hover {
+  color: #071326;
+  background: var(--accent-bright);
+}
+
+.word-result {
+  display: grid;
+  grid-template-rows: 0fr;
+  max-height: 0;
+  margin-top: 30px;
+  padding: 0 0;
+  overflow: hidden;
+  opacity: 0;
+  border-top: 1px solid transparent;
+  transition:
+    max-height 0.5s ease,
+    opacity 0.35s ease,
+    padding 0.45s ease,
+    border-color 0.35s ease;
+}
+
+.word-result.is-open {
+  max-height: 650px;
+  padding: 25px 0 5px;
+  opacity: 1;
+  border-top-color: var(--line);
+}
+
+.word-result > .details-kicker,
+.word-result > h3 {
+  text-align: center;
+}
+
+.word-result-main {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) 1fr;
+  align-items: center;
+  gap: 30px;
+  margin-top: 18px;
+}
+
+.word-result-main img {
+  display: block;
+  width: 100%;
+  max-height: 290px;
+  object-fit: contain;
+}
+
+.word-result-main p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   СКРЫТЫЙ ДОСТУПНЫЙ ЗАГОЛОВОК
+   ============================================================ */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   АДАПТАЦИЯ
+   ============================================================ */
+
+@media (max-width: 1050px) {
+  .flag-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .details-main {
+    grid-template-columns: 1fr;
+  }
+
+  .details-preview {
+    grid-row: auto;
+  }
+
+  .word-selectors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .typology-workspace {
+    padding: 0 16px 40px;
+  }
+
+  .flag-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 16px;
+    padding-inline: 4px;
+  }
+
+  .flag-button img {
+    height: 105px;
+  }
+
+  .word-selectors {
+    grid-template-columns: 1fr;
+  }
+
+  .word-result-main {
+    grid-template-columns: 1fr;
+  }
+
+  .site-tabs {
+    width: 100%;
+  }
+
+  .site-tab {
+    flex: 1;
+    justify-content: center;
+  }
+}
