@@ -210,52 +210,43 @@ let hoverFlag = null;
    ------------------------------------------------------------ */
 
 function renderFlagGrid() {
-  flagGrid.innerHTML = "";
+    flagGrid.innerHTML = "";
 
-  FLAG_DATA.forEach(flag => {
-    const card = document.createElement("article");
-    card.className = "flag-card";
-    card.dataset.flagId = flag.id;
+    FLAG_DATA.forEach(flag => {
+        const card = document.createElement("article");
+        card.className = "flag-card";
+        card.dataset.flagId = flag.id;
 
-    const name = document.createElement("h4");
-    name.textContent = flag.name;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "flag-button";
+        button.setAttribute("aria-label", `Открыть ${flag.name}`);
 
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "flag-button";
-    button.setAttribute("aria-label", `Открыть ${flag.name}`);
+        const image = document.createElement("img");
+        image.src = flag.src;
+        image.alt = flag.name;
+        image.loading = "lazy";
 
-    const image = document.createElement("img");
-    image.src = flag.src;
-    image.alt = flag.name;
-    image.loading = "lazy";
+        button.appendChild(image);
+        card.appendChild(button);
+        flagGrid.appendChild(card);
 
-    button.appendChild(image);
-    card.append(name, button);
-    flagGrid.appendChild(card);
+        button.addEventListener("click", () => {
+            if (selectedFlag && selectedFlag.id === flag.id) {
+                selectedFlag = null;
+                hideFlagDetails();
 
-    /* Наведение показывает тот же блок информации,
-       но клик закрепляет выбранный флажок. */
-    card.addEventListener("mouseenter", () => {
-      hoverFlag = flag;
-      showFlagDetails(flag, false);
+                document.querySelectorAll(".flag-card").forEach(item => {
+                    item.classList.remove("is-selected");
+                });
+
+                return;
+            }
+
+            selectedFlag = flag;
+            showFlagDetails(flag, true);
+        });
     });
-
-    card.addEventListener("mouseleave", () => {
-      hoverFlag = null;
-
-      if (selectedFlag) {
-        showFlagDetails(selectedFlag, true);
-      } else {
-        hideFlagDetails();
-      }
-    });
-
-    button.addEventListener("click", () => {
-      selectedFlag = flag;
-      showFlagDetails(flag, true);
-    });
-  });
 }
 
 /* ------------------------------------------------------------
@@ -303,8 +294,11 @@ function showFlagDetails(flag, shouldScroll) {
 }
 
 function hideFlagDetails() {
-  if (selectedFlag) return;
-  flagDetails.classList.remove("is-open");
+    flagDetails.classList.remove("is-open");
+
+    document.querySelectorAll(".flag-card").forEach(card => {
+        card.classList.remove("is-selected");
+    });
 }
 
 /* ------------------------------------------------------------
