@@ -123,6 +123,13 @@
         filter 0.22s ease;
 }
 
+.flag-card:hover .flag-button,
+.flag-card.is-selected .flag-button {
+  box-shadow:
+    0 7px 0 -6px var(--accent-bright),
+    0 12px 14px -12px var(--accent-bright);
+}
+
 .flag-card:hover .flag-button img,
 .flag-card.is-selected .flag-button img {
   transform: scale(1.055);
