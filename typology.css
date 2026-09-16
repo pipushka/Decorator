@@ -123,14 +123,14 @@
     content: "";
     position: absolute;
 
-    top: 2%;
-    right: 2%;
-    bottom: 2%;
-    left: 2%;
+    top: 30%;
+    right: 30%;
+    bottom: 30%;
+    left: 30%;
 
     background: var(--accent-bright);
 
-    filter: blur(25px);
+    filter: blur(40px);
 
     opacity: 0;
 
