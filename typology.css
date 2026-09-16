@@ -102,6 +102,12 @@
   text-align: center;
 }
 
+.flag-card {
+    min-width: 0;
+    text-align: center;
+    position: relative;
+}
+
 .flag-button {
     position: relative;
     display: block;
@@ -111,84 +117,66 @@
     background: transparent;
     cursor: pointer;
     z-index: 1;
-
-    transition:
-        transform 0.22s ease;
+    transition: transform 0.25s ease;
 }
-
 .flag-button::after {
     content: "";
     position: absolute;
 
-    left: 7%;
-    right: 7%;
-    bottom: -7px;
-    height: 34px;
+    top: 2%;
+    right: 2%;
+    bottom: 2%;
+    left: 2%;
 
     background: var(--accent-bright);
-    filter: blur(14px);
+
+    filter: blur(25px);
 
     opacity: 0;
+
     z-index: -1;
 
+    transform: scale(0.82);
+
     transition:
-        opacity 0.22s ease,
-        transform 0.22s ease;
-}
-
-.flag-card:hover .flag-button {
-    transform: translateY(-6px);
-}
-
-.flag-card:hover .flag-button::after {
-    opacity: 0.85;
-    transform: translateY(6px);
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        filter 0.25s ease;
 }
 
 .flag-button img {
+    position: relative;
     display: block;
     width: 100%;
     height: 200px;
     object-fit: contain;
 
-    transition:
-        transform 0.22s ease,
-        filter 0.22s ease;
-}
-
-.flag-card {
-    position: relative;
-}
-
-.flag-card::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -10px;
-
-    height: 3px;
-
-    background: var(--accent-bright);
-
-    opacity: 0;
-    transform: scaleX(0.65);
+    transform: scale(1);
 
     transition:
-        opacity 0.2s ease,
-        transform 0.2s ease;
+        transform 0.25s ease,
+        filter 0.25s ease;
 }
 
-.flag-card:hover::after {
-    opacity: 1;
-    transform: scaleX(1);
+.flag-card:hover .flag-button img {
+    transform: scale(1.08);
+    filter: brightness(1.08);
 }
 
-.flag-card.is-selected::after {
-    opacity: 1;
-    transform: scaleX(1);
+.flag-card:hover .flag-button::after {
+    opacity: 0.8;
+    transform: scale(0.98);
 }
 
+.flag-card.is-selected .flag-button img {
+    transform: scale(1.08);
+    filter: brightness(1.08);
+}
+
+.flag-card.is-selected .flag-button::after {
+    opacity: 0.8;
+    transform: scale(0.98);
+}
 /* ============================================================
    ПОДРОБНОСТИ
    ============================================================ */
