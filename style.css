@@ -1683,3 +1683,44 @@ body.page-ready .right-panel {
     }
 
 }
+
+.brand-area {
+  min-width: 0;
+}
+
+.site-tabs {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+}
+
+.site-tab {
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 13px;
+  color: var(--text-soft);
+  background: rgba(7, 19, 36, 0.76);
+  border-right: 1px solid var(--line);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.7px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.site-tab:last-child {
+  border-right: 0;
+}
+
+.site-tab:hover,
+.site-tab.active {
+  color: #071326;
+  background: var(--accent-bright);
+}
+
+.site-tab:active {
+  background: var(--accent);
+}
