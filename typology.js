@@ -164,11 +164,6 @@ const FLAG_DATA = [
   }
 ];
 
-/* ------------------------------------------------------------
-   ЧЕТЫРЕ СПИСКА НИЖНЕГО БЛОКА
-   Значения-заглушки можно позже заменить на реальные.
-   ------------------------------------------------------------ */
-
 const WORD_LISTS = [
   {
     title: "Детский",
@@ -206,52 +201,46 @@ let selectedFlag = null;
 let hoverFlag = null;
 
 /* ------------------------------------------------------------
-   СЕТКА
-   ------------------------------------------------------------ */
+   СЕТКА*/
 
 function renderFlagGrid() {
-    flagGrid.innerHTML = "";
+  flagGrid.innerHTML = "";
 
-    FLAG_DATA.forEach(flag => {
-        const card = document.createElement("article");
-        card.className = "flag-card";
-        card.dataset.flagId = flag.id;
+  FLAG_DATA.forEach(flag => {
+    const card = document.createElement("article");
+    card.className = "flag-card";
+    card.dataset.flagId = flag.id;
 
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "flag-button";
-        button.setAttribute("aria-label", `Открыть ${flag.name}`);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "flag-button";
+    button.setAttribute("aria-label", `Открыть ${flag.name}`);
 
-        const image = document.createElement("img");
-        image.src = flag.src;
-        image.alt = flag.name;
-        image.loading = "lazy";
+    const image = document.createElement("img");
+    image.src = flag.src;
+    image.alt = flag.name;
+    image.loading = "lazy";
 
-        button.appendChild(image);
-        card.appendChild(button);
-        flagGrid.appendChild(card);
+    button.appendChild(image);
+    card.appendChild(button);
+    flagGrid.appendChild(card);
 
-        button.addEventListener("click", () => {
-            if (selectedFlag && selectedFlag.id === flag.id) {
-                selectedFlag = null;
-                hideFlagDetails();
+    button.addEventListener("click", () => {
 
-                document.querySelectorAll(".flag-card").forEach(item => {
-                    item.classList.remove("is-selected");
-                });
-
-                return;
-            }
-
-            selectedFlag = flag;
-            showFlagDetails(flag, true);
-        });
+      if (selectedFlag && selectedFlag.id === flag.id) {
+        selectedFlag = null;
+        hideFlagDetails();
+        return;
+      }
+      
+      selectedFlag = flag;
+      showFlagDetails(flag, false);
     });
+  });
 }
 
 /* ------------------------------------------------------------
-   БЛОК ПОДРОБНОЙ ИНФОРМАЦИИ
-   ------------------------------------------------------------ */
+   БЛОК ПОДРОБНОЙ ИНФОРМАЦИИ*/
 
 function showFlagDetails(flag, shouldScroll) {
   detailsName.textContent = flag.name;
@@ -302,8 +291,7 @@ function hideFlagDetails() {
 }
 
 /* ------------------------------------------------------------
-   НИЖНИЕ СПИСКИ
-   ------------------------------------------------------------ */
+   НИЖНИЕ СПИСКИ*/
 
 function renderWordSelectors() {
   wordSelectors.innerHTML = "";
@@ -331,16 +319,11 @@ function renderWordSelectors() {
 }
 
 /* ------------------------------------------------------------
-   РЕЗУЛЬТАТ ПО СЛОВАМ
-   Пока это заглушка: любой набор показывает флажок 1.
-   ------------------------------------------------------------ */
+   РЕЗУЛЬТАТ ПО СЛОВАМ */
 
 function showWordResult() {
   const selects = [...wordSelectors.querySelectorAll("select")];
   const values = selects.map(select => select.value);
-
-  /* Здесь позже можно сделать настоящую таблицу соответствий:
-     комбинация слов -> конкретный флажок. */
 
   const resultFlag = FLAG_DATA[0];
 
