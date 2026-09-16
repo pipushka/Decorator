@@ -123,22 +123,37 @@
         filter 0.22s ease;
 }
 
-.flag-card:hover .flag-button {
-  box-shadow: 0 8px 0 -7px var(--accent-bright);
+.flag-card {
+    position: relative;
 }
 
-.flag-card:hover .flag-button img {
-  transform: scale(1.055);
-  filter: brightness(1.08);
+.flag-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+
+    height: 3px;
+
+    background: var(--accent-bright);
+
+    opacity: 0;
+    transform: scaleX(0.65);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
 }
 
-.flag-card.is-selected .flag-button {
-  box-shadow: 0 8px 0 -7px var(--accent-bright);
+.flag-card:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
 }
 
-.flag-card.is-selected .flag-button img {
-  transform: scale(1.055);
-  filter: brightness(1.08);
+.flag-card.is-selected::after {
+    opacity: 1;
+    transform: scaleX(1);
 }
 
 /* ============================================================
