@@ -94,25 +94,16 @@
    ============================================================ */
 
 .flag-grid {
-  display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: 28px 24px;
-  padding: 8px 20px 34px;
-  border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 34px 24px;
+    padding: 18px 20px 38px;
+    border-bottom: 1px solid var(--line);
 }
 
 .flag-card {
   min-width: 0;
   text-align: center;
-}
-
-.flag-card h4 {
-  margin: 0 0 9px;
-  min-height: 18px;
-  color: var(--text-soft);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.2;
 }
 
 .flag-button {
@@ -126,23 +117,20 @@
 }
 
 .flag-button img {
-  display: block;
-  width: 100%;
-  height: 112px;
-  object-fit: contain;
-  transition:
-    transform 0.22s ease,
-    filter 0.22s ease;
+    display: block;
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+
+    transition:
+        transform 0.22s ease,
+        filter 0.22s ease;
 }
 
 .flag-card:hover .flag-button img,
 .flag-card.is-selected .flag-button img {
   transform: scale(1.055);
   filter: brightness(1.08);
-}
-
-.flag-card.is-selected h4 {
-  color: var(--text);
 }
 
 /* ============================================================
