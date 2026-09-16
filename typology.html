@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Типология — Речное племя</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="typology.css">
+</head>
+
+<body>
+  <main class="app">
+
+    <header class="topbar">
+      <div class="brand-area">
+        <h1>Типология</h1>
+
+        <nav class="site-tabs" aria-label="Навигация">
+          <a href="index.html" class="site-tab">Декоратор</a>
+          <a href="typology.html" class="site-tab active" aria-current="page">Типология</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="typology-workspace">
+
+      <div class="panel-title typology-title">
+        <h2>Типология</h2>
+      </div>
+
+      <section class="typology-content">
+
+        <div class="typology-intro">
+          <p>У каждого свой жизненный путь, но какой выберешь ты?</p>
+          <span>Выбери вариант</span>
+        </div>
+
+        <!-- СЕТКА ФЛАЖКОВ -->
+        <section class="flag-section" aria-labelledby="flags-title">
+          <h3 id="flags-title" class="visually-hidden">Флажки</h3>
+          <div id="flagGrid" class="flag-grid"></div>
+        </section>
+
+        <!-- ПОДРОБНАЯ ИНФОРМАЦИЯ -->
+        <section id="flagDetails" class="flag-details" aria-live="polite">
+          <div class="details-inner">
+
+            <div class="details-heading">
+              <span class="details-kicker">/ выбранный флажок</span>
+              <h3 id="detailsName">Флажок 1</h3>
+            </div>
+
+            <div class="details-main">
+              <div class="details-preview">
+                <img id="detailsImage" src="assets/флажок1.png" alt="Флажок 1">
+              </div>
+
+              <div class="details-description">
+                <h4>Описание</h4>
+                <p id="detailsDescription">
+                  Здесь будет небольшое описание выбранного флажка.
+                </p>
+              </div>
+
+              <div class="details-table-wrap">
+                <h4>Как получить</h4>
+                <table class="details-table">
+                  <thead>
+                    <tr>
+                      <th>Условие</th>
+                      <th>Значение</th>
+                    </tr>
+                  </thead>
+                  <tbody id="detailsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ФЛАЖОК ПО СЛОВАМ ИЗ СПИСКОВ -->
+        <section class="word-section">
+          <div class="section-divider"></div>
+
+          <div class="word-heading">
+            <h3>Я прошел долгий путь, на что похожа моя жизнь?</h3>
+            <p>Выбери варианты из списков, чтобы посмотреть выпадающий флажок.</p>
+          </div>
+
+          <div id="wordSelectors" class="word-selectors"></div>
+
+          <button id="wordResultButton" class="word-result-button" type="button">
+            Узнать
+          </button>
+
+          <section id="wordResult" class="word-result" aria-live="polite">
+            <span class="details-kicker">/ результат</span>
+            <h3 id="wordResultName">Флажок 1</h3>
+            <div class="word-result-main">
+              <img id="wordResultImage" src="assets/флажок1.png" alt="Флажок 1">
+              <p id="wordResultDescription">
+                Здесь будет небольшое описание результата.
+              </p>
+            </div>
+          </section>
+
+        </section>
+
+      </section>
+    </section>
+  </main>
+
+  <script src="typology.js"></script>
+</body>
+</html>
