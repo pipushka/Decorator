@@ -272,18 +272,13 @@ function showFlagDetails(flag, shouldScroll) {
     );
   });
 
-  if (shouldScroll) {
-    requestAnimationFrame(() => {
-      flagDetails.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    });
-  }
-}
-
 function hideFlagDetails() {
-    flagDetails.classList.remove("is-open");
+  flagDetails.classList.remove("is-open");
+
+  document.querySelectorAll(".flag-card").forEach(card => {
+    card.classList.remove("is-selected");
+  });
+}
 
     document.querySelectorAll(".flag-card").forEach(card => {
         card.classList.remove("is-selected");
