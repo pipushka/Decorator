@@ -1237,7 +1237,7 @@ h1::before {
 /* Маленькая отметка выбранного */
 
 .decor-item.selected::after {
-    content: "SELECTED";
+    content: "ВЫБРАНО";
 
     position: absolute;
 
