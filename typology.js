@@ -278,6 +278,18 @@ function hideFlagDetails() {
     });
 }
 
+flag.obtain.forEach(row => {
+    const tr = document.createElement("tr");
+
+    row.forEach(value => {
+        const td = document.createElement("td");
+        td.textContent = value;
+        tr.appendChild(td);
+    });
+
+    detailsTableBody.appendChild(tr);
+});
+
 /* ------------------------------------------------------------
    НИЖНИЕ СПИСКИ*/
 
