@@ -319,7 +319,7 @@ function showWordResult() {
   wordResultImage.src = resultFlag.src;
   wordResultImage.alt = resultFlag.name;
   wordResultDescription.textContent =
-    `Результат для сочетания: ${values.join(" · ")}. ` +
+    `ну тут типа будет чета: ${values.join(" · ")}. ` +
     resultFlag.description;
 
   wordResult.classList.add("is-open");
