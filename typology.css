@@ -271,20 +271,12 @@
   font-size: 14px;
 }
 
-.details-table th,
 .details-table td {
   padding: 9px 10px;
   text-align: left;
   vertical-align: top;
   border-top: 1px solid var(--line-soft);
 }
-
-.details-table th {
-  width: 34%;
-  color: var(--text);
-  font-weight: 400;
-}
-
 /* ============================================================
    НИЖНИЙ БЛОК ПО СЛОВАМ
    ============================================================ */
