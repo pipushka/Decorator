@@ -278,10 +278,11 @@
 }
 
 .details-table td {
-  padding: 9px 10px;
-  text-align: left;
-  vertical-align: top;
-  border-top: 1px solid var(--line-soft);
+    width: 25%;
+    padding: 9px 10px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid var(--line-soft);
 }
 /* ============================================================
    НИЖНИЙ БЛОК ПО СЛОВАМ
