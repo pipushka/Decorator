@@ -250,11 +250,19 @@ function showFlagDetails(flag, shouldScroll) {
   detailsImage.alt = flag.name;
   detailsDescription.textContent = flag.description;
 
-  detailsTableBody.innerHTML = `
-    <tr>
-        ${flag.obtain.map(value => `<td>${value}</td>`).join("")}
-    </tr>
-`;
+  detailsTableBody.innerHTML = "";
+
+  flag.obtain.forEach(row => {
+    const tr = document.createElement("tr");
+
+    row.forEach(value => {
+      const td = document.createElement("td");
+      td.textContent = value;
+      tr.appendChild(td);
+    });
+
+    detailsTableBody.appendChild(tr);
+  });
 
   flagDetails.classList.add("is-open");
 
@@ -264,6 +272,7 @@ function showFlagDetails(flag, shouldScroll) {
       card.dataset.flagId === flag.id
     );
   });
+}
 
 function hideFlagDetails() {
   flagDetails.classList.remove("is-open");
@@ -272,23 +281,6 @@ function hideFlagDetails() {
     card.classList.remove("is-selected");
   });
 }
-
-    document.querySelectorAll(".flag-card").forEach(card => {
-        card.classList.remove("is-selected");
-    });
-}
-
-flag.obtain.forEach(row => {
-    const tr = document.createElement("tr");
-
-    row.forEach(value => {
-        const td = document.createElement("td");
-        td.textContent = value;
-        tr.appendChild(td);
-    });
-
-    detailsTableBody.appendChild(tr);
-});
 
 /* ------------------------------------------------------------
    НИЖНИЕ СПИСКИ*/
