@@ -367,6 +367,63 @@
   border-color: var(--line-strong);
 }
 
+.word-flag-preview {
+  margin-top: 18px;
+  padding: 14px 10px 12px;
+
+  text-align: center;
+
+  background: rgba(4, 14, 28, 0.38);
+  border: 1px solid var(--line);
+
+  min-height: 205px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.word-select:hover .word-flag-preview {
+  border-color: var(--line-strong);
+  background: rgba(4, 14, 28, 0.52);
+}
+
+.word-flag-preview img {
+  display: block;
+
+  width: 100%;
+  height: 120px;
+
+  object-fit: contain;
+
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease;
+}
+
+.word-select:hover .word-flag-preview img {
+  transform: scale(1.05);
+  filter: brightness(1.06);
+}
+
+.word-flag-preview h4 {
+  margin: 8px 0 5px;
+
+  color: var(--text);
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.word-flag-preview p {
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
 .word-result-button {
   display: block;
   min-width: 190px;
@@ -489,9 +546,17 @@
     padding-inline: 4px;
   }
 
-  .flag-button img {
-    height: 105px;
-  }
+  .flag-card {
+  height: 130px;
+}
+
+.flag-button {
+  height: 115px;
+}
+
+.flag-button img {
+  height: 115px;
+}
 
   .word-selectors {
     grid-template-columns: 1fr;
