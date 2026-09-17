@@ -291,7 +291,7 @@ function renderWordSelectors() {
   wordSelectors.innerHTML = "";
 
   WORD_LISTS.forEach((list, index) => {
-    const wrapper = document.createElement("label");
+    const wrapper = document.createElement("div");
     wrapper.className = "word-select";
 
     const title = document.createElement("span");
@@ -302,14 +302,81 @@ function renderWordSelectors() {
 
     list.values.forEach(value => {
       const option = document.createElement("option");
+
       option.value = value;
       option.textContent = value;
+
       select.appendChild(option);
     });
 
-    wrapper.append(title, select);
+    const preview = document.createElement("div");
+    preview.className = "word-flag-preview";
+
+    const previewImage = document.createElement("img");
+    previewImage.src = FLAG_PLACEHOLDER;
+    previewImage.alt = "Флажок";
+
+    const previewName = document.createElement("h4");
+    previewName.textContent = "Флажок 1";
+
+    const previewDescription = document.createElement("p");
+    previewDescription.textContent =
+      "Здесь будет описание флажка для выбранного значения.";
+
+    preview.append(
+      previewImage,
+      previewName,
+      previewDescription
+    );
+
+    wrapper.append(
+      title,
+      select,
+      preview
+    );
+
     wordSelectors.appendChild(wrapper);
+
+    select.addEventListener("change", () => {
+      updateWordFlag(
+        index,
+        select.value,
+        previewImage,
+        previewName,
+        previewDescription
+      );
+    });
+
+    updateWordFlag(
+      index,
+      select.value,
+      previewImage,
+      previewName,
+      previewDescription
+    );
   });
+}
+
+function updateWordFlag(
+  listIndex,
+  selectedValue,
+  image,
+  name,
+  description
+) {
+
+  const resultFlag = FLAG_DATA[
+    listIndex % FLAG_DATA.length
+  ];
+
+  image.src = resultFlag.src;
+  image.alt = resultFlag.name;
+
+  name.textContent = resultFlag.name;
+
+  description.textContent =
+    `Для варианта «${selectedValue}» ` +
+    `сейчас используется шаблонный флажок.`;
 }
 
 /* ------------------------------------------------------------
