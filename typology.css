@@ -98,84 +98,90 @@
 }
 
 .flag-card {
+  position: relative;
   min-width: 0;
+  height: 220px;
   text-align: center;
 }
 
-.flag-card {
-    min-width: 0;
-    text-align: center;
-    position: relative;
-}
-
 .flag-button {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    z-index: 1;
-    transition: transform 0.25s ease;
-}
-.flag-button::after {
-    content: "";
-    position: absolute;
-
-    top: 30%;
-    right: 30%;
-    bottom: 30%;
-    left: 30%;
-
-    background: var(--accent-bright);
-
-    filter: blur(40px);
-
-    opacity: 0;
-
-    z-index: -1;
-
-    transform: scale(0.82);
-
-    transition:
-        opacity 0.25s ease,
-        transform 0.25s ease,
-        filter 0.25s ease;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  overflow: visible;
+  z-index: 1;
 }
 
 .flag-button img {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
 
-    transform: scale(1);
+  display: block;
+  width: 100%;
+  height: 200px;
 
-    transition:
-        transform 0.25s ease,
-        filter 0.25s ease;
+  object-fit: contain;
+
+  transform: scale(1);
+  transform-origin: center center;
+
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease;
+
+  z-index: 2;
+}
+
+.flag-button::after {
+  content: "";
+
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  bottom: 10%;
+  left: 8%;
+
+  background: var(--accent-bright);
+
+  filter: blur(24px);
+
+  opacity: 0;
+  transform: scale(0.82);
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
 }
 
 .flag-card:hover .flag-button img {
-    transform: scale(1.08);
-    filter: brightness(1.08);
+  transform: scale(1.08);
+  filter: brightness(1.08);
 }
 
 .flag-card:hover .flag-button::after {
-    opacity: 0.8;
-    transform: scale(0.98);
+  opacity: 0.8;
+  transform: scale(1);
 }
 
 .flag-card.is-selected .flag-button img {
-    transform: scale(1.08);
-    filter: brightness(1.08);
+  transform: scale(1.08);
+  filter: brightness(1.08);
 }
 
 .flag-card.is-selected .flag-button::after {
-    opacity: 0.8;
-    transform: scale(0.98);
+  opacity: 0.8;
+  transform: scale(1);
 }
 /* ============================================================
    ПОДРОБНОСТИ
