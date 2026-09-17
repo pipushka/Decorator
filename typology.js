@@ -228,7 +228,6 @@ function renderFlagGrid() {
     button.appendChild(image);
     card.appendChild(button);
     flagGrid.appendChild(card);
-
     button.addEventListener("click", () => {
 
       if (selectedFlag && selectedFlag.id === flag.id) {
@@ -236,9 +235,9 @@ function renderFlagGrid() {
         hideFlagDetails();
         return;
       }
-      
+
       selectedFlag = flag;
-      showFlagDetails(flag, false);
+      showFlagDetails(flag);
     });
   });
 }
@@ -246,7 +245,7 @@ function renderFlagGrid() {
 /* ------------------------------------------------------------
    БЛОК ПОДРОБНОЙ ИНФОРМАЦИИ*/
 
-function showFlagDetails(flag, shouldScroll) {
+function showFlagDetails(flag) {
   detailsName.textContent = flag.name;
   detailsImage.src = flag.src;
   detailsImage.alt = flag.name;
@@ -275,6 +274,7 @@ function showFlagDetails(flag, shouldScroll) {
       card.dataset.flagId === flag.id
     );
   });
+}
 
 function hideFlagDetails() {
   flagDetails.classList.remove("is-open");
@@ -282,11 +282,6 @@ function hideFlagDetails() {
   document.querySelectorAll(".flag-card").forEach(card => {
     card.classList.remove("is-selected");
   });
-}
-
-    document.querySelectorAll(".flag-card").forEach(card => {
-        card.classList.remove("is-selected");
-    });
 }
 
 /* ------------------------------------------------------------
