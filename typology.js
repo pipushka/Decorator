@@ -221,6 +221,9 @@ const FLAG_DATA = [
   }
 ];
 
+const ALL_COMBINATIONS = [
+];
+
 const WORD_LISTS = [
   {
     title: "Детский",
@@ -365,37 +368,163 @@ function renderWordSelectors() {
   });
 }
 
+
+function makeCombinationKey(combination) {
+    return combination
+        .map(value => String(value).trim().toLowerCase())
+        .join("|");
+}
+
+
+function findFlagFromObtains(combination) {
+
+    const wantedKey = makeCombinationKey(combination);
+
+    for (const flag of FLAG_DATA) {
+
+        if (!Array.isArray(flag.obtain)) {
+            continue;
+        }
+
+        for (const row of flag.obtain) {
+
+            if (!Array.isArray(row)) {
+                continue;
+            }
+
+            if (makeCombinationKey(row) === wantedKey) {
+                return flag;
+            }
+        }
+    }
+
+    return null;
+}
+
+function findFlagFromAllCombinations(combination) {
+
+    const wantedKey = makeCombinationKey(combination);
+
+    for (const entry of ALL_COMBINATIONS) {
+
+        if (!entry || !Array.isArray(entry.combination)) {
+            continue;
+        }
+
+        if (makeCombinationKey(entry.combination) !== wantedKey) {
+            continue;
+        }
+
+        const flag = FLAG_DATA.find(
+            item => item.id === entry.flagId
+        );
+
+        if (flag) {
+            return flag;
+        }
+    }
+
+    return null;
+}
+
+function findFlagByCombination(combination) {
+
+    const fromObtains = findFlagFromObtains(combination);
+
+    if (fromObtains) {
+        return fromObtains;
+    }
+
+    const fromAllCombinations =
+        findFlagFromAllCombinations(combination);
+
+    if (fromAllCombinations) {
+        return fromAllCombinations;
+    }
+
+    return null;
+}
+
 /* ------------------------------------------------------------
    РЕЗУЛЬТАТ ПО СЛОВАМ */
 
 function showWordResult() {
-  const selects = [...wordSelectors.querySelectorAll("select")];
-  const values = selects.map(select => select.value);
 
-  const resultFlag = FLAG_DATA[0];
+    const selects = [
+        ...wordSelectors.querySelectorAll("select")
+    ];
 
-  wordResultName.textContent = resultFlag.name;
-  wordResultImage.src = resultFlag.src;
-  wordResultImage.alt = resultFlag.name;
-  wordResultDescription.textContent =
-    `ну тут типа будет чета: ${values.join(" · ")}. ` +
-    resultFlag.description;
+    const values = selects.map(select => select.value);
 
-  wordResult.classList.add("is-open");
+    if (values.length !== 4 || values.some(value => !value)) {
 
-  requestAnimationFrame(() => {
-    wordResult.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+        wordResult.classList.add("is-open");
+
+        wordResultName.textContent = "Комбинация не выбрана";
+
+        wordResultImage.src = FLAG_PLACEHOLDER;
+        wordResultImage.alt = "Комбинация не выбрана";
+
+        wordResultDescription.textContent =
+            "Выбери все четыре варианта.";
+
+        requestAnimationFrame(() => {
+
+            wordResult.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        });
+
+        return;
+    }
+
+    const resultFlag = findFlagByCombination(values);
+
+    if (resultFlag) {
+
+        wordResultName.textContent = resultFlag.name;
+
+        wordResultImage.src = resultFlag.src;
+        wordResultImage.alt = resultFlag.name;
+
+        wordResultDescription.textContent =
+            resultFlag.description;
+
+        wordResult.classList.add("is-open");
+
+        requestAnimationFrame(() => {
+
+            wordResult.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        });
+
+        return;
+    }
+
+    wordResultName.textContent =
+        "Флажок для этой комбинации пока не найден";
+
+    wordResultImage.src = FLAG_PLACEHOLDER;
+    wordResultImage.alt =
+        "Флажок не найден";
+
+    wordResultDescription.textContent =
+        `Выбрано: ${values.join(" · ")}. ` +
+        "Для этой комбинации пока нет флажка в базе.";
+
+    wordResult.classList.add("is-open");
+
+    requestAnimationFrame(() => {
+
+        wordResult.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
     });
-  });
 }
-
-wordResultButton.addEventListener("click", showWordResult);
-
-renderFlagGrid();
-renderWordSelectors();
-
-requestAnimationFrame(() => {
-    document.body.classList.add("page-ready");
-});
