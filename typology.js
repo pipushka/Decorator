@@ -52,7 +52,7 @@ const FLAG_DATA = [
           ["Сомята", "Хитрость", "Безопасность", "Активность"],
           ["Сомята", "Сила", "Ресурсы", "Активность"],
           ["Лягушата", "Хитрость", "Безопасность", "Творчество"],
-          ["Выдрята", "Хитрость", "Детстсво", "Творчество"],
+          ["Выдрята", "Хитрость", "Детство", "Творчество"],
           ["Выдрята", "Сила", "Безопасность", "Детство"],
           ["Выдрята", "Вера", "Ресурсы", "Активность"],
     ]
@@ -222,6 +222,27 @@ const FLAG_DATA = [
 ];
 
 const ALL_COMBINATIONS = [
+
+    {
+        combination: [
+            "Сомята",
+            "Сила",
+            "Детство",
+            "Активность"
+        ],
+        flagId: "flag-7"
+    },
+
+    {
+        combination: [
+            "Выдрята",
+            "Вера",
+            "Творчество",
+            "Ресурсы"
+        ],
+        flagId: "flag-12"
+    }
+
 ];
 
 const WORD_LISTS = [
@@ -243,230 +264,524 @@ const WORD_LISTS = [
   }
 ];
 
-const flagGrid = document.getElementById("flagGrid");
-const flagDetails = document.getElementById("flagDetails");
-const detailsName = document.getElementById("detailsName");
-const detailsImage = document.getElementById("detailsImage");
-const detailsDescription = document.getElementById("detailsDescription");
-const detailsTableBody = document.getElementById("detailsTableBody");
+document.addEventListener("DOMContentLoaded", () => {
 
-const wordSelectors = document.getElementById("wordSelectors");
-const wordResultButton = document.getElementById("wordResultButton");
-const wordResult = document.getElementById("wordResult");
-const wordResultName = document.getElementById("wordResultName");
-const wordResultImage = document.getElementById("wordResultImage");
-const wordResultDescription = document.getElementById("wordResultDescription");
+    /* ========================================================
+       DOM
+    ======================================================== */
 
-let selectedFlag = null;
-let hoverFlag = null;
+    const flagGrid = document.getElementById("flagGrid");
+    const flagDetails = document.getElementById("flagDetails");
+    const detailsName = document.getElementById("detailsName");
+    const detailsImage = document.getElementById("detailsImage");
+    const detailsDescription = document.getElementById("detailsDescription");
+    const detailsTableBody = document.getElementById("detailsTableBody");
 
-/* ------------------------------------------------------------
-   СЕТКА*/
+    const wordSelectors = document.getElementById("wordSelectors");
+    const wordResultButton = document.getElementById("wordResultButton");
+    const wordResult = document.getElementById("wordResult");
+    const wordResultName = document.getElementById("wordResultName");
+    const wordResultImage = document.getElementById("wordResultImage");
+    const wordResultDescription = document.getElementById("wordResultDescription");
 
-function renderFlagGrid() {
-  flagGrid.innerHTML = "";
 
-  FLAG_DATA.forEach(flag => {
-    const card = document.createElement("article");
-    card.className = "flag-card";
-    card.dataset.flagId = flag.id;
+    /* ========================================================
+       ПРОВЕРКА HTML
+    ======================================================== */
 
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "flag-button";
-    button.setAttribute("aria-label", `Открыть ${flag.name}`);
+    const requiredElements = {
+        flagGrid,
+        flagDetails,
+        detailsName,
+        detailsImage,
+        detailsDescription,
+        detailsTableBody,
+        wordSelectors,
+        wordResultButton,
+        wordResult,
+        wordResultName,
+        wordResultImage,
+        wordResultDescription
+    };
 
-    const image = document.createElement("img");
-    image.src = flag.src;
-    image.alt = flag.name;
-    image.loading = "lazy";
+    const missingElements = Object.entries(requiredElements)
+        .filter(([name, element]) => !element)
+        .map(([name]) => name);
 
-    button.appendChild(image);
-    card.appendChild(button);
-    flagGrid.appendChild(card);
+    if (missingElements.length > 0) {
 
-    button.addEventListener("click", () => {
+        console.error(
+            "Typology: не найдены элементы HTML:",
+            missingElements
+        );
 
-      if (selectedFlag && selectedFlag.id === flag.id) {
-        selectedFlag = null;
-        hideFlagDetails();
         return;
-      }
-      
-      selectedFlag = flag;
-      showFlagDetails(flag, false);
-    });
-  });
-}
-
-/* ------------------------------------------------------------
-   БЛОК ПОДРОБНОЙ ИНФОРМАЦИИ*/
-
-function showFlagDetails(flag, shouldScroll) {
-  detailsName.textContent = flag.name;
-  detailsImage.src = flag.src;
-  detailsImage.alt = flag.name;
-  detailsDescription.textContent = flag.description;
-
-  detailsTableBody.innerHTML = "";
-
-  flag.obtain.forEach(row => {
-    const tr = document.createElement("tr");
-
-    row.forEach(value => {
-      const td = document.createElement("td");
-      td.textContent = value;
-      tr.appendChild(td);
-    });
-
-    detailsTableBody.appendChild(tr);
-  });
-
-  flagDetails.classList.add("is-open");
-
-  document.querySelectorAll(".flag-card").forEach(card => {
-    card.classList.toggle(
-      "is-selected",
-      card.dataset.flagId === flag.id
-    );
-  });
-}
-
-function hideFlagDetails() {
-  flagDetails.classList.remove("is-open");
-
-  document.querySelectorAll(".flag-card").forEach(card => {
-    card.classList.remove("is-selected");
-  });
-}
-
-/* ------------------------------------------------------------
-   НИЖНИЕ СПИСКИ*/
-
-function renderWordSelectors() {
-  wordSelectors.innerHTML = "";
-
-  WORD_LISTS.forEach((list, index) => {
-    const wrapper = document.createElement("label");
-    wrapper.className = "word-select";
-
-    const title = document.createElement("span");
-    title.textContent = list.title;
-
-    const select = document.createElement("select");
-    select.dataset.index = index;
-
-    list.values.forEach(value => {
-      const option = document.createElement("option");
-      option.value = value;
-      option.textContent = value;
-      select.appendChild(option);
-    });
-
-    wrapper.append(title, select);
-    wordSelectors.appendChild(wrapper);
-  });
-}
+    }
 
 
-function makeCombinationKey(combination) {
-    return combination
-        .map(value => String(value).trim().toLowerCase())
-        .join("|");
-}
+    /* ========================================================
+       СОСТОЯНИЕ
+    ======================================================== */
+
+    let selectedFlag = null;
 
 
-function findFlagFromObtains(combination) {
+    /* ========================================================
+       СЕТКА ФЛАЖКОВ
+    ======================================================== */
 
-    const wantedKey = makeCombinationKey(combination);
+    function renderFlagGrid() {
 
-    for (const flag of FLAG_DATA) {
+        flagGrid.innerHTML = "";
 
-        if (!Array.isArray(flag.obtain)) {
-            continue;
+        FLAG_DATA.forEach(flag => {
+
+            const card = document.createElement("article");
+
+            card.className = "flag-card";
+            card.dataset.flagId = flag.id;
+
+
+            const button = document.createElement("button");
+
+            button.type = "button";
+            button.className = "flag-button";
+            button.setAttribute(
+                "aria-label",
+                `Открыть ${flag.name}`
+            );
+
+
+            const image = document.createElement("img");
+
+            image.src = flag.src;
+            image.alt = flag.name;
+            image.loading = "lazy";
+
+
+            button.appendChild(image);
+            card.appendChild(button);
+            flagGrid.appendChild(card);
+
+
+            button.addEventListener("click", () => {
+
+                if (
+                    selectedFlag &&
+                    selectedFlag.id === flag.id
+                ) {
+
+                    selectedFlag = null;
+
+                    hideFlagDetails();
+
+                    return;
+                }
+
+
+                selectedFlag = flag;
+
+                showFlagDetails(flag);
+            });
+
+        });
+    }
+
+
+    /* ========================================================
+       ПОДРОБНАЯ ИНФОРМАЦИЯ О ФЛАЖКЕ
+    ======================================================== */
+
+    function showFlagDetails(flag) {
+
+        detailsName.textContent = flag.name;
+
+        detailsImage.src = flag.src;
+        detailsImage.alt = flag.name;
+
+        detailsDescription.textContent =
+            flag.description || "";
+
+
+        detailsTableBody.innerHTML = "";
+
+
+        if (Array.isArray(flag.obtain)) {
+
+            flag.obtain.forEach(row => {
+
+                const tr = document.createElement("tr");
+
+
+                row.forEach(value => {
+
+                    const td = document.createElement("td");
+
+                    td.textContent = value;
+
+                    tr.appendChild(td);
+
+                });
+
+
+                detailsTableBody.appendChild(tr);
+
+            });
+
         }
 
-        for (const row of flag.obtain) {
 
-            if (!Array.isArray(row)) {
+        flagDetails.classList.add("is-open");
+
+
+        document
+            .querySelectorAll(".flag-card")
+            .forEach(card => {
+
+                card.classList.toggle(
+                    "is-selected",
+                    card.dataset.flagId === flag.id
+                );
+
+            });
+    }
+
+
+    function hideFlagDetails() {
+
+        flagDetails.classList.remove("is-open");
+
+
+        document
+            .querySelectorAll(".flag-card")
+            .forEach(card => {
+
+                card.classList.remove("is-selected");
+
+            });
+    }
+
+
+    /* ========================================================
+       НИЖНИЕ 4 СПИСКА
+    ======================================================== */
+
+    function renderWordSelectors() {
+
+        wordSelectors.innerHTML = "";
+
+
+        WORD_LISTS.forEach((list, index) => {
+
+            const wrapper = document.createElement("label");
+
+            wrapper.className = "word-select";
+
+
+            const title = document.createElement("span");
+
+            title.textContent = list.title;
+
+
+            const select = document.createElement("select");
+
+            select.dataset.index = index;
+
+
+            list.values.forEach(value => {
+
+                const option = document.createElement("option");
+
+                option.value = value;
+                option.textContent = value;
+
+                select.appendChild(option);
+
+            });
+
+
+            wrapper.append(title, select);
+
+            wordSelectors.appendChild(wrapper);
+
+        });
+    }
+
+
+    /* ========================================================
+       КЛЮЧ КОМБИНАЦИИ
+    ======================================================== */
+
+    function makeCombinationKey(combination) {
+
+        return combination
+            .map(value =>
+                String(value)
+                    .trim()
+                    .toLowerCase()
+            )
+            .join("|");
+    }
+
+
+    /* ========================================================
+       ПОИСК В obtain У ФЛАЖКОВ
+    ======================================================== */
+
+    function findFlagFromObtains(combination) {
+
+        const wantedKey =
+            makeCombinationKey(combination);
+
+
+        for (const flag of FLAG_DATA) {
+
+            if (!Array.isArray(flag.obtain)) {
                 continue;
             }
 
-            if (makeCombinationKey(row) === wantedKey) {
+
+            for (const row of flag.obtain) {
+
+                if (!Array.isArray(row)) {
+                    continue;
+                }
+
+
+                /*
+                    Проверяем только комбинации
+                    из четырёх элементов.
+                */
+
+                if (row.length !== combination.length) {
+                    continue;
+                }
+
+
+                if (
+                    makeCombinationKey(row) ===
+                    wantedKey
+                ) {
+
+                    return flag;
+                }
+
+            }
+
+        }
+
+
+        return null;
+    }
+
+
+    /* ========================================================
+       ПОИСК В ОБЩЕЙ БАЗЕ КОМБИНАЦИЙ
+    ======================================================== */
+
+    function findFlagFromAllCombinations(combination) {
+
+        const wantedKey =
+            makeCombinationKey(combination);
+
+
+        if (!Array.isArray(ALL_COMBINATIONS)) {
+            return null;
+        }
+
+
+        for (const entry of ALL_COMBINATIONS) {
+
+            if (!entry) {
+                continue;
+            }
+
+
+            if (!Array.isArray(entry.combination)) {
+                continue;
+            }
+
+
+            if (
+                makeCombinationKey(entry.combination) !==
+                wantedKey
+            ) {
+
+                continue;
+            }
+
+
+            const flag = FLAG_DATA.find(
+                item =>
+                    item.id === entry.flagId
+            );
+
+
+            if (flag) {
                 return flag;
             }
+
         }
+
+
+        return null;
     }
 
-    return null;
-}
 
-function findFlagFromAllCombinations(combination) {
+    /* ========================================================
+       ОБЩИЙ ПОИСК
+       
+       Сначала obtain.
+       Если там нет — ALL_COMBINATIONS.
+    ======================================================== */
 
-    const wantedKey = makeCombinationKey(combination);
+    function findFlagByCombination(combination) {
 
-    for (const entry of ALL_COMBINATIONS) {
+        const fromObtains =
+            findFlagFromObtains(combination);
 
-        if (!entry || !Array.isArray(entry.combination)) {
-            continue;
+
+        if (fromObtains) {
+            return fromObtains;
         }
 
-        if (makeCombinationKey(entry.combination) !== wantedKey) {
-            continue;
+
+        const fromAllCombinations =
+            findFlagFromAllCombinations(combination);
+
+
+        if (fromAllCombinations) {
+            return fromAllCombinations;
         }
 
-        const flag = FLAG_DATA.find(
-            item => item.id === entry.flagId
+
+        return null;
+    }
+
+
+    /* ========================================================
+       ПОЛУЧЕНИЕ ВЫБРАННЫХ ЧЕТЫРЁХ ЗНАЧЕНИЙ
+    ======================================================== */
+
+    function getSelectedCombination() {
+
+        const selects =
+            Array.from(
+                wordSelectors.querySelectorAll("select")
+            );
+
+
+        return selects.map(
+            select => select.value
+        );
+    }
+
+
+    /* ========================================================
+       ПОКАЗ РЕЗУЛЬТАТА
+    ======================================================== */
+
+    function showWordResult() {
+
+        const values =
+            getSelectedCombination();
+
+
+        console.log(
+            "Выбранная комбинация:",
+            values
         );
 
-        if (flag) {
-            return flag;
+
+        /* ----------------------------------------------------
+           Проверка количества списков
+        ---------------------------------------------------- */
+
+        if (values.length !== 4) {
+
+            console.error(
+                "Typology: должно быть ровно 4 списка.",
+                values
+            );
+
+            return;
         }
-    }
 
-    return null;
-}
 
-function findFlagByCombination(combination) {
+        /* ----------------------------------------------------
+           Поиск флажка
+        ---------------------------------------------------- */
 
-    const fromObtains = findFlagFromObtains(combination);
+        const resultFlag =
+            findFlagByCombination(values);
 
-    if (fromObtains) {
-        return fromObtains;
-    }
 
-    const fromAllCombinations =
-        findFlagFromAllCombinations(combination);
+        console.log(
+            "Найденный флажок:",
+            resultFlag
+        );
 
-    if (fromAllCombinations) {
-        return fromAllCombinations;
-    }
 
-    return null;
-}
+        /* ====================================================
+           КОМБИНАЦИЯ НАЙДЕНА
+        ==================================================== */
 
-/* ------------------------------------------------------------
-   РЕЗУЛЬТАТ ПО СЛОВАМ */
+        if (resultFlag) {
 
-function showWordResult() {
+            wordResultName.textContent =
+                resultFlag.name;
 
-    const selects = [
-        ...wordSelectors.querySelectorAll("select")
-    ];
 
-    const values = selects.map(select => select.value);
+            wordResultImage.src =
+                resultFlag.src;
 
-    if (values.length !== 4 || values.some(value => !value)) {
+            wordResultImage.alt =
+                resultFlag.name;
+
+
+            wordResultDescription.textContent =
+                resultFlag.description || "";
+
+
+            wordResult.classList.add("is-open");
+
+
+            requestAnimationFrame(() => {
+
+                wordResult.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            });
+
+
+            return;
+        }
+
+
+        /* ====================================================
+           КОМБИНАЦИЯ НЕ НАЙДЕНА
+        ==================================================== */
+
+        wordResultName.textContent =
+            "Флажок для этой комбинации пока не найден";
+
+
+        wordResultImage.src =
+            FLAG_PLACEHOLDER;
+
+        wordResultImage.alt =
+            "Флажок не найден";
+
+
+        wordResultDescription.textContent =
+            `Выбрано: ${values.join(" · ")}. ` +
+            "Такой комбинации пока нет в базе.";
+
 
         wordResult.classList.add("is-open");
 
-        wordResultName.textContent = "Комбинация не выбрана";
-
-        wordResultImage.src = FLAG_PLACEHOLDER;
-        wordResultImage.alt = "Комбинация не выбрана";
-
-        wordResultDescription.textContent =
-            "Выбери все четыре варианта.";
 
         requestAnimationFrame(() => {
 
@@ -477,54 +792,34 @@ function showWordResult() {
 
         });
 
-        return;
     }
 
-    const resultFlag = findFlagByCombination(values);
 
-    if (resultFlag) {
+    /* ========================================================
+       КНОПКА РЕЗУЛЬТАТА
+    ======================================================== */
 
-        wordResultName.textContent = resultFlag.name;
+    wordResultButton.addEventListener(
+        "click",
+        showWordResult
+    );
 
-        wordResultImage.src = resultFlag.src;
-        wordResultImage.alt = resultFlag.name;
 
-        wordResultDescription.textContent =
-            resultFlag.description;
+    /* ========================================================
+       ЗАПУСК
+    ======================================================== */
 
-        wordResult.classList.add("is-open");
+    renderFlagGrid();
 
-        requestAnimationFrame(() => {
+    renderWordSelectors();
 
-            wordResult.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
 
-        });
+    console.log(
+        "Typology загружена.",
+        "Флажков:",
+        FLAG_DATA.length,
+        "дополнительных комбинаций:",
+        ALL_COMBINATIONS.length
+    );
 
-        return;
-    }
-
-    wordResultName.textContent =
-        "Флажок для этой комбинации пока не найден";
-
-    wordResultImage.src = FLAG_PLACEHOLDER;
-    wordResultImage.alt =
-        "Флажок не найден";
-
-    wordResultDescription.textContent =
-        `Выбрано: ${values.join(" · ")}. ` +
-        "Для этой комбинации пока нет флажка в базе.";
-
-    wordResult.classList.add("is-open");
-
-    requestAnimationFrame(() => {
-
-        wordResult.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    });
-}
+});
