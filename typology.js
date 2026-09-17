@@ -1,19 +1,14 @@
-
 const FLAG_PLACEHOLDER = "assets/флажок1.png";
 
 const FLAG_DATA = [
   {
     id: "flag-1",
-    name: "Погибший, но вознёсшийся вопреки ",
+    name: "Флажок 1",
     src: FLAG_PLACEHOLDER,
-    description: "ОПИСАНИЕ????",
+    description: "Место для небольшого описания первого флажка.",
     obtain: [
-      ["Сомята | Вера | Безопастность | Активность"],
-      ["Сомята | Вера | Активность | Творчество"],
-      ["Лягушата | Вера | Безопастность | Активность"],
-      ["Лягушата | Вера | Ресурсы | Активность"],
-      ["Выдрята | Хитрость | Активность | Творчество"],
-      ["Выдрята", "Вера", "Безопастность", "Активность"]
+      ["Условие", "Здесь будет условие получения"],
+      ["Дополнительно", "Здесь будет дополнительное условие"]
     ]
   },
   {
@@ -228,6 +223,7 @@ function renderFlagGrid() {
     button.appendChild(image);
     card.appendChild(button);
     flagGrid.appendChild(card);
+
     button.addEventListener("click", () => {
 
       if (selectedFlag && selectedFlag.id === flag.id) {
@@ -235,9 +231,9 @@ function renderFlagGrid() {
         hideFlagDetails();
         return;
       }
-
+      
       selectedFlag = flag;
-      showFlagDetails(flag);
+      showFlagDetails(flag, false);
     });
   });
 }
@@ -245,7 +241,7 @@ function renderFlagGrid() {
 /* ------------------------------------------------------------
    БЛОК ПОДРОБНОЙ ИНФОРМАЦИИ*/
 
-function showFlagDetails(flag) {
+function showFlagDetails(flag, shouldScroll) {
   detailsName.textContent = flag.name;
   detailsImage.src = flag.src;
   detailsImage.alt = flag.name;
@@ -274,7 +270,6 @@ function showFlagDetails(flag) {
       card.dataset.flagId === flag.id
     );
   });
-}
 
 function hideFlagDetails() {
   flagDetails.classList.remove("is-open");
@@ -284,6 +279,11 @@ function hideFlagDetails() {
   });
 }
 
+    document.querySelectorAll(".flag-card").forEach(card => {
+        card.classList.remove("is-selected");
+    });
+}
+
 /* ------------------------------------------------------------
    НИЖНИЕ СПИСКИ*/
 
@@ -291,7 +291,7 @@ function renderWordSelectors() {
   wordSelectors.innerHTML = "";
 
   WORD_LISTS.forEach((list, index) => {
-    const wrapper = document.createElement("div");
+    const wrapper = document.createElement("label");
     wrapper.className = "word-select";
 
     const title = document.createElement("span");
@@ -302,81 +302,14 @@ function renderWordSelectors() {
 
     list.values.forEach(value => {
       const option = document.createElement("option");
-
       option.value = value;
       option.textContent = value;
-
       select.appendChild(option);
     });
 
-    const preview = document.createElement("div");
-    preview.className = "word-flag-preview";
-
-    const previewImage = document.createElement("img");
-    previewImage.src = FLAG_PLACEHOLDER;
-    previewImage.alt = "Флажок";
-
-    const previewName = document.createElement("h4");
-    previewName.textContent = "Флажок 1";
-
-    const previewDescription = document.createElement("p");
-    previewDescription.textContent =
-      "Здесь будет описание флажка для выбранного значения.";
-
-    preview.append(
-      previewImage,
-      previewName,
-      previewDescription
-    );
-
-    wrapper.append(
-      title,
-      select,
-      preview
-    );
-
+    wrapper.append(title, select);
     wordSelectors.appendChild(wrapper);
-
-    select.addEventListener("change", () => {
-      updateWordFlag(
-        index,
-        select.value,
-        previewImage,
-        previewName,
-        previewDescription
-      );
-    });
-
-    updateWordFlag(
-      index,
-      select.value,
-      previewImage,
-      previewName,
-      previewDescription
-    );
   });
-}
-
-function updateWordFlag(
-  listIndex,
-  selectedValue,
-  image,
-  name,
-  description
-) {
-
-  const resultFlag = FLAG_DATA[
-    listIndex % FLAG_DATA.length
-  ];
-
-  image.src = resultFlag.src;
-  image.alt = resultFlag.name;
-
-  name.textContent = resultFlag.name;
-
-  description.textContent =
-    `Для варианта «${selectedValue}» ` +
-    `сейчас используется шаблонный флажок.`;
 }
 
 /* ------------------------------------------------------------
