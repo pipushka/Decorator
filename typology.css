@@ -117,8 +117,8 @@
     background: transparent;
     cursor: pointer;
     z-index: 1;
-    transition: transform 0.25s ease;
 }
+
 .flag-button::after {
     content: "";
     position: absolute;
@@ -140,37 +140,30 @@
 
     transition:
         opacity 0.25s ease,
-        transform 0.25s ease,
-        filter 0.25s ease;
+        transform 0.25s ease;
 }
 
 .flag-button img {
-    position: relative;
     display: block;
     width: 100%;
     height: 200px;
     object-fit: contain;
 
     transform: scale(1);
+    transform-origin: center center;
 
-    transition:
-        transform 0.25s ease,
-        filter 0.25s ease;
+    transition: transform 0.18s ease;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .flag-card:hover .flag-button img {
     transform: scale(1.08);
-    filter: brightness(1.08);
-}
-
-.flag-card:hover .flag-button::after {
-    opacity: 0.8;
-    transform: scale(0.98);
 }
 
 .flag-card.is-selected .flag-button img {
     transform: scale(1.08);
-    filter: brightness(1.08);
 }
 
 .flag-card.is-selected .flag-button::after {
