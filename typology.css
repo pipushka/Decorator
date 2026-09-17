@@ -117,6 +117,7 @@
     background: transparent;
     cursor: pointer;
     z-index: 1;
+
 }
 
 .flag-button::after {
@@ -136,7 +137,7 @@
 
     z-index: -1;
 
-    transform: scale(0.82);
+    transform: translate3d(0, 0, 0) scale(0.82);
 
     transition:
         opacity 0.25s ease,
@@ -144,31 +145,36 @@
 }
 
 .flag-button img {
+    position: relative;
     display: block;
+
     width: 100%;
     height: 200px;
+
     object-fit: contain;
 
-    transform: scale(1);
-    transform-origin: center center;
+    transform: translate3d(0, 0, 0) scale(1);
+    transform-origin: 50% 50%;
 
     transition: transform 0.18s ease;
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    will-change: transform;
 }
 
 .flag-card:hover .flag-button img {
-    transform: scale(1.08);
+    transform: translate3d(0, 0, 0) scale(1.08);
 }
 
 .flag-card.is-selected .flag-button img {
-    transform: scale(1.08);
+    transform: translate3d(0, 0, 0) scale(1.08);
 }
 
+.flag-card:hover .flag-button::after,
 .flag-card.is-selected .flag-button::after {
     opacity: 0.8;
-    transform: scale(0.98);
+    transform: translate3d(0, 0, 0) scale(0.98);
 }
 /* ============================================================
    ПОДРОБНОСТИ
