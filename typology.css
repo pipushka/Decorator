@@ -98,90 +98,84 @@
 }
 
 .flag-card {
-  position: relative;
   min-width: 0;
-  height: 220px;
   text-align: center;
 }
 
+.flag-card {
+    min-width: 0;
+    text-align: center;
+    position: relative;
+}
+
 .flag-button {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 200px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  overflow: visible;
-  z-index: 1;
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 1;
+    transition: transform 0.25s ease;
+}
+.flag-button::after {
+    content: "";
+    position: absolute;
+
+    top: 30%;
+    right: 30%;
+    bottom: 30%;
+    left: 30%;
+
+    background: var(--accent-bright);
+
+    filter: blur(40px);
+
+    opacity: 0;
+
+    z-index: -1;
+
+    transform: scale(0.82);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        filter 0.25s ease;
 }
 
 .flag-button img {
-  position: absolute;
-  top: 0;
-  left: 0;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
 
-  display: block;
-  width: 100%;
-  height: 200px;
+    transform: scale(1);
 
-  object-fit: contain;
-
-  transform: scale(1);
-  transform-origin: center center;
-
-  transition:
-    transform 0.22s ease,
-    filter 0.22s ease;
-
-  z-index: 2;
-}
-
-.flag-button::after {
-  content: "";
-
-  position: absolute;
-  top: 10%;
-  right: 8%;
-  bottom: 10%;
-  left: 8%;
-
-  background: var(--accent-bright);
-
-  filter: blur(24px);
-
-  opacity: 0;
-  transform: scale(0.82);
-
-  pointer-events: none;
-
-  z-index: 1;
-
-  transition:
-    opacity 0.22s ease,
-    transform 0.22s ease;
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
 }
 
 .flag-card:hover .flag-button img {
-  transform: scale(1.08);
-  filter: brightness(1.08);
+    transform: scale(1.08);
+    filter: brightness(1.08);
 }
 
 .flag-card:hover .flag-button::after {
-  opacity: 0.8;
-  transform: scale(1);
+    opacity: 0.8;
+    transform: scale(0.98);
 }
 
 .flag-card.is-selected .flag-button img {
-  transform: scale(1.08);
-  filter: brightness(1.08);
+    transform: scale(1.08);
+    filter: brightness(1.08);
 }
 
 .flag-card.is-selected .flag-button::after {
-  opacity: 0.8;
-  transform: scale(1);
+    opacity: 0.8;
+    transform: scale(0.98);
 }
 /* ============================================================
    ПОДРОБНОСТИ
@@ -367,63 +361,6 @@
   border-color: var(--line-strong);
 }
 
-.word-flag-preview {
-  margin-top: 18px;
-  padding: 14px 10px 12px;
-
-  text-align: center;
-
-  background: rgba(4, 14, 28, 0.38);
-  border: 1px solid var(--line);
-
-  min-height: 205px;
-
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease;
-}
-
-.word-select:hover .word-flag-preview {
-  border-color: var(--line-strong);
-  background: rgba(4, 14, 28, 0.52);
-}
-
-.word-flag-preview img {
-  display: block;
-
-  width: 100%;
-  height: 120px;
-
-  object-fit: contain;
-
-  transition:
-    transform 0.22s ease,
-    filter 0.22s ease;
-}
-
-.word-select:hover .word-flag-preview img {
-  transform: scale(1.05);
-  filter: brightness(1.06);
-}
-
-.word-flag-preview h4 {
-  margin: 8px 0 5px;
-
-  color: var(--text);
-
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.word-flag-preview p {
-  margin: 0;
-
-  color: var(--text-soft);
-
-  font-size: 12px;
-  line-height: 1.4;
-}
-
 .word-result-button {
   display: block;
   min-width: 190px;
@@ -546,17 +483,9 @@
     padding-inline: 4px;
   }
 
-  .flag-card {
-  height: 130px;
-}
-
-.flag-button {
-  height: 115px;
-}
-
-.flag-button img {
-  height: 115px;
-}
+  .flag-button img {
+    height: 105px;
+  }
 
   .word-selectors {
     grid-template-columns: 1fr;
