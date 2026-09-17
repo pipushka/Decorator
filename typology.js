@@ -247,20 +247,11 @@ function showFlagDetails(flag, shouldScroll) {
   detailsImage.alt = flag.name;
   detailsDescription.textContent = flag.description;
 
-  detailsTableBody.innerHTML = "";
-
-  flag.obtain.forEach(row => {
-    const tr = document.createElement("tr");
-
-    const left = document.createElement("td");
-    left.textContent = row[0];
-
-    const right = document.createElement("td");
-    right.textContent = row[1];
-
-    tr.append(left, right);
-    detailsTableBody.appendChild(tr);
-  });
+  detailsTableBody.innerHTML = `
+    <tr>
+        ${flag.obtain.map(value => `<td>${value}</td>`).join("")}
+    </tr>
+`;
 
   flagDetails.classList.add("is-open");
 
