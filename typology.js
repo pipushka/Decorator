@@ -260,7 +260,7 @@ const wordResultDescription = document.getElementById("wordResultDescription");
 
 let selectedFlag = null;
 
-
+wordResultImage.style.display = "none";
 /* ============================================================
    НОРМАЛИЗАЦИЯ ДАННЫХ
    ============================================================ */
@@ -601,38 +601,40 @@ function findFlagsByCombination(values) {
    ============================================================ */
 
 function showWordResult() {
-
-  const selects = [
-    ...wordSelectors.querySelectorAll("select")
-  ];
-
-
+  const selects = [...wordSelectors.querySelectorAll("select")];
   const values = selects.map(select => select.value);
 
-  if (values.length !== 4) {
-    return;
-  }
+  const resultFlag = FLAG_DATA.find(flag => {
+
+    return flag.obtain.some(combination => {
+
+      if (!Array.isArray(combination) || combination.length !== 4) {
+        return false;
+      }
+
+      return combination.every((word, index) => {
+        return word === values[index];
+      });
+
+    });
+
+  });
 
 
-  const matchedFlags = findFlagsByCombination(values);
+  /* ============================================================
+     ФЛАЖОК НЕ НАЙДЕН
+     ============================================================ */
 
-
-  /* ----------------------------------------------------------
-     НЕТ СОВПАДЕНИЯ
-     ---------------------------------------------------------- */
-
-  if (matchedFlags.length === 0) {
+  if (!resultFlag) {
 
     wordResultName.textContent = "Флажок не найден";
+    wordResultImage.removeAttribute("src");
+    wordResultImage.alt = "";
 
-    wordResultImage.src = FLAG_PLACEHOLDER;
-
-    wordResultImage.alt = "Флажок не найден";
-
+    wordResultImage.style.display = "none";
 
     wordResultDescription.textContent =
       "Для выбранной комбинации нет флажка.";
-
 
     wordResult.classList.add("is-open");
 
@@ -640,26 +642,22 @@ function showWordResult() {
   }
 
 
-  /* ----------------------------------------------------------
-     ЕСТЬ СОВПАДЕНИЕ
-     ---------------------------------------------------------- */
-
-  const resultFlag = matchedFlags[0];
-
+  /* ============================================================
+     ФЛАЖОК НАЙДЕН
+     ============================================================ */
 
   wordResultName.textContent = resultFlag.name;
 
-
   wordResultImage.src = resultFlag.src;
-
   wordResultImage.alt = resultFlag.name;
 
+  wordResultImage.style.display = "";
 
   wordResultDescription.textContent =
     resultFlag.description;
 
-
   wordResult.classList.add("is-open");
+}
 
   if (matchedFlags.length > 1) {
 
