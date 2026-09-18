@@ -627,3 +627,18 @@
   }
 
 }
+/* ============================================================
+   КОРОТКИЕ НАЗВАНИЯ В ТАБЛИЦЕ НА ТЕЛЕФОНЕ
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+  .details-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+}
