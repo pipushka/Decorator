@@ -496,3 +496,134 @@
     justify-content: center;
   }
 }
+
+/* ============================================================
+   ДОПОЛНИТЕЛЬНАЯ МОБИЛЬНАЯ АДАПТАЦИЯ ТИПОЛОГИИ
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+  .typology-workspace {
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .typology-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .flag-grid {
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .flag-card,
+  .flag-button {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .flag-button img {
+    width: 100%;
+    max-width: 100%;
+    height: 100px;
+    object-fit: contain;
+  }
+
+  .flag-details {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .details-inner {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+
+  .details-heading {
+    padding: 22px 4px 16px;
+    box-sizing: border-box;
+  }
+
+  .details-heading h3 {
+    font-size: 21px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .details-main {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-bottom: 24px;
+    box-sizing: border-box;
+  }
+
+  .details-preview {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 190px;
+    height: auto;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .details-preview img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+  }
+
+  .details-description,
+  .details-table-wrap {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .details-description p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .details-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .details-table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    font-size: 12px;
+  }
+
+  .details-table td {
+    width: 25%;
+    padding: 7px 5px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .flag-card:hover .flag-button img,
+  .flag-card.is-selected .flag-button img {
+    transform: translate3d(0, 0, 0) scale(1.03);
+  }
+
+}
