@@ -252,6 +252,7 @@ const TYPOLOGY_ALIASES = {
 
 
 function normalizeWord(value) {
+
   if (typeof value !== "string") {
     return value;
   }
@@ -263,6 +264,7 @@ function normalizeWord(value) {
 
 
 function normalizeFlagData() {
+
   FLAG_DATA.forEach(flag => {
 
     flag.obtain = flag.obtain.map(combination => {
@@ -274,6 +276,7 @@ function normalizeFlagData() {
     });
 
   });
+
 }
 
 
@@ -450,17 +453,15 @@ function hideFlagDetails() {
 
 
 /* ============================================================
-   СОЗДАНИЕ СПИСКОВ ИЗ obtain
+   СОЗДАНИЕ НИЖНИХ СПИСКОВ
    ============================================================ */
 
 function buildWordListsFromFlags() {
 
-  const valuesByColumn = [
-    new Set(),
-    new Set(),
-    new Set(),
-    new Set()
-  ];
+  const firstValues = new Set();
+  const secondValues = new Set();
+
+  const lastTwoValues = new Set();
 
 
   FLAG_DATA.forEach(flag => {
@@ -475,13 +476,22 @@ function buildWordListsFromFlags() {
       }
 
 
-      for (let i = 0; i < 4; i++) {
+      firstValues.add(
+        normalizeWord(combination[0])
+      );
 
-        valuesByColumn[i].add(
-          normalizeWord(combination[i])
-        );
+      secondValues.add(
+        normalizeWord(combination[1])
+      );
 
-      }
+
+      lastTwoValues.add(
+        normalizeWord(combination[2])
+      );
+
+      lastTwoValues.add(
+        normalizeWord(combination[3])
+      );
 
     });
 
@@ -489,26 +499,29 @@ function buildWordListsFromFlags() {
 
 
   return [
+
     {
       title: "Детский",
-      values: [...valuesByColumn[0]]
+      values: [...firstValues]
     },
 
     {
       title: "Взрослый",
-      values: [...valuesByColumn[1]]
+      values: [...secondValues]
     },
 
     {
       title: "Сфера 1",
-      values: [...valuesByColumn[2]]
+      values: [...lastTwoValues]
     },
 
     {
       title: "Сфера 2",
-      values: [...valuesByColumn[3]]
+      values: [...lastTwoValues]
     }
+
   ];
+
 }
 
 
@@ -536,13 +549,15 @@ function renderWordSelectors() {
     const title =
       document.createElement("span");
 
-    title.textContent = list.title;
+    title.textContent =
+      list.title;
 
 
     const select =
       document.createElement("select");
 
-    select.dataset.index = index;
+    select.dataset.index =
+      index;
 
 
     list.values.forEach(value => {
@@ -550,8 +565,12 @@ function renderWordSelectors() {
       const option =
         document.createElement("option");
 
-      option.value = value;
-      option.textContent = value;
+      option.value =
+        value;
+
+      option.textContent =
+        value;
+
 
       select.appendChild(option);
 
@@ -569,13 +588,61 @@ function renderWordSelectors() {
 
 
 /* ============================================================
-   ПОИСК ФЛАЖКА ПО КОМБИНАЦИИ
+   ПРОВЕРКА ДВУХ ПОСЛЕДНИХ ЗНАЧЕНИЙ
+   ============================================================ */
+
+function lastTwoMatch(
+  selectedThird,
+  selectedFourth,
+  flagThird,
+  flagFourth
+) {
+
+  const selectedPair = [
+    normalizeWord(selectedThird),
+    normalizeWord(selectedFourth)
+  ].sort();
+
+
+  const flagPair = [
+    normalizeWord(flagThird),
+    normalizeWord(flagFourth)
+  ].sort();
+
+
+  return (
+    selectedPair[0] === flagPair[0] &&
+    selectedPair[1] === flagPair[1]
+  );
+
+}
+
+
+/* ============================================================
+   ПОИСК ФЛАЖКА ПО ТИПИРОВАНИЮ
    ============================================================ */
 
 function findFlagByCombination(values) {
 
-  const normalizedValues =
-    values.map(normalizeWord);
+  if (
+    !Array.isArray(values) ||
+    values.length !== 4
+  ) {
+    return null;
+  }
+
+
+  const firstValue =
+    normalizeWord(values[0]);
+
+  const secondValue =
+    normalizeWord(values[1]);
+
+  const thirdValue =
+    normalizeWord(values[2]);
+
+  const fourthValue =
+    normalizeWord(values[3]);
 
 
   for (const flag of FLAG_DATA) {
@@ -590,25 +657,34 @@ function findFlagByCombination(values) {
       }
 
 
-      let matches = true;
+      const firstMatches =
+        normalizeWord(combination[0]) ===
+        firstValue;
 
 
-      for (let i = 0; i < 4; i++) {
+      const secondMatches =
+        normalizeWord(combination[1]) ===
+        secondValue;
 
-        if (
-          normalizeWord(combination[i]) !==
-          normalizedValues[i]
-        ) {
 
-          matches = false;
-          break;
-
-        }
-
+      if (
+        !firstMatches ||
+        !secondMatches
+      ) {
+        continue;
       }
 
 
-      if (matches) {
+      const lastTwoMatches =
+        lastTwoMatch(
+          thirdValue,
+          fourthValue,
+          combination[2],
+          combination[3]
+        );
+
+
+      if (lastTwoMatches) {
         return flag;
       }
 
@@ -618,6 +694,7 @@ function findFlagByCombination(values) {
 
 
   return null;
+
 }
 
 
@@ -644,7 +721,7 @@ function showWordResult() {
 
 
   /* ==========================================================
-     КОМБИНАЦИИ НЕТ
+     ФЛАЖОК НЕ НАЙДЕН
      ========================================================== */
 
   if (!resultFlag) {
@@ -656,18 +733,33 @@ function showWordResult() {
     wordResultDescription.textContent =
       "Для выбранной комбинации нет флажка.";
 
+
     wordResultImage.removeAttribute("src");
     wordResultImage.removeAttribute("alt");
-    wordResultImage.style.display = "none";
+
+    wordResultImage.style.display =
+      "none";
+
+
+    wordResult.style.textAlign =
+      "center";
+
+    wordResultName.style.textAlign =
+      "center";
+
+    wordResultDescription.style.textAlign =
+      "center";
+
 
     wordResult.classList.add("is-open");
+
 
     return;
   }
 
 
   /* ==========================================================
-     КОМБИНАЦИЯ НАЙДЕНА
+     ФЛАЖОК НАЙДЕН
      ========================================================== */
 
   wordResultName.textContent =
@@ -676,6 +768,7 @@ function showWordResult() {
 
   wordResultImage.src =
     resultFlag.src;
+
 
   wordResultImage.alt =
     resultFlag.name;
@@ -687,6 +780,15 @@ function showWordResult() {
 
   wordResultDescription.textContent =
     resultFlag.description;
+
+  wordResult.style.textAlign =
+    "";
+
+  wordResultName.style.textAlign =
+    "";
+
+  wordResultDescription.style.textAlign =
+    "";
 
 
   wordResult.classList.add("is-open");
