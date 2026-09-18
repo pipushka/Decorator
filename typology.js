@@ -252,10 +252,6 @@ function normalizeWord(value) {
 
   const trimmed = value.trim();
 
-  return TYPOLOGY_ALIASES[trimmed] || trimmed;
-}
-
-
 function normalizeFlagData() {
 
   FLAG_DATA.forEach(flag => {
