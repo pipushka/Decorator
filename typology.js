@@ -1,5 +1,10 @@
 const FLAG_PLACEHOLDER = "assets/флажок1.png";
 
+
+/* ============================================================
+   ДАННЫЕ ФЛАЖКОВ
+   ============================================================ */
+
 const FLAG_DATA = [
   {
     id: "flag-1",
@@ -9,9 +14,9 @@ const FLAG_DATA = [
     obtain: [
       ["Сомята", "Вера", "Безопасность", "Активность"],
       ["Сомята", "Вера", "Активность", "Творчество"],
-      ["Лягушата", "Вера", "Активность", "Безопасность"],
+      ["Лягушата", "Вера", "Безопасность", "Активность"],
       ["Лягушата", "Вера", "Ресурсы", "Активность"],
-      ["Выдрята", "Хитрость", "Творчество", "Активность"],
+      ["Выдрята", "Хитрость", "Активность", "Творчество"],
       ["Выдрята", "Вера", "Безопасность", "Активность"]
     ]
   },
@@ -238,6 +243,41 @@ const FLAG_DATA = [
 
 
 /* ============================================================
+   НОРМАЛИЗАЦИЯ
+   ============================================================ */
+
+const TYPOLOGY_ALIASES = {
+  "Детстсво": "Детство"
+};
+
+
+function normalizeWord(value) {
+  if (typeof value !== "string") {
+    return value;
+  }
+
+  const trimmed = value.trim();
+
+  return TYPOLOGY_ALIASES[trimmed] || trimmed;
+}
+
+
+function normalizeFlagData() {
+  FLAG_DATA.forEach(flag => {
+
+    flag.obtain = flag.obtain.map(combination => {
+
+      return combination.map(word => {
+        return normalizeWord(word);
+      });
+
+    });
+
+  });
+}
+
+
+/* ============================================================
    ЭЛЕМЕНТЫ СТРАНИЦЫ
    ============================================================ */
 
@@ -260,32 +300,152 @@ const wordResultDescription = document.getElementById("wordResultDescription");
 
 let selectedFlag = null;
 
-wordResultImage.style.display = "none";
+
 /* ============================================================
-   НОРМАЛИЗАЦИЯ ДАННЫХ
+   РЕЗУЛЬТАТ ИЗНАЧАЛЬНО СКРЫТ
    ============================================================ */
 
-const TYPOLOGY_ALIASES = {
-  "Детстсво": "Детство"
-};
-
-
-function normalizeWord(value) {
-  if (typeof value !== "string") {
-    return value;
-  }
-
-  const trimmed = value.trim();
-
-  return TYPOLOGY_ALIASES[trimmed] || trimmed;
+if (wordResultImage) {
+  wordResultImage.style.display = "none";
 }
 
-function normalizeObtainData() {
+
+/* ============================================================
+   СЕТКА ФЛАЖКОВ
+   ============================================================ */
+
+function renderFlagGrid() {
+
+  flagGrid.innerHTML = "";
+
+
   FLAG_DATA.forEach(flag => {
-    flag.obtain = flag.obtain.map(combination => {
-      return combination.map(normalizeWord);
+
+    const card = document.createElement("article");
+
+    card.className = "flag-card";
+    card.dataset.flagId = flag.id;
+
+
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "flag-button";
+
+    button.setAttribute(
+      "aria-label",
+      `Открыть ${flag.name}`
+    );
+
+
+    const image = document.createElement("img");
+
+    image.src = flag.src;
+    image.alt = flag.name;
+    image.loading = "lazy";
+
+
+    button.appendChild(image);
+    card.appendChild(button);
+
+    flagGrid.appendChild(card);
+
+
+    button.addEventListener("click", () => {
+
+      if (
+        selectedFlag &&
+        selectedFlag.id === flag.id
+      ) {
+
+        selectedFlag = null;
+
+        hideFlagDetails();
+
+        return;
+      }
+
+
+      selectedFlag = flag;
+
+      showFlagDetails(flag);
+
     });
+
   });
+
+}
+
+
+/* ============================================================
+   ПОДРОБНОСТИ ФЛАЖКА
+   ============================================================ */
+
+function showFlagDetails(flag) {
+
+  detailsName.textContent = flag.name;
+
+  detailsImage.src = flag.src;
+  detailsImage.alt = flag.name;
+
+  detailsDescription.textContent =
+    flag.description;
+
+
+  detailsTableBody.innerHTML = "";
+
+
+  flag.obtain.forEach(row => {
+
+    const tr = document.createElement("tr");
+
+
+    row.forEach(value => {
+
+      const td = document.createElement("td");
+
+      td.textContent = normalizeWord(value);
+
+      tr.appendChild(td);
+
+    });
+
+
+    detailsTableBody.appendChild(tr);
+
+  });
+
+
+  flagDetails.classList.add("is-open");
+
+
+  document
+    .querySelectorAll(".flag-card")
+    .forEach(card => {
+
+      card.classList.toggle(
+        "is-selected",
+        card.dataset.flagId === flag.id
+      );
+
+    });
+
+}
+
+
+function hideFlagDetails() {
+
+  flagDetails.classList.remove("is-open");
+
+
+  document
+    .querySelectorAll(".flag-card")
+    .forEach(card => {
+
+      card.classList.remove("is-selected");
+
+    });
+
 }
 
 
@@ -302,21 +462,24 @@ function buildWordListsFromFlags() {
     new Set()
   ];
 
+
   FLAG_DATA.forEach(flag => {
 
     flag.obtain.forEach(combination => {
 
-      if (!Array.isArray(combination)) {
+      if (
+        !Array.isArray(combination) ||
+        combination.length < 4
+      ) {
         return;
       }
 
+
       for (let i = 0; i < 4; i++) {
 
-        if (combination[i] !== undefined) {
-          valuesByColumn[i].add(
-            normalizeWord(combination[i])
-          );
-        }
+        valuesByColumn[i].add(
+          normalizeWord(combination[i])
+        );
 
       }
 
@@ -350,151 +513,6 @@ function buildWordListsFromFlags() {
 
 
 /* ============================================================
-   СЕТКА ФЛАЖКОВ
-   ============================================================ */
-
-function renderFlagGrid() {
-
-  flagGrid.innerHTML = "";
-
-  FLAG_DATA.forEach(flag => {
-
-    const card = document.createElement("article");
-    card.className = "flag-card";
-    card.dataset.flagId = flag.id;
-
-
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = "flag-button";
-    button.setAttribute(
-      "aria-label",
-      `Открыть ${flag.name}`
-    );
-
-
-    const image = document.createElement("img");
-
-    image.src = flag.src;
-    image.alt = flag.name;
-    image.loading = "lazy";
-
-
-    button.appendChild(image);
-    card.appendChild(button);
-    flagGrid.appendChild(card);
-
-
-    button.addEventListener("click", () => {
-
-      if (
-        selectedFlag &&
-        selectedFlag.id === flag.id
-      ) {
-
-        selectedFlag = null;
-        hideFlagDetails();
-
-        return;
-      }
-
-
-      selectedFlag = flag;
-
-      showFlagDetails(flag, false);
-
-    });
-
-  });
-
-}
-
-
-/* ============================================================
-   ПОДРОБНАЯ ИНФОРМАЦИЯ О ФЛАЖКЕ
-   ============================================================ */
-
-function showFlagDetails(flag, shouldScroll) {
-
-  detailsName.textContent = flag.name;
-
-  detailsImage.src = flag.src;
-  detailsImage.alt = flag.name;
-
-  detailsDescription.textContent = flag.description;
-
-
-  detailsTableBody.innerHTML = "";
-
-
-  flag.obtain.forEach(row => {
-
-    const tr = document.createElement("tr");
-
-
-    row.forEach(value => {
-
-      const td = document.createElement("td");
-
-      td.textContent = normalizeWord(value);
-
-      tr.appendChild(td);
-
-    });
-
-
-    detailsTableBody.appendChild(tr);
-
-  });
-
-
-  flagDetails.classList.add("is-open");
-
-
-  document.querySelectorAll(".flag-card").forEach(card => {
-
-    card.classList.toggle(
-      "is-selected",
-      card.dataset.flagId === flag.id
-    );
-
-  });
-
-
-  if (shouldScroll) {
-
-    requestAnimationFrame(() => {
-
-      flagDetails.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    });
-
-  }
-
-}
-
-
-function hideFlagDetails() {
-
-  flagDetails.classList.remove("is-open");
-
-
-  document
-    .querySelectorAll(".flag-card")
-    .forEach(card => {
-
-      card.classList.remove("is-selected");
-
-    });
-
-}
-
-
-/* ============================================================
    НИЖНИЕ СПИСКИ
    ============================================================ */
 
@@ -503,29 +521,34 @@ function renderWordSelectors() {
   wordSelectors.innerHTML = "";
 
 
-  const wordLists = buildWordListsFromFlags();
+  const wordLists =
+    buildWordListsFromFlags();
 
 
   wordLists.forEach((list, index) => {
 
-    const wrapper = document.createElement("label");
+    const wrapper =
+      document.createElement("label");
 
     wrapper.className = "word-select";
 
 
-    const title = document.createElement("span");
+    const title =
+      document.createElement("span");
 
     title.textContent = list.title;
 
 
-    const select = document.createElement("select");
+    const select =
+      document.createElement("select");
 
     select.dataset.index = index;
 
 
     list.values.forEach(value => {
 
-      const option = document.createElement("option");
+      const option =
+        document.createElement("option");
 
       option.value = value;
       option.textContent = value;
@@ -534,14 +557,9 @@ function renderWordSelectors() {
 
     });
 
-    select.addEventListener("change", () => {
 
-      wordResult.classList.remove("is-open");
-
-    });
-
-
-    wrapper.append(title, select);
+    wrapper.appendChild(title);
+    wrapper.appendChild(select);
 
     wordSelectors.appendChild(wrapper);
 
@@ -551,26 +569,28 @@ function renderWordSelectors() {
 
 
 /* ============================================================
-   ПОИСК ФЛАЖКА ПО ЧЕТЫРЁМ СЛОВАМ
+   ПОИСК ФЛАЖКА ПО КОМБИНАЦИИ
    ============================================================ */
 
-function findFlagsByCombination(values) {
+function findFlagByCombination(values) {
 
-  const normalizedValues = values.map(normalizeWord);
+  const normalizedValues =
+    values.map(normalizeWord);
 
 
-  return FLAG_DATA.filter(flag => {
+  for (const flag of FLAG_DATA) {
 
-    return flag.obtain.some(combination => {
+    for (const combination of flag.obtain) {
 
-      if (!Array.isArray(combination)) {
-        return false;
+      if (
+        !Array.isArray(combination) ||
+        combination.length !== 4
+      ) {
+        continue;
       }
 
 
-      if (combination.length !== 4) {
-        return false;
-      }
+      let matches = true;
 
 
       for (let i = 0; i < 4; i++) {
@@ -580,19 +600,24 @@ function findFlagsByCombination(values) {
           normalizedValues[i]
         ) {
 
-          return false;
+          matches = false;
+          break;
 
         }
 
       }
 
 
-      return true;
+      if (matches) {
+        return flag;
+      }
 
-    });
+    }
 
-  });
+  }
 
+
+  return null;
 }
 
 
@@ -601,40 +626,39 @@ function findFlagsByCombination(values) {
    ============================================================ */
 
 function showWordResult() {
-  const selects = [...wordSelectors.querySelectorAll("select")];
-  const values = selects.map(select => select.value);
 
-  const resultFlag = FLAG_DATA.find(flag => {
-
-    return flag.obtain.some(combination => {
-
-      if (!Array.isArray(combination) || combination.length !== 4) {
-        return false;
-      }
-
-      return combination.every((word, index) => {
-        return word === values[index];
-      });
-
-    });
-
-  });
+  const selects =
+    [...wordSelectors.querySelectorAll("select")];
 
 
-  /* ============================================================
-     ФЛАЖОК НЕ НАЙДЕН
-     ============================================================ */
+  const values =
+    selects.map(select => select.value);
+
+  if (values.length !== 4) {
+    return;
+  }
+
+
+  const resultFlag =
+    findFlagByCombination(values);
+
+
+  /* ==========================================================
+     КОМБИНАЦИИ НЕТ
+     ========================================================== */
 
   if (!resultFlag) {
 
-    wordResultName.textContent = "Флажок не найден";
-    wordResultImage.removeAttribute("src");
-    wordResultImage.alt = "";
+    wordResultName.textContent =
+      "Флажок не найден";
 
-    wordResultImage.style.display = "none";
 
     wordResultDescription.textContent =
       "Для выбранной комбинации нет флажка.";
+
+    wordResultImage.removeAttribute("src");
+    wordResultImage.removeAttribute("alt");
+    wordResultImage.style.display = "none";
 
     wordResult.classList.add("is-open");
 
@@ -642,51 +666,31 @@ function showWordResult() {
   }
 
 
-  /* ============================================================
-     ФЛАЖОК НАЙДЕН
-     ============================================================ */
+  /* ==========================================================
+     КОМБИНАЦИЯ НАЙДЕНА
+     ========================================================== */
 
-  wordResultName.textContent = resultFlag.name;
+  wordResultName.textContent =
+    resultFlag.name;
 
-  wordResultImage.src = resultFlag.src;
-  wordResultImage.alt = resultFlag.name;
 
-  wordResultImage.style.display = "";
+  wordResultImage.src =
+    resultFlag.src;
+
+  wordResultImage.alt =
+    resultFlag.name;
+
+
+  wordResultImage.style.display =
+    "";
+
 
   wordResultDescription.textContent =
     resultFlag.description;
 
+
   wordResult.classList.add("is-open");
-}
 
-  if (matchedFlags.length > 1) {
-
-    const extraText = document.createElement("p");
-
-    extraText.className = "word-result-extra";
-
-
-    extraText.textContent =
-      "Эта комбинация также соответствует: " +
-      matchedFlags
-        .slice(1)
-        .map(flag => flag.name)
-        .join(", ");
-
-
-    wordResult.appendChild(extraText);
-
-  }
-
-
-  requestAnimationFrame(() => {
-
-    wordResult.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-
-  });
 
 }
 
@@ -695,20 +699,25 @@ function showWordResult() {
    ИНИЦИАЛИЗАЦИЯ
    ============================================================ */
 
+normalizeFlagData();
 
-normalizeObtainData();
 
 renderFlagGrid();
 
+
 renderWordSelectors();
+
 
 wordResultButton.addEventListener(
   "click",
   showWordResult
 );
 
+
 requestAnimationFrame(() => {
 
-  document.body.classList.add("page-ready");
+  document.body.classList.add(
+    "page-ready"
+  );
 
 });
